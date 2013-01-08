@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="dpc66C" name="Genie" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.KreepAudio.Genie" buildVST="1" buildAU="1"
+              pluginName="Genie" pluginDesc="" pluginManufacturer="KreepAudio"
+              pluginManufacturerCode="KrpA" pluginCode="GeNi" pluginChannelConfigs="{1, 1}, {2, 2}"
+              pluginIsSynth="1" pluginWantsMidiIn="1" pluginProducesMidiOut="1"
+              pluginSilenceInIsSilenceOut="0" pluginTailLength="0" pluginEditorRequiresKeys="1"
+              pluginAUExportPrefix="GenieAU" pluginAUViewClass="GenieAU_V1"
+              pluginRTASCategory="" aaxIdentifier="com.yourcompany.Genie" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
+              jucerVersion="3.0.0" companyName="KreepAudio">
+  <MAINGROUP id="eMfmZX" name="Genie">
+    <GROUP id="{037BC9AE-17E8-F4EB-92A0-BD8911C5DFA6}" name="TEST objects">
+      <FILE id="SoXX6F" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
+      <FILE id="SLBsWI" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
+    </GROUP>
+    <GROUP id="{78A5896F-F05D-A04F-1CBB-D48031D44577}" name="Source">
+      <GROUP id="{C9CD087E-24B1-358B-8F23-2F80CB20FD8E}" name="Midi">
+        <FILE id="YofMFe" name="MidiManager.cpp" compile="1" resource="0" file="Source/MidiManager.cpp"/>
+        <FILE id="VsWDVs" name="MidiManager.h" compile="0" resource="0" file="Source/MidiManager.h"/>
+      </GROUP>
+      <FILE id="ax865A" name="genieHeader.h" compile="0" resource="0" file="Source/genieHeader.h"/>
+      <GROUP id="{DAF7305A-2289-7F5C-EE13-43252920DDE1}" name="Processing">
+        <GROUP id="{C5E6B3A7-EFA1-A707-503E-BA1D2BBEBFBA}" name="Polyphonic File Player">
+          <FILE id="uJXQiP" name="PolyPlayerVoice.h" compile="0" resource="0"
+                file="Source/PolyPlayerVoice.h"/>
+          <FILE id="B2rQy1" name="PolyAudioFilePlayer.cpp" compile="1" resource="0"
+                file="Source/PolyAudioFilePlayer.cpp"/>
+          <FILE id="qcVyl0" name="PolyAudioFilePlayer.h" compile="0" resource="0"
+                file="Source/PolyAudioFilePlayer.h"/>
+        </GROUP>
+        <FILE id="UZA45R" name="PluginProcessor.cpp" compile="1" resource="0"
+              file="Source/PluginProcessor.cpp"/>
+        <FILE id="oqxloY" name="PluginProcessor.h" compile="0" resource="0"
+              file="Source/PluginProcessor.h"/>
+      </GROUP>
+      <GROUP id="{F0D8B97B-E026-B5C0-E168-47884A84F25A}" name="Gui">
+        <FILE id="fgOYKA" name="MidiControl.cpp" compile="1" resource="0" file="Source/MidiControl.cpp"/>
+        <FILE id="VtvChV" name="MidiControl.h" compile="0" resource="0" file="Source/MidiControl.h"/>
+        <GROUP id="{220AABB6-6A86-9D64-A102-D6FE11B8E21E}" name="SliceEditor">
+          <FILE id="SQX3g3" name="SliceEditor.cpp" compile="1" resource="0" file="Source/SliceEditor.cpp"/>
+          <FILE id="Sk0WT7" name="SliceEditor.h" compile="0" resource="0" file="Source/SliceEditor.h"/>
+        </GROUP>
+        <FILE id="u7TlY7" name="PluginEditor.cpp" compile="1" resource="0"
+              file="Source/PluginEditor.cpp"/>
+        <FILE id="JItHX0" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+        <GROUP id="{3C1CC413-EE0A-4DE3-9FFE-9C7758772B6F}" name="AudioEditor">
+          <FILE id="dwtugu" name="audioEditor.cpp" compile="1" resource="0" file="Source/audioEditor.cpp"/>
+          <FILE id="zHm0Ok" name="audioEditor.h" compile="0" resource="0" file="Source/audioEditor.h"/>
+          <GROUP id="{10AF3A74-9E38-92A5-E64E-99E95495A182}" name="Components">
+            <FILE id="JRVtaB" name="MarkerOverlay.cpp" compile="1" resource="0"
+                  file="Source/MarkerOverlay.cpp"/>
+            <FILE id="Echw8c" name="MarkerOverlay.h" compile="0" resource="0" file="Source/MarkerOverlay.h"/>
+            <FILE id="uAVkuZ" name="SplittableWaveDisplay.cpp" compile="1" resource="0"
+                  file="Source/SplittableWaveDisplay.cpp"/>
+            <FILE id="SQcwgV" name="SplittableWaveDisplay.h" compile="0" resource="0"
+                  file="Source/SplittableWaveDisplay.h"/>
+            <FILE id="pXOV4d" name="audioFile.cpp" compile="1" resource="0" file="Source/audioFile.cpp"/>
+            <FILE id="Sorbxj" name="audioFile.h" compile="0" resource="0" file="Source/audioFile.h"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{2E10A5A4-F935-62A8-FEC3-07384F970F22}" name="SequenceEditor">
+          <FILE id="Z33G3U" name="sequenceEditor.cpp" compile="1" resource="0"
+                file="Source/sequenceEditor.cpp"/>
+          <FILE id="n4Nmu5" name="sequenceEditor.h" compile="0" resource="0"
+                file="Source/sequenceEditor.h"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{948199C5-849D-DB83-6FF6-BDB0AE8CFA87}" name="Shared">
+        <FILE id="rcMbB9" name="SliceData.cpp" compile="1" resource="0" file="Source/SliceData.cpp"/>
+        <FILE id="D7Nual" name="SliceManager.cpp" compile="1" resource="0"
+              file="Source/SliceManager.cpp"/>
+        <FILE id="q70q35" name="SliceManager.h" compile="0" resource="0" file="Source/SliceManager.h"/>
+        <FILE id="dHW9FO" name="SliceData.h" compile="0" resource="0" file="Source/SliceData.h"/>
+      </GROUP>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="dRowAudio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled" DROWAUDIO_USE_FFTREAL="disabled" DROWAUDIO_USE_SOUNDTOUCH="disabled"
+               DROWAUDIO_USE_CURL="disabled"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" juceFolder="/Developer/libs/juce/modules"
+               vstFolder="/Developer/SDKs/vstsdk2.4" postbuildCommand="&#13;&#10;# This script takes the build product and copies it to the AU, VST, and RTAS folders, depending on &#13;&#10;# which plugin types you've built&#13;&#10;&#13;&#10;original=$CONFIGURATION_BUILD_DIR/$FULL_PRODUCT_NAME&#13;&#10;&#13;&#10;# this looks inside the binary to detect which platforms are needed.. &#13;&#10;copyAU=&#96;nm -g &quot;$CONFIGURATION_BUILD_DIR/$EXECUTABLE_PATH&quot; | grep -i 'AudioUnit' | wc -l&#96;&#13;&#10;copyVST=&#96;nm -g &quot;$CONFIGURATION_BUILD_DIR/$EXECUTABLE_PATH&quot; | grep -i 'VSTPlugin' | wc -l&#96;&#13;&#10;copyRTAS=&#96;nm -g &quot;$CONFIGURATION_BUILD_DIR/$EXECUTABLE_PATH&quot; | grep -i 'CProcess' | wc -l&#96;&#13;&#10;copyAAX=&#96;nm -g &quot;$CONFIGURATION_BUILD_DIR/$EXECUTABLE_PATH&quot; | grep -i 'GetEffectDescriptions' | wc -l&#96;&#13;&#10;&#13;&#10;if [ $copyAU -gt 0 ]; then&#13;&#10;  echo &quot;Copying to AudioUnit folder...&quot;&#13;&#10;  AU=~/Library/Audio/Plug-Ins/Components/$PRODUCT_NAME.component&#13;&#10;  if [ -d &quot;$AU&quot; ]; then &#13;&#10;    rm -r &quot;$AU&quot;&#13;&#10;  fi&#13;&#10;&#13;&#10;  cp -r &quot;$original&quot; &quot;$AU&quot;&#13;&#10;  sed -i &quot;&quot; -e 's/TDMwPTul/BNDLPTul/g' &quot;$AU/Contents/PkgInfo&quot;&#13;&#10;  sed -i &quot;&quot; -e 's/TDMw/BNDL/g' &quot;$AU/Contents/$INFOPLIST_FILE&quot;&#13;&#10;fi&#13;&#10;&#13;&#10;if [ $copyVST -gt 0 ]; then&#13;&#10;  echo &quot;Copying to VST folder...&quot;&#13;&#10;  VST=~/Library/Audio/Plug-Ins/VST/$PRODUCT_NAME.vst&#13;&#10;  if [ -d &quot;$VST&quot; ]; then &#13;&#10;    rm -r &quot;$VST&quot;&#13;&#10;  fi&#13;&#10;&#13;&#10;  cp -r &quot;$original&quot; &quot;$VST&quot;&#13;&#10;  sed -i &quot;&quot; -e 's/TDMwPTul/BNDLPTul/g' &quot;$VST/Contents/PkgInfo&quot;&#13;&#10;  sed -i &quot;&quot; -e 's/TDMw/BNDL/g' &quot;$VST/Contents/$INFOPLIST_FILE&quot;&#13;&#10;fi&#13;&#10;&#13;&#10;if [ $copyRTAS -gt 0 ]; then&#13;&#10;  echo &quot;Copying to RTAS folder...&quot;&#13;&#10;  RTAS=/Library/Application\ Support/Digidesign/Plug-Ins/$PRODUCT_NAME.dpm&#13;&#10;  if [ -d &quot;$RTAS&quot; ]; then&#13;&#10;    rm -r &quot;$RTAS&quot;&#13;&#10;  fi&#13;&#10;&#13;&#10;  cp -r &quot;$original&quot; &quot;$RTAS&quot;&#13;&#10;fi&#13;&#10;&#13;&#10;if [ $copyAAX -gt 0 ]; then&#13;&#10;  echo &quot;Copying to AAX folder...&quot;&#13;&#10;&#13;&#10;  if [ -d &quot;/Applications/ProTools_3PDev/Plug-Ins&quot; ]; then&#13;&#10;    AAX1=&quot;/Applications/ProTools_3PDev/Plug-Ins/$PRODUCT_NAME.aaxplugin&quot;&#13;&#10;&#13;&#10;    if [ -d &quot;$AAX1&quot; ]; then&#13;&#10;      rm -r &quot;$AAX1&quot;&#13;&#10;    fi&#13;&#10;&#13;&#10;    cp -r &quot;$original&quot; &quot;$AAX1&quot;&#13;&#10;  fi&#13;&#10;&#13;&#10;  if [ -d &quot;/Library/Application Support/Avid/Audio/Plug-Ins&quot; ]; then&#13;&#10;    AAX2=&quot;/Library/Application Support/Avid/Audio/Plug-Ins/$PRODUCT_NAME.aaxplugin&quot;&#13;&#10;&#13;&#10;    if [ -d &quot;$AAX2&quot; ]; then&#13;&#10;      rm -r &quot;$AAX2&quot;&#13;&#10;    fi&#13;&#10;&#13;&#10;    cp -r &quot;$original&quot; &quot;$AAX2&quot;&#13;&#10;  fi&#13;&#10;fi&#13;&#10;"
+               extraLinkerFlags="-lcurl">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" osxSDK="10.7 SDK" osxCompatibility="10.7 SDK" osxArchitecture="32BitUniversal"
+                       isDebug="1" optimisation="1" targetName="Genie" cppLibType=""/>
+        <CONFIGURATION name="Release" osxSDK="10.7 SDK" osxCompatibility="10.7 SDK"
+                       osxArchitecture="Native" isDebug="0" optimisation="2" targetName="Genie"/>
+      </CONFIGURATIONS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+</JUCERPROJECT>
