@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/MarkerOverlay.cpp \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/MarkerOverlay.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SubsectionOverlay.cpp \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SubsectionOverlay.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/genieHeader.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/../JuceLibraryCode/JuceHeader.h \
   ../../JuceLibraryCode/AppConfig.h \
@@ -442,4 +442,5 @@ dependencies: \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_RecentlyOpenedFilesList.h \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SplashScreen.h \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SystemTrayIconComponent.h \
-  ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_WebBrowserComponent.h
+  ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_WebBrowserComponent.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/AudioSubsectionManager.h

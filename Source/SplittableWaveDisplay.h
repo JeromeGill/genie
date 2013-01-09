@@ -11,7 +11,8 @@
 #ifndef __SPLITTABLEWAVEDISPLAY_H_995DED5__
 #define __SPLITTABLEWAVEDISPLAY_H_995DED5__
 #include "genieHeader.h"
-#include "MarkerOverlay.h"
+#include "AudioSubsectionManager.h"
+#include "SubsectionOverlay.h"
 /**==============================================================================
  
  SplittableWaveDisplay allows selecting sub-sections of a PositionableWaveDisplay.
@@ -34,7 +35,9 @@
  ==============================================================================*/
 
 
-class SplittableWaveDisplay : public Component
+class SplittableWaveDisplay :   public Component//,
+//                                public AudioSubsectionManager::Listener,
+//                                public AudioFilePlayer::Listener
 {
 public:
     SplittableWaveDisplay(AudioThumbnailImage& sourceToBeUsed,
@@ -74,25 +77,25 @@ public:
      */
     void setVerticalZoomRatio (double newVerticalZoomRatio);
     
-    //Listener Callbacks
+    //====================================================================================
     /**@Internal@*/
     void mouseDown (const MouseEvent& event);
     /**@Internal@*/
     void mouseDrag (const MouseEvent& event);
     /**@Internal@*/
     void mouseUp (const MouseEvent& event);
-//    /**@Internal@*/
-//    void fileChanged (AudioFilePlayer* player);
     
    
-   
+    
+     //====================================================================================
+    
 private:
     
-    
+    int currentXScale;
     PositionableWaveDisplay waveDisplay;
-    MarkerOverlay Markers;
-    
-    
+    AudioSubsectionManager subsections;
+    AudioFilePlayer* filePlayer;
+    SubsectionOverlay overlay;
 
 };
 

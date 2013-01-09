@@ -100,9 +100,9 @@ void AudioEditor::resized()
     SlZoom.setBounds(0, h/5, w/4,  h/ 5);
     label.setBounds(0, h / 5 * 4, w, h/5 );
     
-    waveDisplay->setBounds(0, h/5 * 2, w, h/5 * 2);
+    waveDisplay->setBounds(0, h/5 * 3, w, h/5 * 2);
     sliceManager.setBounds(0, h/5 * 2, w, h/5 * 2);
-    midiControl.setBounds (w/2, h/5, w/2, h/4);
+    midiControl.setBounds (w/2, h/5, w/2, h/5);
     
     
 }

@@ -14,34 +14,38 @@
 SplittableWaveDisplay::SplittableWaveDisplay(AudioThumbnailImage& sourceToBeUsed,
                                              TimeSliceThread& threadToUse_)
 :   waveDisplay(sourceToBeUsed, threadToUse_),
-Markers(*sourceToBeUsed.getAudioFilePlayer())
+    filePlayer(sourceToBeUsed.getAudioFilePlayer()),
+    subsections(*sourceToBeUsed.getAudioFilePlayer()),
+    overlay(&subsections, filePlayer)
 {
-
+   
     addAndMakeVisible(&waveDisplay);
-    addAndMakeVisible(&Markers);
-    waveDisplay.setInterceptsMouseClicks(false, false);
-    Markers.setInterceptsMouseClicks(false, false);
-    
+    addAndMakeVisible(&overlay);
+    setInterceptsMouseClicks(true, false);
+ 
+//    subsections.addListener(this);
+//    filePlayer->addListener(this);
 };
 
 SplittableWaveDisplay::~SplittableWaveDisplay()
 {
-    
+//    subsections.removeListener(this);
+//    filePlayer->removeListener(this);
 }
 
 void SplittableWaveDisplay::resized(){
     int w = getWidth();
     int h = getHeight();
-    
+    overlay.setBounds(0, 0, w, h);
     waveDisplay.setBounds(0, 0, w, h);
-    Markers.setBounds(0, 0, w, h);
- 
+    waveDisplay.toBack();
     
+
     
 }
 
 void SplittableWaveDisplay::paint(Graphics &g){
-  
+
 }
 
 //====================================================================================
@@ -84,22 +88,27 @@ void SplittableWaveDisplay::setVerticalZoomRatio (double newVerticalZoomRatio){
     waveDisplay.setVerticalZoomRatio(newVerticalZoomRatio);
 }
 
+
+
 //====================================================================================
-
-
 void SplittableWaveDisplay::mouseDown(const MouseEvent &e){
-    
-    int currentMouseX = e.x;
-    
-   if (e.mods.isShiftDown()) Markers.mouseDown(e );
+
+    if(e.mods.isShiftDown())
+        overlay.mouseDown(e);
     else waveDisplay.mouseDown(e);
-    
+
 }
 void SplittableWaveDisplay::mouseUp (const MouseEvent &e){
-    if (e.mods.isShiftDown()) Markers.mouseDown(e);
-    else waveDisplay.mouseDown(e);
+    int currentMouseX = e.x;
+    if (e.mods.isShiftDown())
+        overlay.mouseUp(e);
+    else waveDisplay.mouseUp(e);
 }
 void SplittableWaveDisplay::mouseDrag(const MouseEvent &e){
-    if (e.mods.isShiftDown()) Markers.mouseDown(e);
-    else waveDisplay.mouseDown(e);
+   
+    if (e.mods.isShiftDown())
+        overlay.mouseDrag(e);
+        
+        else waveDisplay.mouseDrag(e);
 }
+
