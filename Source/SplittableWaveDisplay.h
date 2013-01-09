@@ -12,7 +12,6 @@
 #define __SPLITTABLEWAVEDISPLAY_H_995DED5__
 #include "genieHeader.h"
 #include "AudioSubsectionManager.h"
-#include "SubsectionOverlay.h"
 /**==============================================================================
  
  SplittableWaveDisplay allows selecting sub-sections of a PositionableWaveDisplay.
@@ -35,9 +34,9 @@
  ==============================================================================*/
 
 
-class SplittableWaveDisplay :   public Component//,
-//                                public AudioSubsectionManager::Listener,
-//                                public AudioFilePlayer::Listener
+class SplittableWaveDisplay :   public Component,
+                                public AudioSubsectionManager::Listener,
+                                public AudioFilePlayer::Listener
 {
 public:
     SplittableWaveDisplay(AudioThumbnailImage& sourceToBeUsed,
@@ -48,6 +47,8 @@ public:
     void resized();
     /** Internal */
     void paint(Graphics &g);
+    /** Internal */
+    void paintOverChildren(Graphics &g);
     
     //====================================================================================
 	/** Sets whether or not the transport cursor should be displayed;
@@ -79,13 +80,29 @@ public:
     
     //====================================================================================
     /**@Internal@*/
+    void subsectionCreated();
+    /**@Internal@*/
+    void subsectionDeleted();
+    /**@Internal@*/
+    void subsectionChanged(int SubsectionIndex);
+    /**@Internal@*/
+    void fileChanged (AudioFilePlayer* player);
+    
+    //====================================================================================
+    /** Sample to Pixel conversion
+     */
+    int  SampleToPixel(int64 sampleClickedOn);
+    /** Pixel to Sample conversion
+     */
+    int64 PixelToSample(double PixelClickedOn);
+    
+    //====================================================================================
+    /**@Internal@*/
     void mouseDown (const MouseEvent& event);
     /**@Internal@*/
     void mouseDrag (const MouseEvent& event);
     /**@Internal@*/
     void mouseUp (const MouseEvent& event);
-    
-   
     
      //====================================================================================
     
@@ -95,8 +112,10 @@ private:
     PositionableWaveDisplay waveDisplay;
     AudioSubsectionManager subsections;
     AudioFilePlayer* filePlayer;
-    SubsectionOverlay overlay;
+    
 
+    Image highlightImage;
+    Image *SubsectionImage;
 };
 
 

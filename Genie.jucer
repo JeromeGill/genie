@@ -48,10 +48,6 @@
           <FILE id="dwtugu" name="audioEditor.cpp" compile="1" resource="0" file="Source/audioEditor.cpp"/>
           <FILE id="zHm0Ok" name="audioEditor.h" compile="0" resource="0" file="Source/audioEditor.h"/>
           <GROUP id="{10AF3A74-9E38-92A5-E64E-99E95495A182}" name="Components">
-            <FILE id="LUPjuq" name="SubsectionOverlay.cpp" compile="1" resource="0"
-                  file="Source/SubsectionOverlay.cpp"/>
-            <FILE id="WhBzlY" name="SubsectionOverlay.h" compile="0" resource="0"
-                  file="Source/SubsectionOverlay.h"/>
             <FILE id="JRVtaB" name="AudioSubsectionManager.cpp" compile="1" resource="0"
                   file="Source/AudioSubsectionManager.cpp"/>
             <FILE id="Echw8c" name="AudioSubsectionManager.h" compile="0" resource="0"

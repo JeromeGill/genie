@@ -95,24 +95,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.cpp"
-         timestampString = "379452811.954632"
+         timestampString = "379461763.307146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50">
+         startingLineNumber = "78"
+         endingLineNumber = "78">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.h"
-         timestampString = "379452703.018338"
+         timestampString = "379461671.40002"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "53"
-         endingLineNumber = "53"
-         landmarkName = "class SplittableWaveDisplay"
-         landmarkType = "3">
+         startingLineNumber = "55"
+         endingLineNumber = "55">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -132,11 +130,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.cpp"
-         timestampString = "379452811.954632"
+         timestampString = "379461763.307146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "51"
-         endingLineNumber = "51">
+         startingLineNumber = "79"
+         endingLineNumber = "79">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -167,11 +165,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SubsectionOverlay.cpp"
-         timestampString = "379458721.976407"
+         timestampString = "379461382.69201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
          landmarkName = "SubsectionOverlay::paint(Graphics &amp;g)"
          landmarkType = "5">
       </FileBreakpoint>
