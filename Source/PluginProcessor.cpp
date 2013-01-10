@@ -21,10 +21,13 @@ GenieAudioProcessor::GenieAudioProcessor()
     audioFilePlayer.setAudioFormatManager(audioFormatManager, true);
     
     polyPlayer = new PolyAudioFilePlayer(audioFilePlayer);
-    sliceManager = new SliceManager(audioFilePlayer, keyboardState, *polyPlayer);
+   
     
     mixerAudioSource.addInputSource(&audioFilePlayer, true);
     mixerAudioSource.addInputSource(polyPlayer, true);
+    
+    subsectionManager = new AudioSubsectionManager(audioFilePlayer);
+    midiManager = new MidiManager(*polyPlayer, *subsectionManager, keyboardState);
 
 }
 
@@ -218,7 +221,7 @@ bool GenieAudioProcessor::hasEditor() const
 
 AudioProcessorEditor* GenieAudioProcessor::createEditor()
 {
-    return new GenieAudioProcessorEditor (this, audioFilePlayer, *sliceManager);
+    return new GenieAudioProcessorEditor (this, audioFilePlayer, *subsectionManager);
 }
 
 //==============================================================================

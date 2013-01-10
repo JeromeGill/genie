@@ -12,10 +12,11 @@
 
 
 SplittableWaveDisplay::SplittableWaveDisplay(AudioThumbnailImage& sourceToBeUsed,
-                                             TimeSliceThread& threadToUse_)
+                                             TimeSliceThread& threadToUse_,
+                                             AudioSubsectionManager& subsectionManager_)
 :   waveDisplay(sourceToBeUsed, threadToUse_),
     filePlayer(sourceToBeUsed.getAudioFilePlayer()),
-    subsections(*sourceToBeUsed.getAudioFilePlayer())
+    subsections(subsectionManager_)
 {
    
     addAndMakeVisible(&waveDisplay); 

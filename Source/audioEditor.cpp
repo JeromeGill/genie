@@ -26,13 +26,12 @@
 #include "audioEditor.h"
 
 
-AudioEditor::AudioEditor (SliceManager &sliceManager_, AudioFilePlayer &audioFilePlayer_)
+AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_, AudioFilePlayer &audioFilePlayer_)
 :  
     LoadBar(audioFilePlayer_),
     backgroundThread("Waveform Thread"),
     audioThumbNail (renderSampleRatio, *audioFilePlayer_.getAudioFormatManager(), audioThumbNailCache),
-    audioThumbNailCache (1),
-    sliceManager(sliceManager_)
+    audioThumbNailCache (1)
     
 
 {
@@ -51,14 +50,11 @@ AudioEditor::AudioEditor (SliceManager &sliceManager_, AudioFilePlayer &audioFil
     audioThumbnailImage->setWaveformColour  (Colours::white);
     audioThumbnailImage->setResolution(thumbResolution);
     
-    sliceManager.setAudioThumbnailImage(audioThumbnailImage);
-        
     //The bitmap display
-    waveDisplay = new SplittableWaveDisplay (*audioThumbnailImage, backgroundThread);
+    waveDisplay = new SplittableWaveDisplay (*audioThumbnailImage, backgroundThread, audioSubsectionManager_);
    
     addAndMakeVisible (waveDisplay);
-    addAndMakeVisible (&sliceManager);
-
+    
     //Component
     addAndMakeVisible(&midiControl);
 
@@ -100,8 +96,8 @@ void AudioEditor::resized()
     SlZoom.setBounds(0, h/5, w/4,  h/ 5);
     label.setBounds(0, h / 5 * 4, w, h/5 );
     
-    waveDisplay->setBounds(0, h/5 * 3, w, h/5 * 2);
-    sliceManager.setBounds(0, h/5 * 2, w, h/5 * 2);
+    waveDisplay->setBounds(0, h/5 * 2, w, h/5 * 3);
+    
     midiControl.setBounds (w/2, h/5, w/2, h/5);
     
     

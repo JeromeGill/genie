@@ -33,7 +33,9 @@
 class GenieAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
-    GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter, AudioFilePlayer& audioFilePlayer_, SliceManager& sliceManager_);
+    GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter,
+                               AudioFilePlayer& audioFilePlayer_,
+                               AudioSubsectionManager &audioSubsectionManager_);
     ~GenieAudioProcessorEditor();
 
     //==============================================================================
@@ -43,7 +45,7 @@ public:
     
 private:
     //
-    SliceEditor sliceEditor;
+    //SliceEditor sliceEditor;
     AudioEditor audioEditor;
     SequenceEditor sequenceEditor;
     

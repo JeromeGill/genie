@@ -68,49 +68,23 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Source/SliceEditor.h"
-         timestampString = "379202659.139658"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "84"
-         endingLineNumber = "84"
-         landmarkName = "setSlice(SliceData* slice_)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Source/SliceEditor.h"
-         timestampString = "379190174.193975"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "57"
-         endingLineNumber = "57"
-         landmarkName = "~SliceViewer()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.cpp"
-         timestampString = "379518320.126252"
+         timestampString = "379530144.13139"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "77"
-         endingLineNumber = "77">
+         startingLineNumber = "78"
+         endingLineNumber = "78">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.h"
-         timestampString = "379461671.40002"
+         timestampString = "379530995.350683"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55">
+         startingLineNumber = "52"
+         endingLineNumber = "52">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -122,7 +96,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "25"
          endingLineNumber = "25"
-         landmarkName = "GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter, AudioFilePlayer&amp; audioFilePlayer_, SliceManager&amp; sliceManager_)"
+         landmarkName = "GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter, AudioFilePlayer&amp; audioFilePlayer_, AudioSubsectionManager &amp;audioSubsectionManager_)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -130,11 +104,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.cpp"
-         timestampString = "379518320.126252"
+         timestampString = "379530144.13139"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78">
+         startingLineNumber = "79"
+         endingLineNumber = "79">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -171,6 +145,19 @@
          startingLineNumber = "39"
          endingLineNumber = "39"
          landmarkName = "GenieAudioProcessorEditor::~GenieAudioProcessorEditor()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/PluginProcessor.cpp"
+         timestampString = "379530774.403737"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "30"
+         endingLineNumber = "30"
+         landmarkName = "GenieAudioProcessor::GenieAudioProcessor()"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

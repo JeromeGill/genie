@@ -11,11 +11,38 @@
 #ifndef __MIDIMANAGER_H_92CD5FEC__
 #define __MIDIMANAGER_H_92CD5FEC__
 
-class MidiManager
+#include "genieHeader.h"
+#include "PolyAudioFilePlayer.h"
+#include "AudioSubsectionManager.h"
+
+class MidiManager : public  MidiKeyboardStateListener
 {
 public:
-    MidiManager();
+    MidiManager(PolyAudioFilePlayer& polyAudioFilePlayer_,
+                AudioSubsectionManager& audioSubsectionManager_,
+                MidiKeyboardState &keyboardState_);
     ~MidiManager();
+    
+    //====================================================================================
+    /** Requests a voice from a PolyAudioFilePlayer for a subsection
+     */
+    void playSubsection(int subsectionIndex, float gain);
+    /** Stops the voice PolyAudioFilePlayer voice playing a subsection if any
+     */
+    void stopSubsection(int subsectionIndex);
+    //====================================================================================
+    /**@Internal@*/
+    void handleNoteOn (MidiKeyboardState* source, int midiChannel, int midiNoteNumber, float velocity);
+    /**@Internal@*/
+    void handleNoteOff (MidiKeyboardState* source, int midiChannel, int midiNoteNumber);
+    
+    
+private:
+    MidiKeyboardState& state;
+    PolyAudioFilePlayer& player;
+    AudioSubsectionManager& subsections;
+    
+    int BPM;
 };
 
 

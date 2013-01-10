@@ -13,7 +13,7 @@
 
 #include "genieHeader.h"
 #include "Oscillator.h"
-#include "SliceManager.h"
+#include "AudioSubsectionManager.h"
 #include "PolyAudioFilePlayer.h"
 #include "MidiManager.h"
 
@@ -78,10 +78,10 @@ private:
     
     MixerAudioSource mixerAudioSource;
     
-    MidiManager midiManager;
+    ScopedPointer<MidiManager> midiManager;
     
     ScopedPointer<AudioFormatManager> audioFormatManager;
-    ScopedPointer<SliceManager> sliceManager;
+    ScopedPointer<AudioSubsectionManager> subsectionManager;
     
     MidiKeyboardState keyboardState;
     AudioSourceChannelInfo channelInfo;

@@ -16,10 +16,6 @@ MidiControl::MidiControl()
     addAndMakeVisible(&BPM);
     addAndMakeVisible(&LengthInBeats);
     
-    BPM.setTextBoxIsEditable(true);
-    BPM.setRange(0, 300,1);
-    BPM.setVelocityBasedMode(true);
-    BPM.addListener(this);
     LengthInBeats.setRange(0, 128,1);
     LengthInBeats.setTextBoxIsEditable(true);
     LengthInBeats.setVelocityBasedMode(true);

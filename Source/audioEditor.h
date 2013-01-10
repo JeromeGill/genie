@@ -57,7 +57,7 @@ class AudioEditor : public Component,
                     public Slider::Listener
 {
 public:
-    AudioEditor(SliceManager &sliceManager_, AudioFilePlayer &audioFilePlayer_);
+    AudioEditor(AudioSubsectionManager &audioSubsectionManager_, AudioFilePlayer &audioFilePlayer_);
     ~AudioEditor();
     
 
@@ -80,8 +80,7 @@ private:
     
     //File Loading bar
     AudioFile LoadBar;
-    SliceManager& sliceManager;
-    
+   
     
     //Rendering Thread
     TimeSliceThread backgroundThread;
@@ -90,7 +89,7 @@ private:
     AudioThumbnail                      audioThumbNail;
     AudioThumbnailCache                 audioThumbNailCache;
     ScopedPointer<AudioThumbnailImage>  audioThumbnailImage;
-    SplittableWaveDisplay*            waveDisplay;
+    SplittableWaveDisplay*              waveDisplay;
     
     MidiControl midiControl;
     

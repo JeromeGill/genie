@@ -16,20 +16,16 @@
  
  SplittableWaveDisplay allows selecting sub-sections of a PositionableWaveDisplay.
  
- It 
+
  Features;
-    Display 
+    Represent selected subsections visually
  
  Todo;
-    Represent selected subsections visually
-        Create an array of start and end points and trim amounts
-        Display Highlights in green and trim in grey
-        Crop and scale highlights when zoomed in
+ 
+    Crop and scale highlights when zoomed in
     
     Manage Mouseclicks
-        Creating subsections Mousedown = startposition, 
-        if mouseX > startposition mouseup = endposition
-        if mousex < next subsections start time endposition = next subsestion starttime -1
+        Crash when dragging too far left
  
  ==============================================================================*/
 
@@ -40,7 +36,8 @@ class SplittableWaveDisplay :   public Component,
 {
 public:
     SplittableWaveDisplay(AudioThumbnailImage& sourceToBeUsed,
-                          TimeSliceThread& threadToUse_);
+                          TimeSliceThread& threadToUse_,
+                          AudioSubsectionManager& subsectionManager_);
     ~SplittableWaveDisplay();
     //====================================================================================
     /** Internal */
@@ -112,7 +109,7 @@ private:
     int FlagforRepaint;
     int currentXScale;
     PositionableWaveDisplay waveDisplay;
-    AudioSubsectionManager subsections;
+    AudioSubsectionManager& subsections;
     AudioFilePlayer* filePlayer;
     
 

@@ -50,13 +50,7 @@ void SliceManager::paint(Graphics &g){
 //==============================================================================
 //Slice managment
 void SliceManager::initialiseSlices(){
-    
-    sliceArray.clear(true);
-    sliceArray.add(new SliceData(0,
-                                 audioFilePlayer->getTotalLength() - 1,
-                                 0));
-    std::cout<<"Initalising Slices \n";
-    Listeners.call(&Listener::sliceInitialised);
+
 }
 
 SliceData* SliceManager::getSlice(int sliceIndex){
