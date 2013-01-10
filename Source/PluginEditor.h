@@ -15,7 +15,7 @@
 #include "PluginProcessor.h"
 #include "audioEditor.h"
 #include "sequenceEditor.h"
-#include "SliceEditor.h"
+#include "SubsectionEditor.h"
 
 
 /**==============================================================================
@@ -44,11 +44,21 @@ public:
     void resized();
     
 private:
-    //
-    //SliceEditor sliceEditor;
+
+    SubsectionEditor subsectionEditor;
     AudioEditor audioEditor;
     SequenceEditor sequenceEditor;
     
+    
+    //==============================================================================
+    // Member Objects
+    
+    //Display
+ 
+    ScopedPointer<AudioThumbnailImage>  audioThumbnailImage;
+
+    
+ 
     
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GenieAudioProcessorEditor)

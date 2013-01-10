@@ -137,19 +137,19 @@ int64 SplittableWaveDisplay::PixelToSample(double PixelClickedOn){
  */
 void SplittableWaveDisplay::subsectionCreated(int SubsectionIndex){
     
-    std::cout<<SubsectionIndex<<"Created \n";
+    //std::cout<<SubsectionIndex<<"Created \n";
     repaint();
 }
 /**@Internal
  */
 void SplittableWaveDisplay::subsectionDeleted(int SubsectionIndex){
-    std::cout<<SubsectionIndex<<"Deleted \n";
+    //std::cout<<SubsectionIndex<<"Deleted \n";
     repaint();
 }
 /**@Internal
  */
 void SplittableWaveDisplay::subsectionChanged(int SubsectionIndex){
-    std::cout<<SubsectionIndex<<" Changed \n";
+    //std::cout<<SubsectionIndex<<" Changed \n";
     repaint();
 }
 void SplittableWaveDisplay::fileChanged (AudioFilePlayer* player){
@@ -199,7 +199,7 @@ void SplittableWaveDisplay::mouseDrag(const MouseEvent &e){
             int64 duration = PixelToSample(e.x) - subsections.getStart(i);
             if (!duration) duration = 0;
             subsections.SetSubsectionDuration(duration, i);
-            std::cout<<i<<" : setting length by drag "<<subsections.getLength(i)<<"\n";
+            //std::cout<<i<<" : setting length by drag "<<subsections.getLength(i)<<"\n";
         }
     }
     else waveDisplay.mouseDrag(e);

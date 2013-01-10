@@ -17,6 +17,7 @@
 struct SubSection{
     int64 StartSample;
     int64 LengthInSamples = 0;
+    String name = "null";
 };
 
 class SubsectionComparator
@@ -43,6 +44,12 @@ public:
     /** Creates a Subsection on a specific sample of the waveDisplay
      */
     void addSubsection (int64 startSample);
+    /** Names a Subsection
+     */
+    void nameSubsection (int SubsectionIndex, String Name);
+    /** Returns a Subsection's name
+     */
+    String getName(int SubsectionIndex);
     /** Deletes a Subsection at a particular index
      */
     void removeSubsection (int SubsectionIndex);

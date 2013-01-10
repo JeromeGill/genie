@@ -37,7 +37,11 @@
       <GROUP id="{F0D8B97B-E026-B5C0-E168-47884A84F25A}" name="Gui">
         <FILE id="fgOYKA" name="MidiControl.cpp" compile="1" resource="0" file="Source/MidiControl.cpp"/>
         <FILE id="VtvChV" name="MidiControl.h" compile="0" resource="0" file="Source/MidiControl.h"/>
-        <GROUP id="{220AABB6-6A86-9D64-A102-D6FE11B8E21E}" name="SliceEditor">
+        <GROUP id="{220AABB6-6A86-9D64-A102-D6FE11B8E21E}" name="SubsectionEditor">
+          <FILE id="c0rLqf" name="SubsectionEditor.cpp" compile="1" resource="0"
+                file="Source/SubsectionEditor.cpp"/>
+          <FILE id="Co94qy" name="SubsectionEditor.h" compile="0" resource="0"
+                file="Source/SubsectionEditor.h"/>
           <FILE id="SQX3g3" name="SliceEditor.cpp" compile="1" resource="0" file="Source/SliceEditor.cpp"/>
           <FILE id="Sk0WT7" name="SliceEditor.h" compile="0" resource="0" file="Source/SliceEditor.h"/>
         </GROUP>
@@ -48,10 +52,6 @@
           <FILE id="dwtugu" name="audioEditor.cpp" compile="1" resource="0" file="Source/audioEditor.cpp"/>
           <FILE id="zHm0Ok" name="audioEditor.h" compile="0" resource="0" file="Source/audioEditor.h"/>
           <GROUP id="{10AF3A74-9E38-92A5-E64E-99E95495A182}" name="Components">
-            <FILE id="JRVtaB" name="AudioSubsectionManager.cpp" compile="1" resource="0"
-                  file="Source/AudioSubsectionManager.cpp"/>
-            <FILE id="Echw8c" name="AudioSubsectionManager.h" compile="0" resource="0"
-                  file="Source/AudioSubsectionManager.h"/>
             <FILE id="uAVkuZ" name="SplittableWaveDisplay.cpp" compile="1" resource="0"
                   file="Source/SplittableWaveDisplay.cpp"/>
             <FILE id="SQcwgV" name="SplittableWaveDisplay.h" compile="0" resource="0"
@@ -68,11 +68,10 @@
         </GROUP>
       </GROUP>
       <GROUP id="{948199C5-849D-DB83-6FF6-BDB0AE8CFA87}" name="Shared">
-        <FILE id="rcMbB9" name="SliceData.cpp" compile="1" resource="0" file="Source/SliceData.cpp"/>
-        <FILE id="D7Nual" name="SliceManager.cpp" compile="1" resource="0"
-              file="Source/SliceManager.cpp"/>
-        <FILE id="q70q35" name="SliceManager.h" compile="0" resource="0" file="Source/SliceManager.h"/>
-        <FILE id="dHW9FO" name="SliceData.h" compile="0" resource="0" file="Source/SliceData.h"/>
+        <FILE id="JRVtaB" name="AudioSubsectionManager.cpp" compile="1" resource="0"
+              file="Source/AudioSubsectionManager.cpp"/>
+        <FILE id="Echw8c" name="AudioSubsectionManager.h" compile="0" resource="0"
+              file="Source/AudioSubsectionManager.h"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>

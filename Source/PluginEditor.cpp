@@ -18,17 +18,13 @@ GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* owner
                                                       AudioFilePlayer& audioFilePlayer_,
                                                       AudioSubsectionManager &audioSubsectionManager_)
 :   AudioProcessorEditor (ownerFilter), 
-    audioEditor(audioSubsectionManager_, audioFilePlayer_)//,
-    //sliceEditor(audioSubsectionManager_)
-{
    
-  
-    
-    
-    
+    subsectionEditor(audioSubsectionManager_, *audioThumbnailImage),
+    audioEditor(audioSubsectionManager_, audioFilePlayer_, *audioThumbnailImage)
+{
     addAndMakeVisible(&sequenceEditor);
     addAndMakeVisible(&audioEditor);
-   // addAndMakeVisible(&sliceEditor);
+    addAndMakeVisible(&subsectionEditor);
     
     // This is where our plugin's editor size is set.
     // Happens after creating the audio and sequence editors to prevent them being accessed by resized() before they are created
@@ -54,5 +50,5 @@ void GenieAudioProcessorEditor::resized()
     
     audioEditor.setBounds   (0,  0   ,w   ,h/4);
     sequenceEditor.setBounds(w/2,h/2 ,w/2 ,h/2);
-    //sliceEditor.setBounds   (0,  h/2 ,w/2 ,h/2);
+    subsectionEditor.setBounds(0,  h/4 ,w/2 ,h/4 * 3);
 }

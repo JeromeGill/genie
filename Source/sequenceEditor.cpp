@@ -45,6 +45,6 @@ void SequenceEditor::resized()
     int h = getHeight();
     
    for (int i = 0; i<TotalFunctions; i++) {
-       functionOptions[i]->setBounds(0, i * h/TotalFunctions / 2, 3 * w/4 , h/TotalFunctions / 2);
+       //functionOptions[i]->setBounds(0, i * h/TotalFunctions / 5, 3 * w/4 , h/TotalFunctions / 5);
    }
 }

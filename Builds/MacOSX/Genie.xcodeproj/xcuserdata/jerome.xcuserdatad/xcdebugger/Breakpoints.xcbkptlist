@@ -79,30 +79,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Source/SplittableWaveDisplay.h"
-         timestampString = "379530995.350683"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Source/PluginEditor.cpp"
-         timestampString = "379287815.600834"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "25"
-         endingLineNumber = "25"
-         landmarkName = "GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter, AudioFilePlayer&amp; audioFilePlayer_, AudioSubsectionManager &amp;audioSubsectionManager_)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.cpp"
          timestampString = "379530144.13139"
          startingColumnNumber = "9223372036854775807"
@@ -132,19 +108,6 @@
          startingLineNumber = "43"
          endingLineNumber = "43"
          landmarkName = "SubsectionOverlay::paint(Graphics &amp;g)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Source/PluginEditor.cpp"
-         timestampString = "379519936.896138"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "39"
-         endingLineNumber = "39"
-         landmarkName = "GenieAudioProcessorEditor::~GenieAudioProcessorEditor()"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

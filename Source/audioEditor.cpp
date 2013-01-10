@@ -26,8 +26,11 @@
 #include "audioEditor.h"
 
 
-AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_, AudioFilePlayer &audioFilePlayer_)
-:  
+AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
+                          AudioFilePlayer &audioFilePlayer_,
+                          AudioThumbnailImage& image)
+:
+    audioThumbnailImage(&image),
     LoadBar(audioFilePlayer_),
     backgroundThread("Waveform Thread"),
     audioThumbNail (renderSampleRatio, *audioFilePlayer_.getAudioFormatManager(), audioThumbNailCache),

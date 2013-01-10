@@ -38,7 +38,7 @@ private:
     int BPM_;
     
     
-    Slider BPM, LengthInBeats;
+    Slider LengthInBeats;
 };
 
 

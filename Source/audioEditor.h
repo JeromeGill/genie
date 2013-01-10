@@ -11,7 +11,6 @@
 
 #include "genieHeader.h"
 #include "audioFile.h"
-#include "SliceManager.h"
 #include "MidiControl.h"
 #include "SplittableWaveDisplay.h"
 
@@ -57,7 +56,9 @@ class AudioEditor : public Component,
                     public Slider::Listener
 {
 public:
-    AudioEditor(AudioSubsectionManager &audioSubsectionManager_, AudioFilePlayer &audioFilePlayer_);
+    AudioEditor(AudioSubsectionManager &audioSubsectionManager_,
+                AudioFilePlayer &audioFilePlayer_,
+                AudioThumbnailImage& image);
     ~AudioEditor();
     
 
@@ -86,10 +87,10 @@ private:
     TimeSliceThread backgroundThread;
     
     //Display
-    AudioThumbnail                      audioThumbNail;
-    AudioThumbnailCache                 audioThumbNailCache;
-    ScopedPointer<AudioThumbnailImage>  audioThumbnailImage;
-    SplittableWaveDisplay*              waveDisplay;
+    AudioThumbnail          audioThumbNail;
+    AudioThumbnailCache     audioThumbNailCache;
+    AudioThumbnailImage*    audioThumbnailImage;
+    SplittableWaveDisplay*  waveDisplay;
     
     MidiControl midiControl;
     

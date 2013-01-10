@@ -47,7 +47,7 @@ AudioFile::AudioFile (AudioFilePlayer &audioFilePlayer_)
         buttons[i]->addListener (this);
     }
     
-    buttons[play]->setButtonText ("Play");
+    buttons[play]->setButtonText ("Preview");
     buttons[stop]->setButtonText ("Stop");
     
     

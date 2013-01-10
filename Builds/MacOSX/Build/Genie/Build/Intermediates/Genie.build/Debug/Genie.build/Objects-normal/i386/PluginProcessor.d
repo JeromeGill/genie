@@ -451,9 +451,7 @@ dependencies: \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/PluginEditor.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/audioEditor.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/audioFile.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SliceManager.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SliceData.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/MidiControl.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SplittableWaveDisplay.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/sequenceEditor.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SliceEditor.h
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SubsectionEditor.h

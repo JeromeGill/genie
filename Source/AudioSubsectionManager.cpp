@@ -40,6 +40,29 @@ void AudioSubsectionManager::addSubsection (int64 startSample){
     listenerList.call(&Listener::subsectionCreated, index);
     
 }
+/** Names a Subsection
+ */
+void AudioSubsectionManager::nameSubsection(int SubsectionIndex, juce::String Name){
+    if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
+        subsection[SubsectionIndex]->name = Name;
+    }
+    else if(DEBUGSSM){
+        std::cout<<"SubsectionManager : Name received invalid index.\n";
+    }
+}
+
+/** Returns a Subsection's name
+ */
+String AudioSubsectionManager::getName(int SubsectionIndex){
+    String Name = "Null";
+    if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
+        Name = subsection[SubsectionIndex]->name;
+    }
+    else if(DEBUGSSM){
+        std::cout<<"SubsectionManager : Name received invalid index. Returning 'Null' \n";
+    }
+    return Name;
+}
 /** Deletes subsection at index
  */
 void AudioSubsectionManager::removeSubsection (int SubsectionIndex){
