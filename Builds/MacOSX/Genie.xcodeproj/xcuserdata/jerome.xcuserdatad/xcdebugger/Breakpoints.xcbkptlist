@@ -95,11 +95,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.cpp"
-         timestampString = "379461763.307146"
+         timestampString = "379518320.126252"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78">
+         startingLineNumber = "77"
+         endingLineNumber = "77">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -130,11 +130,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SplittableWaveDisplay.cpp"
-         timestampString = "379461763.307146"
+         timestampString = "379518320.126252"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "79"
-         endingLineNumber = "79">
+         startingLineNumber = "78"
+         endingLineNumber = "78">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -151,19 +151,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Source/AudioSubsectionManager.cpp"
-         timestampString = "379448569.184431"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "32"
-         endingLineNumber = "32"
-         landmarkName = "AudioSubsectionManager::addSubsection (int64 startSample)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../../Source/SubsectionOverlay.cpp"
          timestampString = "379461382.69201"
          startingColumnNumber = "9223372036854775807"
@@ -171,6 +158,19 @@
          startingLineNumber = "43"
          endingLineNumber = "43"
          landmarkName = "SubsectionOverlay::paint(Graphics &amp;g)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/PluginEditor.cpp"
+         timestampString = "379519936.896138"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
+         landmarkName = "GenieAudioProcessorEditor::~GenieAudioProcessorEditor()"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

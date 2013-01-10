@@ -80,9 +80,9 @@ public:
     
     //====================================================================================
     /**@Internal@*/
-    void subsectionCreated();
+    void subsectionCreated(int SubsectionIndex);
     /**@Internal@*/
-    void subsectionDeleted();
+    void subsectionDeleted(int SubsectionIndex);
     /**@Internal@*/
     void subsectionChanged(int SubsectionIndex);
     /**@Internal@*/
@@ -100,6 +100,8 @@ public:
     /**@Internal@*/
     void mouseDown (const MouseEvent& event);
     /**@Internal@*/
+    void mouseDoubleClick (const MouseEvent& event);
+    /**@Internal@*/
     void mouseDrag (const MouseEvent& event);
     /**@Internal@*/
     void mouseUp (const MouseEvent& event);
@@ -107,7 +109,7 @@ public:
      //====================================================================================
     
 private:
-    
+    int FlagforRepaint;
     int currentXScale;
     PositionableWaveDisplay waveDisplay;
     AudioSubsectionManager subsections;

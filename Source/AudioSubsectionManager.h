@@ -12,7 +12,7 @@
 #define __AudioSubsectionManager_H_8C3A6156__
 #include "genieHeader.h"
 
-
+#define DEBUGSSM 0 //set to a positive value to print debug messages
 
 struct SubSection{
     int64 StartSample;
@@ -34,6 +34,10 @@ public:
     AudioSubsectionManager(AudioFilePlayer &filePlayer_);
     ~AudioSubsectionManager();
  
+    //====================================================================================
+    /**Set False to prevent subsection overlap
+     */
+    void allowOverlap(bool allowSubsectionsToOverlap);
 
     //====================================================================================
     /** Creates a Subsection on a specific sample of the waveDisplay
@@ -61,7 +65,11 @@ public:
     /** Returns the index of the Subsection to the left of the sample clicked on
      */
     int getPreviousSubsection (int64 Sample);
-    
+    /** Returns the index of subsection that contains sample
+     
+     Returns -1 if no subsection contains sample provided
+     */
+    int getSubsection (int64 Sample);
     //====================================================================================
     /** Returns size of subsection array
      */
@@ -88,10 +96,10 @@ public:
         virtual ~Listener(){};
         /** Called when a subsection is created
          */
-        virtual void subsectionCreated(){};
+        virtual void subsectionCreated(int SubsectionIndex){};
         /** Called when a subsection is deleted
          */
-        virtual void subsectionDeleted(){};
+        virtual void subsectionDeleted(int SubsectionIndex){};
         /** Called when a subsection has a value changed
          */
         virtual void subsectionChanged(int SubsectionIndex){};
@@ -108,6 +116,8 @@ public:
     
 private:
   
+    bool Overlap;
+    
     ListenerList<Listener> listenerList;
     
     SubsectionComparator subsectionComparator;

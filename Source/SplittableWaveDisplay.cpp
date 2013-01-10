@@ -16,12 +16,9 @@ SplittableWaveDisplay::SplittableWaveDisplay(AudioThumbnailImage& sourceToBeUsed
 :   waveDisplay(sourceToBeUsed, threadToUse_),
     filePlayer(sourceToBeUsed.getAudioFilePlayer()),
     subsections(*sourceToBeUsed.getAudioFilePlayer())
-   // overlay(&subsections, filePlayer)
 {
-    setInterceptsMouseClicks(true, false);
-    addAndMakeVisible(&waveDisplay);
-    //addAndMakeVisible(&overlay);
    
+    addAndMakeVisible(&waveDisplay); 
     
     waveDisplay.setInterceptsMouseClicks(false, false);
  
@@ -38,13 +35,14 @@ SplittableWaveDisplay::~SplittableWaveDisplay()
 void SplittableWaveDisplay::resized(){
     int w = getWidth();
     int h = getHeight();
-   // overlay.setBounds(0, 0, w, h);
+
     waveDisplay.setBounds(0, 0, w, h);
 
-    highlightImage = Image (Image::RGB, 3, jmax (1, h), true);
+    highlightImage = Image (Image::RGB, 1, jmax (1, h), true);
     Graphics g (highlightImage);
-    g.fillAll(Colours::green);
-
+    g.fillAll(Colours::white);
+    
+    highlightImage.duplicateIfShared();
     
 }
 void SplittableWaveDisplay::paint(Graphics &g){
@@ -53,26 +51,27 @@ void SplittableWaveDisplay::paint(Graphics &g){
 
 void SplittableWaveDisplay::paintOverChildren(Graphics &g){
     g.setOpacity(0.4);
+
+   
     
-    std::cout<<"Overlay Paint \n";
-    for (int i = 0; i < subsections.size();) {
+    for (int i = 0; i < subsections.size();++i) {
+        
+         //std::cout<<i<<" Drawing subsection"<<subsections.getLength(i)<<"\n";
         
         int pixel = SampleToPixel(subsections.getStart(i));
         int width = SampleToPixel(subsections.getLength(i));
-        //g.drawImageAt (SubsectionImage, pixel, 0);
         
-        if(subsections.getLength(i)){
+        
+        if(width){
             
-            Image SubsectionImage(highlightImage.rescaled(width, getHeight()));
+            Image SubsectionImage = highlightImage.rescaled(width, getHeight());
+            
             Graphics g1(SubsectionImage);
             g1.setColour(Colours::green);
-            g1.drawRect(0, 0, width, getHeight());
-            
-            std::cout<<"Drawing subsection"<<subsections.getLength(i)<<"\n";
+            g1.fillRect(2, 2, width - 4, getHeight() - 4);
             g.drawImageAt(SubsectionImage, pixel, 0);
-            
         }
-        i++;
+        else g.drawImageAt(highlightImage, pixel, 0);
     }
 }
 
@@ -125,25 +124,31 @@ int  SplittableWaveDisplay::SampleToPixel(int64 sampleClickedOn){ // needs to in
 /** Pixel to Sample conversion
  */
 int64 SplittableWaveDisplay::PixelToSample(double PixelClickedOn){
-    return (int64) roundToInt((float)currentXScale * PixelClickedOn);
+    if(PixelClickedOn)
+        return (int64) roundToInt((float)currentXScale * PixelClickedOn);
+    else{
+        std::cout<<" Invalid Pixel -> Sample convertion \n";
+        return 0;
+    }
 }
 //====================================================================================
 /**@Internal
  */
-void SplittableWaveDisplay::subsectionCreated(){
+void SplittableWaveDisplay::subsectionCreated(int SubsectionIndex){
     
-    std::cout<<"Created \n";
+    std::cout<<SubsectionIndex<<"Created \n";
     repaint();
 }
 /**@Internal
  */
-void SplittableWaveDisplay::subsectionDeleted(){
+void SplittableWaveDisplay::subsectionDeleted(int SubsectionIndex){
+    std::cout<<SubsectionIndex<<"Deleted \n";
     repaint();
 }
 /**@Internal
  */
 void SplittableWaveDisplay::subsectionChanged(int SubsectionIndex){
-    std::cout<<"Changed \n";
+    std::cout<<SubsectionIndex<<" Changed \n";
     repaint();
 }
 void SplittableWaveDisplay::fileChanged (AudioFilePlayer* player){
@@ -154,20 +159,25 @@ void SplittableWaveDisplay::fileChanged (AudioFilePlayer* player){
 
 void SplittableWaveDisplay::mouseDown(const MouseEvent &e){
     std::cout<<"Clicked \n";
+    if (!e.mouseWasClicked()){
+        mouseDrag(e);
+    }
+    
     if(e.mods.isShiftDown()){
+//        int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
+//        
+//        if(i >= 0){
+//            int64 duration = PixelToSample(e.x) - subsections.getStart(i);
+//            if (!duration) duration = 0;
+//            subsections.SetSubsectionDuration(duration, i);
+//            std::cout<<i<<" : setting length by click "<<subsections.getLength(i)<<"\n";
+//        }
         
         if (!e.mods.isAltDown()){
-            if (e.mouseWasClicked())
-                subsections.addSubsection(PixelToSample(e.getMouseDownX()));
-            else{
-               
-            }
             
-            if (e.mods.isAltDown()){
-                int i = subsections.getNearestSubsection(PixelToSample(e.getMouseDownX()));
-                subsections.removeSubsection(i);
+           
             }
-        }
+        
     }
     else waveDisplay.mouseDown(e);
 }
@@ -179,34 +189,31 @@ void SplittableWaveDisplay::mouseUp (const MouseEvent &e){
     else waveDisplay.mouseUp(e);
 }
 void SplittableWaveDisplay::mouseDrag(const MouseEvent &e){
-    //if (!e.mods.isShiftDown() && !e.mods.isAltDown())
+
     if (e.mods.isShiftDown()){
-        int i = subsections.getNearestSubsection(PixelToSample(e.getMouseDownX()));
-        subsections.SetSubsectionDuration(PixelToSample(e.getDistanceFromDragStart()), i);
-        std::cout<<i<<"setting length "<<subsections.getLength(i)<<"\n";
+        
+        int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
+        
+        if(i >= 0){
+            int64 duration = PixelToSample(e.x) - subsections.getStart(i);
+            if (!duration) duration = 0;
+            subsections.SetSubsectionDuration(duration, i);
+            std::cout<<i<<" : setting length by drag "<<subsections.getLength(i)<<"\n";
+        }
     }
     else waveDisplay.mouseDrag(e);
 }
 
-//====================================================================================
-//void SplittableWaveDisplay::mouseDown(const MouseEvent &e){
-//
-//    if(e.mods.isShiftDown())
-//        overlay.mouseDown(e);
-//    else waveDisplay.mouseDown(e);
-//
-//}
-//void SplittableWaveDisplay::mouseUp (const MouseEvent &e){
-//    int currentMouseX = e.x;
-//    if (e.mods.isShiftDown())
-//        overlay.mouseUp(e);
-//    else waveDisplay.mouseUp(e);
-//}
-//void SplittableWaveDisplay::mouseDrag(const MouseEvent &e){
-//   
-//    if (e.mods.isShiftDown())
-//        overlay.mouseDrag(e);
-//        
-//        else waveDisplay.mouseDrag(e);
-//}
-
+void SplittableWaveDisplay::mouseDoubleClick(const MouseEvent &e){
+    if (e.mods.isShiftDown()){
+        if (e.mods.isAltDown()){
+            int i = subsections.getNearestSubsection(PixelToSample(e.getMouseDownX()));
+            if (i >= 0) subsections.removeSubsection(i);
+        }
+        else{
+        subsections.addSubsection(PixelToSample(e.getMouseDownX()));
+        
+        }
+    }
+    if (!e.mouseWasClicked()) mouseDrag(e);
+}

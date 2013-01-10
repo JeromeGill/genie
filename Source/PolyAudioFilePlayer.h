@@ -59,7 +59,7 @@ public:
 private:
     AudioFilePlayer*                  audioFilePlayer;
     ScopedPointer<AudioFormatReader>  masterReader;
-    TimeSliceThread     thread;
+    TimeSliceThread                     thread;
     
     MixerAudioSource mixer;
     OwnedArray<PolyPlayerVoice> Voices;
