@@ -13,6 +13,7 @@
 #include "audioFile.h"
 #include "MidiControl.h"
 #include "SplittableWaveDisplay.h"
+#include "SubsectionEditor.h"
 
 /**==============================================================================
  
@@ -58,7 +59,8 @@ class AudioEditor : public Component,
 public:
     AudioEditor(AudioSubsectionManager &audioSubsectionManager_,
                 AudioFilePlayer &audioFilePlayer_,
-                AudioThumbnailImage& image);
+                //AudioThumbnailImage& image,
+                SubsectionEditor& subsectionEditor);
     ~AudioEditor();
     
 
@@ -89,10 +91,12 @@ private:
     //Display
     AudioThumbnail          audioThumbNail;
     AudioThumbnailCache     audioThumbNailCache;
-    AudioThumbnailImage*    audioThumbnailImage;
+    ScopedPointer<AudioThumbnailImage>    audioThumbnailImage;
     SplittableWaveDisplay*  waveDisplay;
     
     MidiControl midiControl;
+    
+    SubsectionEditor& editor;
     
     double zoomRatio;
     

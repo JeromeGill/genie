@@ -18,9 +18,10 @@ GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* owner
                                                       AudioFilePlayer& audioFilePlayer_,
                                                       AudioSubsectionManager &audioSubsectionManager_)
 :   AudioProcessorEditor (ownerFilter), 
-   
-    subsectionEditor(audioSubsectionManager_, *audioThumbnailImage),
-    audioEditor(audioSubsectionManager_, audioFilePlayer_, *audioThumbnailImage)
+
+    subsectionEditor(audioSubsectionManager_),
+    audioEditor(audioSubsectionManager_, audioFilePlayer_, subsectionEditor)
+    
 {
     addAndMakeVisible(&sequenceEditor);
     addAndMakeVisible(&audioEditor);
@@ -49,6 +50,6 @@ void GenieAudioProcessorEditor::resized()
     int h = getHeight();
     
     audioEditor.setBounds   (0,  0   ,w   ,h/4);
-    sequenceEditor.setBounds(w/2,h/2 ,w/2 ,h/2);
+    sequenceEditor.setBounds(w/2,h/4 ,w/2 ,h/4 * 3);
     subsectionEditor.setBounds(0,  h/4 ,w/2 ,h/4 * 3);
 }

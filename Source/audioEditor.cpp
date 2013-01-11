@@ -28,13 +28,15 @@
 
 AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
                           AudioFilePlayer &audioFilePlayer_,
-                          AudioThumbnailImage& image)
+                          //AudioThumbnailImage& image,
+                          SubsectionEditor& subsectionEditor)
 :
-    audioThumbnailImage(&image),
+    //audioThumbnailImage(&image),
     LoadBar(audioFilePlayer_),
     backgroundThread("Waveform Thread"),
     audioThumbNail (renderSampleRatio, *audioFilePlayer_.getAudioFormatManager(), audioThumbNailCache),
-    audioThumbNailCache (1)
+    audioThumbNailCache (1),
+    editor(subsectionEditor)
     
 
 {
@@ -53,6 +55,7 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
     audioThumbnailImage->setWaveformColour  (Colours::white);
     audioThumbnailImage->setResolution(thumbResolution);
     
+    editor.setImageSource(*audioThumbnailImage);
     //The bitmap display
     waveDisplay = new SplittableWaveDisplay (*audioThumbnailImage, backgroundThread, audioSubsectionManager_);
    

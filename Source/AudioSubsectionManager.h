@@ -110,6 +110,9 @@ public:
         /** Called when a subsection has a value changed
          */
         virtual void subsectionChanged(int SubsectionIndex){};
+        /** Called when subsection array is cleared
+         */
+        virtual void subsectionsCleared(){};
     };
     /** add a listener 
      */
@@ -131,6 +134,7 @@ private:
     OwnedArray<SubSection> subsection;
     AudioFilePlayer* filePlayer;
 
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioSubsectionManager)
     
 };
 

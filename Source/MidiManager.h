@@ -43,6 +43,8 @@ private:
     AudioSubsectionManager& subsections;
     
     int BPM;
+    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiManager)
 };
 
 

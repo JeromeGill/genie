@@ -55,12 +55,8 @@ private:
     
     //Display
  
-    ScopedPointer<AudioThumbnailImage>  audioThumbnailImage;
+    AudioThumbnailImage*  audioThumbnailImage;
 
-    
- 
-    
-    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GenieAudioProcessorEditor)
 };
 

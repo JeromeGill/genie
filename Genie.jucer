@@ -42,8 +42,6 @@
                 file="Source/SubsectionEditor.cpp"/>
           <FILE id="Co94qy" name="SubsectionEditor.h" compile="0" resource="0"
                 file="Source/SubsectionEditor.h"/>
-          <FILE id="SQX3g3" name="SliceEditor.cpp" compile="1" resource="0" file="Source/SliceEditor.cpp"/>
-          <FILE id="Sk0WT7" name="SliceEditor.h" compile="0" resource="0" file="Source/SliceEditor.h"/>
         </GROUP>
         <FILE id="u7TlY7" name="PluginEditor.cpp" compile="1" resource="0"
               file="Source/PluginEditor.cpp"/>

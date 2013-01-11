@@ -210,6 +210,7 @@ int  AudioSubsectionManager::size(){
  */
 void AudioSubsectionManager::clear(){
     subsection.clear();
+    listenerList.call(&Listener::subsectionsCleared);
 }
 /** Sorts subsections by StartSample
  */
@@ -225,7 +226,7 @@ void AudioSubsectionManager::sortSubsections(){
 
 //====================================================================================
 double AudioSubsectionManager::SampleToTime(int64 sample){
-    return (double) sample * (filePlayer->getTotalLength() / filePlayer->getLengthInSeconds());
+    return (double) sample * (filePlayer->getLengthInSeconds() / filePlayer->getTotalLength());
 }
 //====================================================================================
 /** add a listener

@@ -10,10 +10,10 @@
 
 #include "SubsectionEditor.h"
 
-SubsectionEditor::SubsectionEditor(AudioSubsectionManager &audioSubsectionManager,
-                                   AudioThumbnailImage& sourceToBeUsed)
+SubsectionEditor::SubsectionEditor(AudioSubsectionManager &audioSubsectionManager)
+                                  // ,AudioThumbnailImage& sourceToBeUsed)
 :
-imageSource(sourceToBeUsed),
+//imageSource(&sourceToBeUsed),
 subsection(audioSubsectionManager)
 {
     hitTypes.add("Kick");
@@ -33,6 +33,8 @@ subsection(audioSubsectionManager)
     }
     std::cout<<"\n";
     addAndMakeVisible(&subsectionSelector);
+    
+    activeSubsection = 0;
 }
 
 SubsectionEditor::~SubsectionEditor(){
@@ -43,18 +45,22 @@ SubsectionEditor::~SubsectionEditor(){
     subsection.removeListener(this);
 }
 
+void SubsectionEditor::setImageSource(AudioThumbnailImage &image){
+    imageSource = &image;
+}
 //==============================================================================
 /**@Internal@*/
 void SubsectionEditor::subsectionCreated(int SubsectionIndex){
     
     String name = "Slice";
     name += subsection.size();
+    //std::cout<<name<<" Start::Duration "<<subsection.getStart(SubsectionIndex)<<" : "<<subsection.getLength(SubsectionIndex)<<"\n";
     subsectionSelector.addItem(name, subsection.size());
 }
 /**@Internal@*/
 void SubsectionEditor::subsectionDeleted(int SubsectionIndex){
     subsectionSelector.clear();
-    for (int i = 1; i < subsection.size(); i++) {
+    for (int i = 0; i < subsection.size(); i++) {
         String name = "Slice";
         
         name += i;
@@ -62,11 +68,20 @@ void SubsectionEditor::subsectionDeleted(int SubsectionIndex){
             name.append(subsection.getName(i), 6);
         }
         std::cout<<"ComboBox adding"<<i<<"\n";
-        subsectionSelector.addItem(name, i);
+        subsectionSelector.addItem(name, i+1);
     }
 }
 //**@Internal@*/
 void SubsectionEditor::subsectionChanged(int SubsectionIndex){
+    if (SubsectionIndex == activeSubsection) {
+        repaint();
+    }
+}
+//**@Internal@*/
+void SubsectionEditor::subsectionsCleared(){
+    activeSubsection = 0;
+    repaint();
+    
 }
 //**@Internal@*/
 void SubsectionEditor::buttonClicked (Button* button)
@@ -85,7 +100,25 @@ void SubsectionEditor::comboBoxChanged (ComboBox* comboBox)
 //==============================================================================
 /**@Internal@*/
 void SubsectionEditor::paint(Graphics &g){
-    g.fillAll(Colours::white);
+    
+    int index = activeSubsection -1;
+    
+    if (activeSubsection){
+        
+        double start    = subsection.SampleToTime(subsection.getStart(index));
+        double duration = subsection.SampleToTime(subsection.getLength(index));
+
+       if (imageSource->getImage().isValid())
+            subsectionWaveform = imageSource->getImageAtTime (start, duration);
+
+        g.drawImageAt(subsectionWaveform.rescaled(getWidth(),
+                                                  getHeight() / 8 * 6),
+                      0,
+                      getHeight() / 8 * 2);
+
+    }
+    
+    else  g.fillAll(Colours::white);
 }
 /**@Internal@*/
 void SubsectionEditor::resized(){
@@ -98,5 +131,6 @@ void SubsectionEditor::resized(){
                                       w / hitTypes.size(),
                                       h/8);
     }
+    
     subsectionSelector.setBounds(0, 0, w, h/8);
 }
