@@ -36,7 +36,7 @@ SequenceEditor::~SequenceEditor()
 //==============================================================================
 void SequenceEditor::paint (Graphics& g)
 {
-    g.fillAll (Colours::white);
+    g.fillAll (Colours::black);
 }
 //==============================================================================
 void SequenceEditor::resized()
@@ -45,6 +45,6 @@ void SequenceEditor::resized()
     int h = getHeight();
     
    for (int i = 0; i<TotalFunctions; i++) {
-       //functionOptions[i]->setBounds(0, i * h/TotalFunctions / 5, 3 * w/4 , h/TotalFunctions / 5);
+       functionOptions[i]->setBounds(0, i * h / 5, 3 * w/4 , h/ 5);
    }
 }

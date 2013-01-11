@@ -63,7 +63,7 @@ void SplittableWaveDisplay::paintOverChildren(Graphics &g){
         int width = SampleToPixel(subsections.getLength(i));
         
         
-        if(width){
+        if(width > 0){
             
             Image SubsectionImage = highlightImage.rescaled(width, getHeight());
             

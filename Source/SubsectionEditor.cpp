@@ -26,10 +26,14 @@ subsection(audioSubsectionManager)
     subsectionSelector.addListener(this);
     std::cout<<"Adding Button ";
     for(int i =0; i < hitTypes.size(); i++){
+        
         HitClassButtons.add(new ToggleButton(hitTypes[i]));
+        
         addAndMakeVisible(HitClassButtons[i]);
+        HitClassButtons[i]->setColour(0x1006501, Colours::white);
         HitClassButtons[i]->addListener(this);
         std::cout<<i<<" ";
+        
     }
     std::cout<<"\n";
     addAndMakeVisible(&subsectionSelector);
@@ -59,7 +63,9 @@ void SubsectionEditor::subsectionCreated(int SubsectionIndex){
 }
 /**@Internal@*/
 void SubsectionEditor::subsectionDeleted(int SubsectionIndex){
+    
     subsectionSelector.clear();
+    
     for (int i = 0; i < subsection.size(); i++) {
         String name = "Slice";
         
@@ -73,9 +79,8 @@ void SubsectionEditor::subsectionDeleted(int SubsectionIndex){
 }
 //**@Internal@*/
 void SubsectionEditor::subsectionChanged(int SubsectionIndex){
-    if (SubsectionIndex == activeSubsection) {
-        repaint();
-    }
+     std::cout<<"Changed"<<SubsectionIndex<<"\n";
+    repaint();
 }
 //**@Internal@*/
 void SubsectionEditor::subsectionsCleared(){
@@ -103,12 +108,15 @@ void SubsectionEditor::paint(Graphics &g){
     
     int index = activeSubsection -1;
     
+    //g.setOpacity(0.4);
+    g.fillAll(Colours::black);
+    
     if (activeSubsection){
         
         double start    = subsection.SampleToTime(subsection.getStart(index));
         double duration = subsection.SampleToTime(subsection.getLength(index));
 
-       if (imageSource->getImage().isValid())
+       if (imageSource->getImage().isValid() && duration)
             subsectionWaveform = imageSource->getImageAtTime (start, duration);
 
         g.drawImageAt(subsectionWaveform.rescaled(getWidth(),
@@ -118,7 +126,9 @@ void SubsectionEditor::paint(Graphics &g){
 
     }
     
-    else  g.fillAll(Colours::white);
+    g.setColour(Colours::white);
+    g.drawRect(0, 0, getWidth()-2, getHeight()-2,2);
+    
 }
 /**@Internal@*/
 void SubsectionEditor::resized(){
@@ -132,5 +142,5 @@ void SubsectionEditor::resized(){
                                       h/8);
     }
     
-    subsectionSelector.setBounds(0, 0, w, h/8);
+    subsectionSelector.setBounds(0, 0, w - 2, h/8 - 2);
 }

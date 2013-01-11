@@ -77,9 +77,10 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
           
     //Text Labels
     
-    label.setText("Shift-Click to create a slice, Alt-Shift-Click to delete one", false);
+    label.setText("Shift Double-Click to create a slice, Alt-Shift Double-Click to delete one", false);
     label.setJustificationType(Justification::centred);
     addAndMakeVisible(&label);
+    label.setColour(0x1000281, Colours::white);
     label.setInterceptsMouseClicks(false, false);
     
     

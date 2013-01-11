@@ -40,7 +40,7 @@ GenieAudioProcessorEditor::~GenieAudioProcessorEditor()
 //==============================================================================
 void GenieAudioProcessorEditor::paint (Graphics& g)
 {   
-    g.fillAll (Colours::red);
+    g.fillAll (Colours::white);
 }
 //==============================================================================
 void GenieAudioProcessorEditor::resized()
