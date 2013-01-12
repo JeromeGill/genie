@@ -69,8 +69,8 @@ void SplittableWaveDisplay::paintOverChildren(Graphics &g){
             
             Graphics g1(SubsectionImage);
             g1.setColour(Colours::green);
-            g1.fillRect(2, 2, width - 4, getHeight() - 4);
-            g.drawImageAt(SubsectionImage, pixel, 0);
+            g1.fillRect(Bw,Bw, width - twoBw, getHeight() - twoBw);
+            g.drawImageAt(SubsectionImage, pixel + Bw, 0);
         }
         else g.drawImageAt(highlightImage, pixel, 0);
     }

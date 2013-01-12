@@ -35,6 +35,13 @@ using namespace drow;
 #define Width 800
 #define Height 600
 
+//Component Border sizes
+#define Bw 2
+#define twoBw 4
+#define fourBw 8
+
+// size definitions in pixels
+
 //Sample offset used for playback buffer
 #define SAMPLEOFFSET_ 512
 

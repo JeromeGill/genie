@@ -99,13 +99,14 @@ void AudioEditor::resized()
     const int w = getWidth();
     const int h = getHeight();
 
-    LoadBar.setBounds(0, 0, w, h / 5);
-    SlZoom.setBounds(0, h/5, w/4,  h/ 5);
-    label.setBounds(0, h / 5 * 4, w, h/5 );
+    LoadBar.setBounds(twoBw, twoBw, w/4* 3 - twoBw, h / 5 - fourBw);
     
-    waveDisplay->setBounds(0, h/5 * 2, w, h/5 * 3);
+    SlZoom.setBounds(twoBw, h/5 - twoBw, w/4 - fourBw,  h/ 5 - fourBw);
+    label.setBounds(twoBw, h / 5 * 4 - twoBw, w - fourBw, h/5 - fourBw);
     
-    midiControl.setBounds (w/2, h/5, w/2, h/5);
+    waveDisplay->setBounds(twoBw, (h/5 * 2) - twoBw, w - fourBw,( h/5 * 3 )- fourBw);
+    
+    midiControl.setBounds (w/4 *3, twoBw, w/4  - twoBw, h/5 - fourBw);
     
     
 }
@@ -113,7 +114,9 @@ void AudioEditor::resized()
 //Paint
 void AudioEditor::paint (Graphics& g)
 {
-    g.fillAll (Colours::white);
+    g.fillAll (Colours::black);
+    g.setColour(Colours::white);
+    g.drawRect(Bw, Bw, getWidth()-twoBw, getHeight()-twoBw,Bw);
 }
 
 

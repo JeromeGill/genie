@@ -54,6 +54,8 @@ private:
     // Member Objects
     
     //Display
+    
+    Label genieTitle;
  
     AudioThumbnailImage*  audioThumbnailImage;
 

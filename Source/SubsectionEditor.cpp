@@ -119,15 +119,15 @@ void SubsectionEditor::paint(Graphics &g){
        if (imageSource->getImage().isValid() && duration)
             subsectionWaveform = imageSource->getImageAtTime (start, duration);
 
-        g.drawImageAt(subsectionWaveform.rescaled(getWidth(),
-                                                  getHeight() / 8 * 6),
-                      0,
-                      getHeight() / 8 * 2);
+        g.drawImageAt(subsectionWaveform.rescaled(getWidth() -fourBw,
+                                                  getHeight() / 8 * 6 - fourBw),
+                      fourBw,
+                      getHeight() / 8 * 2 - fourBw);
 
     }
     
     g.setColour(Colours::white);
-    g.drawRect(0, 0, getWidth()-2, getHeight()-2,2);
+    g.drawRect(Bw, Bw, getWidth()-twoBw, getHeight()-twoBw,Bw);
     
 }
 /**@Internal@*/
@@ -136,11 +136,11 @@ void SubsectionEditor::resized(){
     int h = getHeight();
     
     for(int i = 0; i < hitTypes.size(); i++){
-        HitClassButtons[i]->setBounds((w / hitTypes.size()) * i,
-                                      h / 8,
-                                      w / hitTypes.size(),
-                                      h/8);
+        HitClassButtons[i]->setBounds(((w/ hitTypes.size()) * i) + fourBw,
+                                      h / 8 - twoBw,
+                                      w / hitTypes.size() - fourBw,
+                                      h/ 8 - fourBw);
     }
     
-    subsectionSelector.setBounds(0, 0, w - 2, h/8 - 2);
+    subsectionSelector.setBounds(twoBw, twoBw, w - fourBw, h/8 - fourBw);
 }
