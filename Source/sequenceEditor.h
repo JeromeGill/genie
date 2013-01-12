@@ -41,8 +41,10 @@ private:
         Rolls,
         TotalFunctions
     };
+    
+    StringArray hitTypes;
 
-    OwnedArray<ComboBox> functionOptions;
+    ComboBox functionOptions;
  
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)
     

@@ -30,7 +30,7 @@ void AudioSubsectionManager::allowOverlap(bool allowSubsectionsToOverlap = true)
  */
 void AudioSubsectionManager::addSubsection (int64 startSample){
     int index;
-    
+    if (filePlayer->getFile().exists()) {
     std::cout<<"Adding Subsection \n";
     subsection.add(new SubSection);
     subsection.getLast()->StartSample = startSample;
@@ -38,6 +38,11 @@ void AudioSubsectionManager::addSubsection (int64 startSample){
     
     index = getSubsection(startSample);
     listenerList.call(&Listener::subsectionCreated, index);
+    }
+    else if(DEBUGSSM){
+        std::cout<<"SubsectionManager : Add Subsection... File doesn't exist.\n";
+    }
+        
     
 }
 /** Names a Subsection

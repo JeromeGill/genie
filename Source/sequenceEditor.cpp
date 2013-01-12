@@ -11,21 +11,15 @@
 //==============================================================================
 SequenceEditor::SequenceEditor()
 {
-    for (int i = 0; i<TotalFunctions; i++)
-        functionOptions.add(new ComboBox);
-       
-    functionOptions[Edits]->setText("Edits");
-    functionOptions[Edits]->addItem("Edit Option 1", 1);
-    functionOptions[Edits]->addItem("Edit Option 2", 2);
-    functionOptions[Edits]->addItem("Edit Option 3", 3);
+ 
+    hitTypes.add("Grooves");
+    hitTypes.add("Fills");
     
-    functionOptions[Rolls]->setText("Rolls");
-    functionOptions[Rolls]->addItem("Roll Option 1", 1);
-    functionOptions[Rolls]->addItem("Roll Option 2", 2);
-    functionOptions[Rolls]->addItem("Roll Option 3", 3);
+    
+    addAndMakeVisible(&functionOptions);
 
-    for (int i = 0; i<TotalFunctions; i++)
-        addAndMakeVisible(functionOptions[i]);
+    for (int i = 0; i<hitTypes.size(); i++)
+        functionOptions.addItem(hitTypes[i], i+1);
 
 }
 
@@ -36,9 +30,10 @@ SequenceEditor::~SequenceEditor()
 //==============================================================================
 void SequenceEditor::paint (Graphics& g)
 {
-    g.fillAll (Colours::black);
-    g.setColour(Colours::white);
-    g.drawRect(Bw, Bw, getWidth() - twoBw, getHeight() - twoBw, Bw);
+    g.fillAll (Colours::white);
+    g.setColour(Colours::black);
+    g.drawRect(0, 0, getWidth(), getHeight(), twoBw);
+    
 }
 //==============================================================================
 void SequenceEditor::resized()
@@ -46,7 +41,6 @@ void SequenceEditor::resized()
     int w = getWidth();
     int h = getHeight();
     
-   for (int i = 0; i<TotalFunctions; i++) {
-       functionOptions[i]->setBounds(twoBw, (i * (h / 10)) + twoBw, 3 * w/4 - fourBw , h/10 - Bw);
-   }
+       functionOptions.setBounds(twoBw,  twoBw,  w - fourBw , h/10 - Bw);
+
 }

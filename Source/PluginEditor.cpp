@@ -47,7 +47,7 @@ void GenieAudioProcessorEditor::paint (Graphics& g)
 {   
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
-    g.drawRect(Bw, getHeight()/4 * 3 + twoBw, getWidth()/2-twoBw, getHeight()/4-fourBw,Bw);
+    g.drawRect(Bw, getHeight()/4 * 3 + twoBw, getWidth()/2-twoBw, getHeight()/4-twoBw - Bw ,Bw);
 }
 //==============================================================================
 void GenieAudioProcessorEditor::resized()

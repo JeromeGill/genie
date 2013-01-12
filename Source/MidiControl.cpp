@@ -26,7 +26,7 @@ MidiControl::~MidiControl(){
 }
 
 void MidiControl::paint(Graphics &g){
-    g.setColour(Colours::white);
+    g.setColour(Colours::black);
     g.fillAll();
     
 }

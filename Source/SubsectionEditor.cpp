@@ -119,9 +119,9 @@ void SubsectionEditor::paint(Graphics &g){
        if (imageSource->getImage().isValid() && duration)
             subsectionWaveform = imageSource->getImageAtTime (start, duration);
 
-        g.drawImageAt(subsectionWaveform.rescaled(getWidth() -fourBw,
+        g.drawImageAt(subsectionWaveform.rescaled(getWidth() - fourBw,
                                                   getHeight() / 8 * 6 - fourBw),
-                      fourBw,
+                      twoBw,
                       getHeight() / 8 * 2 - fourBw);
 
     }
