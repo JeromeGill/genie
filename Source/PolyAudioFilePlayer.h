@@ -58,7 +58,7 @@ public:
     
 private:
     AudioFilePlayer*                  audioFilePlayer;
-    ScopedPointer<AudioFormatReader>  masterReader;
+    AudioFormatReader*  masterReader;
     TimeSliceThread                     thread;
     
     MixerAudioSource mixer;

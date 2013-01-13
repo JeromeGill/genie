@@ -15,8 +15,8 @@ PolyAudioFilePlayer::PolyAudioFilePlayer(AudioFilePlayer &audioFilePlayer_)
 thread("voices")
 
 {
-    thread.startThread();
-    audioFilePlayer->addListener(this);
+
+   
     
     Voices.ensureStorageAllocated(POLYPHONY);
     //Initialise Voices
@@ -26,13 +26,13 @@ thread("voices")
          i++;
      }
     
-    
+     audioFilePlayer->addListener(this);
 }
 
 PolyAudioFilePlayer::~PolyAudioFilePlayer()
 {
     audioFilePlayer->removeListener(this);
-    thread.stopThread(0);
+    
 }
 
 
@@ -86,13 +86,14 @@ void PolyAudioFilePlayer::fileChanged(AudioFilePlayer *player){
 }
 /** Implementation of the AudioSource method. */
 void PolyAudioFilePlayer::prepareToPlay (int samplesPerBlockExpected, double sampleRate){
-    
+    //    thread.startThread();
     mixer.prepareToPlay(samplesPerBlockExpected, sampleRate);
 }
 
 /** Implementation of the AudioSource method. */
 void PolyAudioFilePlayer::releaseResources(){
     mixer.releaseResources();
+  //  thread.stopThread(0);
     
 }
 

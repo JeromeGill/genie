@@ -72,7 +72,7 @@ public:
 
 private:
     //==============================================================================
-    AudioFilePlayer audioFilePlayer;
+    ScopedPointer<AudioFilePlayer> audioFilePlayer;
     
     ScopedPointer<PolyAudioFilePlayer> polyPlayer;
     
@@ -80,7 +80,7 @@ private:
     
     ScopedPointer<MidiManager> midiManager;
     
-    ScopedPointer<AudioFormatManager> audioFormatManager;
+    AudioFormatManager* audioFormatManager; //Normal pointer as AudioFilePlayer contains a scoped pointer structure for it
     ScopedPointer<AudioSubsectionManager> subsectionManager;
     
     MidiKeyboardState keyboardState;

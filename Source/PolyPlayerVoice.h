@@ -27,7 +27,7 @@ public:
     PolyPlayerVoice(TimeSliceThread &Thread)
     :   thread(&Thread)
     {
-        audioTransportSource = new AudioTransportSource();
+        
     }
     
     ~PolyPlayerVoice(){
@@ -49,18 +49,18 @@ public:
         std::cout<<" Created reader. ";
         audioFileSource = new AudioFormatReaderSource (reader, false);
         std::cout<<" Created Source. ";
-        audioTransportSource->setSource(audioFileSource,0, thread);
+        audioTransportSource.setSource(audioFileSource,0, thread);
         std::cout<<" Set Source \n";
     }
     
     /**Returns the AudioTransportSource
      */
-    inline AudioTransportSource* getAudioSource(){return audioTransportSource;}
+    inline AudioTransportSource* getAudioSource(){return &audioTransportSource;}
     
 private:
     TimeSliceThread         *thread;
     ScopedPointer<AudioSubsectionReader>  reader;
-    ScopedPointer<AudioTransportSource>    audioTransportSource;
+    AudioTransportSource    audioTransportSource;
     ScopedPointer<AudioFormatReaderSource> audioFileSource;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PolyPlayerVoice)
