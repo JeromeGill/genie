@@ -121,9 +121,15 @@ private:
 	
 	int activeColumn;
     
-    ScopedPointer<ColumnFileBrowserLookAndFeel> activeLookAndFeel;  
-    ScopedPointer<ColumnFileBrowserLookAndFeel> inactiveLookAndFeel;  
+    friend class ColumnFileBrowser;
+    
+    ScopedPointer<LookAndFeel> activeLookAndFeel;
+    ScopedPointer<LookAndFeel> inactiveLookAndFeel;
+
+    //==================================================================================
+    int getNumValidChildFiles (const File& sourceFile);
 	
+    //==================================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColumnFileBrowserContents);
 };
 
@@ -133,7 +139,7 @@ ColumnFileBrowserContents::ColumnFileBrowserContents (WildcardFileFilter* filesT
 	  viewport (parentViewport)
 {
     activeLookAndFeel = new ColumnFileBrowserLookAndFeel();
-    activeLookAndFeel->setColour (DirectoryContentsDisplayComponent::highlightColourId, 
+    activeLookAndFeel->setColour (DirectoryContentsDisplayComponent::highlightColourId,
                                   Colours::darkorange);
     inactiveLookAndFeel = new ColumnFileBrowserLookAndFeel();
     
@@ -171,7 +177,7 @@ void ColumnFileBrowserContents::selectedFileChanged (const File& file)
     // if last column clicked add new column
 	if (columns[activeColumn] == columns.getLast())
 	{
-		addColumn (file);
+        addColumn (file);
 	}
 	else        // otherwise remove uneeded columns and change last
 	{
@@ -210,14 +216,15 @@ bool ColumnFileBrowserContents::addColumn (const File& rootDirectory)
 	{
         const int startingWidth = columns.getLast()->getWidth();
         
-		columns.add (new BrowserColumn (filesToDisplay));
-		addAndMakeVisible (columns.getLast());
-        columns.getLast()->setLookAndFeel (inactiveLookAndFeel);
-		columns.getLast()->setRoot (rootDirectory);
-		columns.getLast()->setSize (startingWidth, 50);
-		columns.getLast()->addListener (this);
-		columns.getLast()->addChangeListener (this);
-		columns.getLast()->addComponentListener (this);
+        BrowserColumn* newColumn = new BrowserColumn (filesToDisplay);
+        newColumn->setLookAndFeel (inactiveLookAndFeel);
+		newColumn->setRoot (rootDirectory);
+		newColumn->setSize (startingWidth, 50);
+		newColumn->addListener (this);
+		newColumn->addChangeListener (this);
+		newColumn->addComponentListener (this);
+		columns.add (newColumn);
+		addAndMakeVisible (newColumn);
 		
 		resized();
 		
@@ -248,7 +255,8 @@ void ColumnFileBrowserContents::changeListenerCallback (ChangeBroadcaster* chang
         columns[activeColumn]->setLookAndFeel (inactiveLookAndFeel);
         activeColumn = columns.indexOf (changedColumn);
         columns[activeColumn]->setLookAndFeel (activeLookAndFeel);
-        
+        columns[activeColumn]->repaint();
+
         selectedFileChanged (changedColumn->getHighlightedFile());
     }
 }
@@ -278,7 +286,8 @@ bool ColumnFileBrowserContents::keyPressed (const KeyPress& key)
     else if (key.isKeyCode (KeyPress::rightKey))
     {
         if (columns[activeColumn]->getNumSelectedFiles() == 1
-            && columns[activeColumn]->getSelectedFile (0).isDirectory())
+            && columns[activeColumn]->getSelectedFile (0).isDirectory()
+            && getNumValidChildFiles (columns[activeColumn]->getSelectedFile (0)) > 0)
         {
             int newActiveColumn = activeColumn + 1;
             addColumn (columns[activeColumn]->getSelectedFile (0));
@@ -307,9 +316,29 @@ bool ColumnFileBrowserContents::keyPressed (const KeyPress& key)
 }
 
 //==================================================================================
+int ColumnFileBrowserContents::getNumValidChildFiles (const File& sourceFile)
+{
+    DBG (filesToDisplay->getDescription());
+    int numChildFiles = sourceFile.getNumberOfChildFiles (File::findFilesAndDirectories +
+                                                          File::ignoreHiddenFiles,
+                                                          filesToDisplay == nullptr ? "*" : filesToDisplay->getDescription().fromFirstOccurrenceOf ("(", false, false).upToFirstOccurrenceOf (")", false, false));
+    
+    DBG_VAR (numChildFiles);
+    Array<File> files;
+    sourceFile.findChildFiles (files, File::findFilesAndDirectories +
+                               File::ignoreHiddenFiles, false);
+    for (int i = 0; i < files.size(); ++i)
+    {
+        DBG (files[i].getFullPathName());
+    }
+    
+    return numChildFiles;
+}
+
+//==================================================================================
 ColumnFileBrowser::ColumnFileBrowser (WildcardFileFilter* filesToDisplay_)
-    : Viewport("ColumnFileBrowser"),
-      wildcard(filesToDisplay_)
+    : Viewport ("ColumnFileBrowser"),
+      wildcard (filesToDisplay_)
 {
     addMouseListener (this, true);
     setWantsKeyboardFocus (false);
@@ -323,6 +352,12 @@ ColumnFileBrowser::ColumnFileBrowser (WildcardFileFilter* filesToDisplay_)
 
 ColumnFileBrowser::~ColumnFileBrowser()
 {
+}
+
+void ColumnFileBrowser::setActiveColumHighlightColour (const Colour& colour)
+{
+    fileBrowser->activeLookAndFeel->setColour (DirectoryContentsDisplayComponent::highlightColourId,
+                                               colour);
 }
 
 void ColumnFileBrowser::resized()
@@ -346,4 +381,3 @@ void ColumnFileBrowser::mouseWheelMove (const MouseEvent& e, const MouseWheelDet
             Viewport::useMouseWheelMoveIfNeeded (e, wheel);
     }
 }
-

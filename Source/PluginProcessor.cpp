@@ -19,13 +19,13 @@ GenieAudioProcessor::GenieAudioProcessor()
     audioFormatManager = new AudioFormatManager();
     audioFormatManager->registerBasicFormats();
     audioFilePlayer = new AudioFilePlayer();
-    audioFilePlayer->setAudioFormatManager(audioFormatManager, true);
+    audioFilePlayer->setAudioFormatManager(audioFormatManager, false);
     
     polyPlayer = new PolyAudioFilePlayer(*audioFilePlayer);
    
     
-    mixerAudioSource.addInputSource(audioFilePlayer, true);
-    mixerAudioSource.addInputSource(polyPlayer, true);
+    mixerAudioSource.addInputSource(audioFilePlayer, false);
+    mixerAudioSource.addInputSource(polyPlayer, false);
     
     subsectionManager = new AudioSubsectionManager(*audioFilePlayer);
     midiManager = new MidiManager(*polyPlayer, *subsectionManager, keyboardState);
@@ -34,7 +34,7 @@ GenieAudioProcessor::GenieAudioProcessor()
 
 GenieAudioProcessor::~GenieAudioProcessor()
 {
-
+    mixerAudioSource.removeAllInputs();
 }
 
 //==============================================================================

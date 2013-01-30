@@ -63,25 +63,25 @@ inline static String stripFileProtocolForLocal (String pathToStrip)
 /** Converts an iTunes formatted date string (e.g. 2010-12-27T17:44:32Z)
     into a Time object.
  */
-inline static Time parseITunesDateString (String dateString)
+inline static Time parseITunesDateString (const String& dateString)
 {
-    int year =      dateString.substring (0, 4).getIntValue();
-    int month =     dateString.substring (5, 7).getIntValue();
-    int day =       dateString.substring (8, 10).getIntValue();
-    int hours =     dateString.substring (11, 13).getIntValue();
-    int minutes =   dateString.substring (14, 16).getIntValue();
-    int seconds =   dateString.substring (17, 19).getIntValue();
-    int milliseconds = 0;
-    bool useLocalTime = true;                     
+    int year            = dateString.substring (0, 4).getIntValue();
+    int month           = dateString.substring (5, 7).getIntValue() - 1;
+    int day             = dateString.substring (8, 10).getIntValue();
+    int hours           = dateString.substring (11, 13).getIntValue();
+    int minutes         = dateString.substring (14, 16).getIntValue();
+    int seconds         = dateString.substring (17, 19).getIntValue();
+    int milliseconds    = 0;
+    bool useLocalTime   = true;
     
-    return Time(year,
-                month,
-                day,
-                hours,
-                minutes,
-                seconds,
-                milliseconds,
-                useLocalTime);
+    return Time (year,
+                 month,
+                 day,
+                 hours,
+                 minutes,
+                 seconds,
+                 milliseconds,
+                 useLocalTime);
 }
 
 /**	Reverses an array.
@@ -160,28 +160,38 @@ static String findKeyFromChemicalWebsite (const String& releaseNo, const String&
     return String::empty;
 }
 
-/** Holds a ValueTree as a ReferenceCountedObject.
-    This is somewhat obfuscated but makes it easy to transfer ValueTrees as var objects 
+//==============================================================================
+/**
+    Holds a ValueTree as a ReferenceCountedObject.
+    
+    This is somewhat obfuscated but makes it easy to transfer ValueTrees as var objects
     such as when using them as DragAndDropTarget::SourceDetails::description members.
  */
 class ReferenceCountedValueTree : public ReferenceCountedObject
 {
 public:
-    
-    ReferenceCountedValueTree (ValueTree treeToReference)
-    :   tree (treeToReference)
+    //==============================================================================
+    /** Cretates a ReferenceCountedValueTree for a given ValueTree.
+     */
+    ReferenceCountedValueTree (const ValueTree& treeToReference)
+        : tree (treeToReference)
     {
     }
     
+    /** Destructor. */
     ~ReferenceCountedValueTree()
     {
     }
     
+    /** Sets the ValueTree being held.
+     */
     void setValueTree (ValueTree newTree)
     {
         tree = newTree;
     }
     
+    /** Returns the ValueTree being held.
+     */
     ValueTree getValueTree()
     {
         return tree;
@@ -189,9 +199,64 @@ public:
     
     typedef ReferenceCountedObjectPtr<ReferenceCountedValueTree> Ptr;
     
+    /** Provides a simple way of getting the tree from a var object which
+        is a ReferencedCountedValueTree.
+     */
+    static ValueTree getTreeFromObject (const var& treeObject)
+    {
+        ReferenceCountedValueTree* refTree
+        = dynamic_cast<ReferenceCountedValueTree*> (treeObject.getObject());
+        
+        return refTree == nullptr ? ValueTree::invalid : refTree->getValueTree();
+    }
+
 private:
-    
+    //==============================================================================
     ValueTree tree;
+};
+
+//==============================================================================
+/**
+    Holds an Identifier as a ReferenceCountedObject.
+
+    This is useful so that Identifiers can be passed around as var objects
+    without having to convert them to Strings and back which defeats the point of them.
+ */
+class ReferenceCountedIdentifier : public ReferenceCountedObject
+{
+public:
+    //==============================================================================
+    /** Cretates a ReferenceCountedIdentifier for a given Identifier.
+     */
+    ReferenceCountedIdentifier (const Identifier& identifierToReference)
+        : identifier (identifierToReference)
+    {
+    }
+    
+    /** Destructor. */
+    ~ReferenceCountedIdentifier()
+    {
+    }
+    
+    /** Sets the Identifier to be held.
+     */
+    void setIdentifier (const Identifier& newIdentifier)
+    {
+        identifier = newIdentifier;
+    }
+
+    /** Returns the Identifier being held.
+     */
+    Identifier getIdentifier()
+    {
+        return identifier;
+    }
+    
+    typedef ReferenceCountedObjectPtr<ReferenceCountedIdentifier> Ptr;
+    
+private:
+    //==============================================================================
+    Identifier identifier;
 };
 
 //==============================================================================
@@ -253,6 +318,15 @@ static ValueTree readValueTreeFromFile (const File& fileToReadFrom)
     
     return ValueTree::invalid;
 }
+
+//==============================================================================
+/** Useful macro to print a variable name and value to the console.
+ */
+#define DBG_VAR(dbgvar)     {DBG (JUCE_STRINGIFY(dbgvar) << ": " << dbgvar) }
+
+/** Useful macro to print a rectangle to the console.
+ */
+#define DBG_RECT(dbgrect)   {DBG ("x: " << dbgrect.getX() << " y: " << dbgrect.getY() << " w: " << dbgrect.getWidth() << " h: " << dbgrect.getHeight()) }
 
 //==============================================================================
 /** This handy macro is a platform independent way of stopping compiler

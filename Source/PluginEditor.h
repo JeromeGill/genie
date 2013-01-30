@@ -57,6 +57,10 @@ private:
     
     Label genieTitle;
  
+    Image genieLogo;
+    PNGImageFormat imageLoader;
+    File logoImage;
+    
     AudioThumbnailImage*  audioThumbnailImage;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GenieAudioProcessorEditor)

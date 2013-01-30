@@ -144,15 +144,11 @@ void AudioTransportCursor::mouseDown (const MouseEvent &e)
     if (showTransportCursor)
     {
         setMouseCursor (MouseCursor::IBeamCursor);
-        currentMouseX = e.x;
 
-        const int w = getWidth();
-        currentXScale = (float) ((fileLength / w) * zoomRatio);
+        currentXScale = (float) ((fileLength / getWidth()) * zoomRatio);
+        setPlayerPosition (e.x, true);
 
-        const int startPixel = roundToInt (w * startOffsetRatio);
-        double position = currentXScale * (currentMouseX - startPixel);
-        audioFilePlayer.setPosition (position, true);
-
+        shouldStopTimer = false;
         startTimer (40);
         
         repaint();
@@ -172,20 +168,13 @@ void AudioTransportCursor::mouseUp (const MouseEvent& /*e*/)
 void AudioTransportCursor::mouseDrag (const MouseEvent& e)
 {
     if (showTransportCursor)
-    {
-        currentMouseX = e.x;
-        
-        const int w = getWidth();
-        const int startPixel = roundToInt (w * startOffsetRatio);
-        double position = currentXScale * (currentMouseX - startPixel);
-        audioFilePlayer.setPosition (position, false);
-    }
+        setPlayerPosition (e.x, false);
 }
 
 //==============================================================================
 void AudioTransportCursor::startTimerIfNeeded()
 {
-    if (audioFilePlayer.isPlaying() && showTransportCursor)
+    if (showTransportCursor)
     {
         shouldStopTimer = false;
         startTimer (40);
@@ -196,3 +185,9 @@ void AudioTransportCursor::startTimerIfNeeded()
     }
 }
 
+void AudioTransportCursor::setPlayerPosition (int mousePosX, bool ignoreAnyLoopPoints)
+{
+    const int startPixel = roundToInt (getWidth() * startOffsetRatio);
+    double position = currentXScale * (mousePosX - startPixel);
+    audioFilePlayer.setPosition (position, ignoreAnyLoopPoints);
+}

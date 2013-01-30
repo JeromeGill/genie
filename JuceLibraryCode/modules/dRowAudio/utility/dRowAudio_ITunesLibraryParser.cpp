@@ -19,9 +19,8 @@
 */
 
 
-
-ITunesLibraryParser::ITunesLibraryParser (File& iTunesLibraryFileToUse, ValueTree elementToFill,
-                                          CriticalSection& lockToUse)
+ITunesLibraryParser::ITunesLibraryParser (const File& iTunesLibraryFileToUse, const ValueTree& elementToFill,
+                                          const CriticalSection& lockToUse)
     : Thread ("iTunesLibraryParser"),
       lock (lockToUse),
       iTunesLibraryFile (iTunesLibraryFileToUse),
@@ -34,7 +33,7 @@ ITunesLibraryParser::ITunesLibraryParser (File& iTunesLibraryFileToUse, ValueTre
 
 ITunesLibraryParser::~ITunesLibraryParser()
 {
-	stopThread (1000);
+	stopThread (5000);
 }
 
 void ITunesLibraryParser::run()
@@ -54,15 +53,22 @@ void ITunesLibraryParser::run()
     currentElement = iTunesLibraryTracks->getFirstChildElement();
     
     // find any existing elements
-    SortedSet<int> existingIds;
+    Array<int> existingIds;
+    Array<ValueTree> existingItems;
+
     if (! threadShouldExit())
     {
+        const ScopedLock sl (lock);
+
         if (treeToFill.hasType (MusicColumns::libraryIdentifier))
         {
             for (int i = 0; i < treeToFill.getNumChildren(); ++i)
             {
-                int idOfChild = int (treeToFill.getChild (i).getProperty (MusicColumns::columnNames[MusicColumns::ID]));
+                ValueTree currentItem (treeToFill.getChild (i));
+                int idOfChild = int (currentItem.getProperty (MusicColumns::columnNames[MusicColumns::ID]));
+                
                 existingIds.add (idOfChild);
+                existingItems.add (currentItem);
             }
         }
     }
@@ -80,46 +86,46 @@ void ITunesLibraryParser::run()
         {
             if (currentElement->getTagName() == "key")
             {
-                currentItemId = currentElement->getAllSubText().getIntValue();
-                
-                ScopedLock sl (lock);
-                
-                if (existingIds.contains (currentItemId))
-                {
-                    alreadyExists = true;
-                    existingIds.removeValue (currentItemId);
-                    newElement = treeToFill.getChildWithProperty (MusicColumns::columnNames[MusicColumns::ID], currentItemId);
-                }
-                else
-                {
-                    alreadyExists = false;
-                    newElement = ValueTree (MusicColumns::libraryItemIdentifier);
-                    newElement.setProperty (MusicColumns::columnNames[MusicColumns::ID], currentItemId, nullptr);
-                }
+                currentItemId = currentElement->getAllSubText().getIntValue();  // e.g. <key>13452</key>
+                alreadyExists = existingIds.contains (currentItemId);
                 
                 if (alreadyExists)
                 {
-                    XmlElement *trackDetails = currentElement->getNextElement();
+                    // first get the relevant tree item
+                    lock.enter();
+                    const int index = existingIds.indexOf (currentItemId);
+                    ValueTree existingElement (existingItems.getUnchecked (index));
+                    lock.exit();
+
+                    // and then check the modification dates
+                    XmlElement* trackDetails = currentElement->getNextElement(); // move on to the <dict>
                     
-                    forEachXmlChildElement(*trackDetails, e)
+                    forEachXmlChildElement (*trackDetails, e)
                     {
                         if (e->getAllSubText() == MusicColumns::iTunesNames[MusicColumns::Modified])
                         {
-                            int64 newModifiedTime = parseITunesDateString (e->getNextElement()->getAllSubText()).toMilliseconds();
-                            int64 currentModifiedTime = newElement.getProperty (MusicColumns::columnNames[MusicColumns::Modified]);
+                            const int64 newModifiedTime = parseITunesDateString (e->getNextElement()->getAllSubText()).toMilliseconds();
+                            const int64 currentModifiedTime = int64 (existingElement.getProperty (MusicColumns::columnNames[MusicColumns::Modified]));
                                                         
                             if (newModifiedTime > currentModifiedTime)
+                            {
+                                const ScopedLock sl (lock);
+                                treeToFill.removeChild (existingElement, nullptr);
                                 needToModify = true;
+                            }
                             
                             break;
                         }
                     }
                 }
+
+                newElement = ValueTree (MusicColumns::libraryItemIdentifier);
+                newElement.setProperty (MusicColumns::columnNames[MusicColumns::ID], currentItemId, nullptr);
             }
 
-            currentElement = currentElement->getNextElement();
+            currentElement = currentElement->getNextElement(); // move on to the <dict>
             
-            if (needToModify || (! alreadyExists))
+            if (! alreadyExists || needToModify)
                 break;
         }
         
@@ -136,7 +142,8 @@ void ITunesLibraryParser::run()
             // cycle through items of each track
 			forEachXmlChildElement (*currentElement, e2)
 			{	
-                String elementKey (e2->getAllSubText());
+                const String elementKey (e2->getAllSubText());
+                //const String elementValue (e2->getNextElement()->getAllSubText());
                 
 				if (elementKey == "Kind")
                 {
@@ -147,32 +154,43 @@ void ITunesLibraryParser::run()
 						numAdded++;
 					}
 				}
+				else if (elementKey == "Track Type")
+                {
+                    // this is a file in iCloud, not a local, readable one
+					if (e2->getNextElement()->getAllSubText().contains ("Remote"))
+					{
+                        isAudioFile = false;
+                        break;
+					}
+				}
 				
+                // and check the entry against each column
 				for(int i = 2; i < MusicColumns::numColumns; i++)
 				{					
 					if (elementKey == MusicColumns::iTunesNames[i])
 					{
-						String entry = e2->getNextElement()->getAllSubText();
+                        const String elementValue = e2->getNextElement()->getAllSubText();
 						
 						if (i == MusicColumns::Length
 							|| i == MusicColumns::BPM
 							|| i == MusicColumns::LibID)
 						{
-							newElement.setProperty (MusicColumns::columnNames[i], entry.getIntValue(), nullptr);
+							newElement.setProperty (MusicColumns::columnNames[i], elementValue.getIntValue(), nullptr);
 						}
                         else if (i == MusicColumns::Added
                                  || i == MusicColumns::Modified)
                         {            
-                            int64 timeInMilliseconds (parseITunesDateString (entry).toMilliseconds());
-                                                        
+                            const int64 timeInMilliseconds (parseITunesDateString (elementValue).toMilliseconds());
                             newElement.setProperty (MusicColumns::columnNames[i], timeInMilliseconds, nullptr);
                         }
 						else
 						{
+                            String textEntry (elementValue);
+                            
 							if (i == MusicColumns::Location)
-								entry = stripFileProtocolForLocal (entry);
+								textEntry = stripFileProtocolForLocal (elementValue);
 
-							newElement.setProperty (MusicColumns::columnNames[i], entry, nullptr);
+							newElement.setProperty (MusicColumns::columnNames[i], textEntry, nullptr);
 						}
 					}
 				}
@@ -180,12 +198,11 @@ void ITunesLibraryParser::run()
 
 			if (isAudioFile == true)
             {
-				ScopedLock sl (lock);
+				const ScopedLock sl (lock);
 				treeToFill.addChild (newElement, -1, nullptr);
 			}
             
-            currentElement = currentElement->getNextElement();
+            currentElement = currentElement->getNextElement(); // move to next track
 		}		
 	}
 }
-

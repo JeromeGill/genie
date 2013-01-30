@@ -20,6 +20,7 @@
 
 #if DROWAUDIO_UNIT_TESTS
 
+#include <modules/juce_core/juce_core.h>
 
 //==============================================================================
 class CumulativeMovingAverageTests  : public UnitTest
@@ -55,14 +56,63 @@ public:
     {
         beginTest ("Maths Utilities");
 
-        expectEquals ((int) isnan (1), 0);
-        expectEquals ((int) isnan (sqrt (-1.0)), 1);
+        expectEquals ((int) isEven (0), (int) true);
+        expectEquals ((int) isEven (4), (int) true);
+        expectEquals ((int) isEven (746352), (int) true);
+        expectEquals ((int) isEven (-0), (int) true);
+        expectEquals ((int) isEven (-4), (int) true);
+        expectEquals ((int) isEven (-746352), (int) true);
+
+        expectEquals ((int) isOdd (1), (int) true);
+        expectEquals ((int) isOdd (23), (int) true);
+        expectEquals ((int) isOdd (1763523), (int) true);
+        expectEquals ((int) isOdd (-1), (int) true);
+        expectEquals ((int) isOdd (-23), (int) true);
+        expectEquals ((int) isOdd (-1763523), (int) true);
+
+		expectEquals ((int) isnan (1), (int) false);
+        expectEquals ((int) isnan (sqrt (-1.0)), (int) true);
     }
 };
 
 static MathsUnitTests mathsUnitTests;
 
 //==============================================================================
+class PitchTests  : public UnitTest
+{
+public:
+    PitchTests() : UnitTest ("Pitch") {}
+    
+    void runTest()
+    {
+        beginTest ("Pitch");
+        
+        Pitch pitch (Pitch::fromFrequency (440));
+        expectEquals (pitch.getFrequencyHz(), 440.0);
+        expectEquals (pitch.getMidiNote(), 69.0);
+        expectEquals (pitch.getMidiNoteName(), String ("A4"));
 
+        pitch = Pitch::fromMidiNote (68);
+        expect (almostEqual (pitch.getFrequencyHz(), 415.304698, 0.000001));
+        expectEquals (pitch.getMidiNote(), 68.0);
+        expectEquals (pitch.getMidiNoteName(), String ("G#4"));
+        
+        pitch = Pitch::fromNoteName ("A#3");
+        expect (almostEqual (pitch.getFrequencyHz(), 116.54094, 0.000001));
+        expectEquals (pitch.getMidiNote(), 46.0);
+        expectEquals (pitch.getMidiNoteName(), String ("A#2"));
+        
+        String fFlatThree;
+        fFlatThree << "F" << Pitch::getFlatSymbol() << "2";
+        pitch = Pitch::fromNoteName (fFlatThree);
+        expect (almostEqual (pitch.getFrequencyHz(), 41.2034446, 0.000001));
+        expectEquals (pitch.getMidiNote(), 28.0);
+        expectEquals (pitch.getMidiNoteName(), String ("E1"));
+    }
+};
+
+static PitchTests pitchTests;
+
+//==============================================================================
 
 #endif // DROWAUDIO_UNIT_TESTS

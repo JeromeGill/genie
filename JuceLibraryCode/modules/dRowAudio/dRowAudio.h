@@ -74,7 +74,7 @@
 
   ## Integration
 
-  dRowAudio requires recent versions of JUCE. It won't work with versions 2.20 or
+  dRowAudio requires recent versions of JUCE. It won't work with versions 2.28 or
   earlier. To use the library it is necessary to first download JUCE to a
   location where your development environment can find it. Or, you can use your
   existing installation of JUCE.
@@ -109,18 +109,18 @@
   @copyright Provided under the [GNU General Public License][5]
 */
 
-#include "../juce_audio_basics/juce_audio_basics.h"
-#include "../juce_audio_devices/juce_audio_devices.h"
-#include "../juce_audio_formats/juce_audio_formats.h"
-#include "../juce_audio_utils/juce_audio_utils.h"
-#include "../juce_core/juce_core.h"
-#include "../juce_data_structures/juce_data_structures.h"
-#include "../juce_events/juce_events.h"
-#include "../juce_graphics/juce_graphics.h"
-#include "../juce_gui_basics/juce_gui_basics.h"
+#include <modules/juce_audio_basics/juce_audio_basics.h>
+#include <modules/juce_audio_devices/juce_audio_devices.h>
+#include <modules/juce_audio_formats/juce_audio_formats.h>
+#include <modules/juce_audio_utils/juce_audio_utils.h>
+#include <modules/juce_core/juce_core.h>
+#include <modules/juce_data_structures/juce_data_structures.h>
+#include <modules/juce_events/juce_events.h>
+#include <modules/juce_graphics/juce_graphics.h>
+#include <modules/juce_gui_basics/juce_gui_basics.h>
 
 #if JUCE_MODULE_AVAILABLE_juce_cryptography
- #include "../juce_cryptography/juce_cryptography.h"
+ #include <modules/juce_cryptography/juce_cryptography.h>
 #endif
 
 #if JUCE_MAC || JUCE_IOS
@@ -180,7 +180,8 @@ using juce::int64;
 using juce::uint32;
 using juce::int32;
 using juce::MemoryBlock;
-//#define MemoryBlock juce::MemoryBlock //*** bit of a nasty hack, better methods?
+using juce::UnitTest;
+//using juce::Rectangle;
 
 // Audio
 #ifndef __DROWAUDIO_AUDIOFILEPLAYER_H__
@@ -215,6 +216,14 @@ using juce::MemoryBlock;
     #include "audio/dRowAudio_LoopingAudioSource.h"
 #endif
 
+#ifndef __DROWAUDIO_PITCH_H__
+    #include "audio/dRowAudio_Pitch.h"
+#endif
+
+#ifndef __DROWAUDIO_PITCHDETECTOR_H__
+    #include "audio/dRowAudio_PitchDetector.h"
+#endif
+    
 #ifndef __DROWAUDIO_AUDIOUTILITY_H__
     #include "audio/dRowAudio_AudioUtility.h"
 #endif
@@ -339,6 +348,10 @@ using juce::MemoryBlock;
 #ifndef __DROWAUDIO_DRAGGABLEWAVEDISPLAY_H__
     #include "gui/audiothumbnail/dRowAudio_DraggableWaveDisplay.h"
 #endif
+    
+#ifndef __DROWAUDIO_DEFAULTCOLOURS_H__
+    #include "gui/dRowAudio_DefaultColours.h"
+#endif
 
 // maths
 #ifndef __DROWAUDIO_MATHSUTILITIES_H__
@@ -412,12 +425,15 @@ using juce::MemoryBlock;
 #ifndef __DROWAUDIO_COMPARATORS_H__
     #include "utility/dRowAudio_Comparators.h"
 #endif
+
 #ifndef __DROWAUDIO_MUSICLIBRARYHELPERS_H__
     #include "utility/dRowAudio_MusicLibraryHelpers.h"
 #endif
+
 #ifndef __DROWAUDIO_ITUNESLIBRARY_H__
     #include "utility/dRowAudio_ITunesLibrary.h"
 #endif
+
 #ifndef __DROWAUDIO_ITUNESLIBRARYPARSER_H__
     #include "utility/dRowAudio_ITunesLibraryParser.h"
 #endif

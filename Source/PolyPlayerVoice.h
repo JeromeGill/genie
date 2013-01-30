@@ -30,8 +30,10 @@ public:
         
     }
     
-    ~PolyPlayerVoice(){
-        
+    ~PolyPlayerVoice()
+    {
+        audioTransportSource.setSource(0);
+
     }
 
     //==============================================================================

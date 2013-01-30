@@ -22,7 +22,7 @@ thread("voices")
     //Initialise Voices
      for (int i = 0; i < POLYPHONY;) {
          Voices.add(new PolyPlayerVoice(thread));
-         mixer.addInputSource(Voices.getLast()->getAudioSource(), true);
+         mixer.addInputSource(Voices.getLast()->getAudioSource(), false);
          i++;
      }
     
@@ -32,6 +32,7 @@ thread("voices")
 PolyAudioFilePlayer::~PolyAudioFilePlayer()
 {
     audioFilePlayer->removeListener(this);
+    mixer.removeAllInputs();
     
 }
 

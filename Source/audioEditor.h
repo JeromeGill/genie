@@ -92,7 +92,7 @@ private:
     AudioThumbnail          audioThumbNail;
     AudioThumbnailCache     audioThumbNailCache;
     ScopedPointer<AudioThumbnailImage>    audioThumbnailImage;
-    SplittableWaveDisplay*  waveDisplay;
+    ScopedPointer<SplittableWaveDisplay>  waveDisplay;
     
     MidiControl midiControl;
     

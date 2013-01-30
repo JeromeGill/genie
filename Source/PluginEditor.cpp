@@ -20,8 +20,9 @@ GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* owner
 :   AudioProcessorEditor (ownerFilter), 
 
     subsectionEditor(audioSubsectionManager_),
-    audioEditor(audioSubsectionManager_, audioFilePlayer_, subsectionEditor)
-    
+    audioEditor(audioSubsectionManager_, audioFilePlayer_, subsectionEditor),
+logoImage("/Users/Jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Source/genieLogo2.png")
+
 {
     addAndMakeVisible(&sequenceEditor);
     addAndMakeVisible(&audioEditor);
@@ -32,6 +33,8 @@ GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* owner
     genieTitle.setJustificationType(Justification::centred);
     genieTitle.setColour(0x1000281, Colours::white);
     addAndMakeVisible(&genieTitle);
+    
+    
     // This is where our plugin's editor size is set.
     // Happens after creating the audio and sequence editors to prevent them being accessed by resized() before they are created
     setSize (Width, Height);

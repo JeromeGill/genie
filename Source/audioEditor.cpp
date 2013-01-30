@@ -45,10 +45,10 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
 
     
     //The waveform bitmap rendering device
-    audioThumbnailImage = new AudioThumbnailImage(&audioFilePlayer_,
+    audioThumbnailImage = new AudioThumbnailImage(audioFilePlayer_,
                                                   backgroundThread,
-                                                  &audioThumbNailCache,
-                                                  &audioThumbNail,
+                                                  //&audioThumbNailCache,
+                                                  audioThumbNail,
                                                   renderSampleRatio);
     
     audioThumbnailImage->setBackgroundColour(Colours::black);
@@ -83,11 +83,13 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
     label.setColour(0x1000281, Colours::white);
     label.setInterceptsMouseClicks(false, false);
     
+    backgroundThread.startThread();
+    
     
 }
 AudioEditor::~AudioEditor()
 {
-
+    backgroundThread.stopThread(250);
     SlZoom.removeListener(this);
 
 }
