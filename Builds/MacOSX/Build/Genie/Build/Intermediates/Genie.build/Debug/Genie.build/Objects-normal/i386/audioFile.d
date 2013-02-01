@@ -445,4 +445,5 @@ dependencies: \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_RecentlyOpenedFilesList.h \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SplashScreen.h \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SystemTrayIconComponent.h \
-  ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_WebBrowserComponent.h
+  ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_WebBrowserComponent.h \
+  ../../JuceLibraryCode/BinaryData.h

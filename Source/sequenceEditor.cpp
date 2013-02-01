@@ -10,13 +10,16 @@
 
 //==============================================================================
 SequenceEditor::SequenceEditor()
+: genieImage(
+             ImageCache::getFromMemory (genieLogo::genielogo2_png,
+                                      genieLogo::genielogo2_pngSize))
 {
  
     hitTypes.add("Grooves");
     hitTypes.add("Fills");
     
     
-    addAndMakeVisible(&functionOptions);
+    //addAndMakeVisible(&functionOptions);
 
     for (int i = 0; i<hitTypes.size(); i++)
         functionOptions.addItem(hitTypes[i], i+1);
@@ -30,9 +33,10 @@ SequenceEditor::~SequenceEditor()
 //==============================================================================
 void SequenceEditor::paint (Graphics& g)
 {
-    g.fillAll (Colours::white);
-    g.setColour(Colours::black);
-    g.drawRect(0, 0, getWidth(), getHeight(), twoBw);
+    g.fillAll (Colours::black);
+    g.setColour(Colours::white);
+    g.drawRect(Bw, Bw, getWidth()-twoBw, getHeight()-twoBw,Bw);
+    g.drawImageAt(genieImage.rescaled (getWidth() / 2 - twoBw, getHeight() - fourBw),getWidth()/ 4 * 3 - Bw,  twoBw);
     
 }
 //==============================================================================

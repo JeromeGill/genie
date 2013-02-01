@@ -10,7 +10,7 @@
 #define __Genie__SequenceEditor__
 
 #include "genieHeader.h"
-
+#include "genieLogo.h"
 
 /**==============================================================================
  SequenceEditor is where all the Automatic editing functions can be generated
@@ -43,7 +43,7 @@ private:
     };
     
     StringArray hitTypes;
-
+    const Image genieImage;
     ComboBox functionOptions;
  
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)

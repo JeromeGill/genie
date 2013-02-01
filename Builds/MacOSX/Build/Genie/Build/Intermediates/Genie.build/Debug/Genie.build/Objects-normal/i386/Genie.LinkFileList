@@ -1,3 +1,4 @@
+/Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/genieLogo.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/Oscillator.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/MidiManager.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/PolyAudioFilePlayer.o
@@ -22,6 +23,7 @@
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/AUMIDIEffectBase.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/AUOutputBase.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/AUOutputElement.o
+/Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/AUPlugInDispatch.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/AUScopeElement.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/CAAudioChannelLayout.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/CAAUParameter.o
@@ -31,6 +33,7 @@
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/CAVectorUnit.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/ComponentBase.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/MusicDeviceBase.o
+/Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/BinaryData.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/dRowAudio.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/juce_AAX_Wrapper-46723878060CEA81.o
 /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/Build/Genie/Build/Intermediates/Genie.build/Debug/Genie.build/Objects-normal/i386/juce_AAX_Wrapper-E05E0181101F7371.o

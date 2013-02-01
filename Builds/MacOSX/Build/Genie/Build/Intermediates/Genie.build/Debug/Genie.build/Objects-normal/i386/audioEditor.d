@@ -446,6 +446,7 @@ dependencies: \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SplashScreen.h \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SystemTrayIconComponent.h \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_WebBrowserComponent.h \
+  ../../JuceLibraryCode/BinaryData.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/audioFile.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/MidiControl.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SplittableWaveDisplay.h \

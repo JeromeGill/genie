@@ -727,12 +727,13 @@ public:
         {
             for (CFIndex i = 0; i < CFArrayGetCount (presets); ++i)
             {
-                const AUPreset* p = (const AUPreset*) CFArrayGetValueAtIndex (presets, i);
-
-                if (p != nullptr && p->presetNumber == index)
+                if (const AUPreset* p = (const AUPreset*) CFArrayGetValueAtIndex (presets, i))
                 {
-                    s = String::fromCFString (p->presetName);
-                    break;
+                    if (p->presetNumber == index)
+                    {
+                        s = String::fromCFString (p->presetName);
+                        break;
+                    }
                 }
             }
 
@@ -1595,8 +1596,8 @@ bool AudioUnitPluginFormat::doesPluginStillExist (const PluginDescription& desc)
 {
     if (desc.fileOrIdentifier.startsWithIgnoreCase (AudioUnitFormatHelpers::auIdentifierPrefix))
         return fileMightContainThisPluginType (desc.fileOrIdentifier);
-    else
-        return File (desc.fileOrIdentifier).exists();
+
+    return File (desc.fileOrIdentifier).exists();
 }
 
 FileSearchPath AudioUnitPluginFormat::getDefaultLocationsToSearch()

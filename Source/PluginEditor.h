@@ -57,9 +57,7 @@ private:
     
     Label genieTitle;
  
-    Image genieLogo;
-    PNGImageFormat imageLoader;
-    File logoImage;
+
     
     AudioThumbnailImage*  audioThumbnailImage;
 

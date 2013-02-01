@@ -10,6 +10,8 @@
               pluginRTASCategory="" aaxIdentifier="com.yourcompany.Genie" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
               jucerVersion="3.0.0" companyName="KreepAudio">
   <MAINGROUP id="eMfmZX" name="Genie">
+    <FILE id="r4lbl4" name="genieLogo.cpp" compile="1" resource="1" file="Artwork/genieLogo.cpp"/>
+    <FILE id="ziz6kD" name="genieLogo.h" compile="0" resource="1" file="Artwork/genieLogo.h"/>
     <GROUP id="{037BC9AE-17E8-F4EB-92A0-BD8911C5DFA6}" name="TEST objects">
       <FILE id="SoXX6F" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
       <FILE id="SLBsWI" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>

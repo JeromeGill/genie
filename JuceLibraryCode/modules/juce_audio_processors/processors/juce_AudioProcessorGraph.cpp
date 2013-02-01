@@ -789,9 +789,8 @@ private:
                                int recursionCheck) const noexcept
     {
         int index;
-        const Entry* const entry = findEntry (possibleDestinationId, index);
 
-        if (entry != nullptr)
+        if (const Entry* const entry = findEntry (possibleDestinationId, index))
         {
             const SortedSet<uint32>& srcNodes = entry->srcNodes;
 
@@ -858,14 +857,14 @@ struct ConnectionSorter
     static int compareElements (const AudioProcessorGraph::Connection* const first,
                                 const AudioProcessorGraph::Connection* const second) noexcept
     {
-        if      (first->sourceNodeId < second->sourceNodeId)                return -1;
-        else if (first->sourceNodeId > second->sourceNodeId)                return 1;
-        else if (first->destNodeId < second->destNodeId)                    return -1;
-        else if (first->destNodeId > second->destNodeId)                    return 1;
-        else if (first->sourceChannelIndex < second->sourceChannelIndex)    return -1;
-        else if (first->sourceChannelIndex > second->sourceChannelIndex)    return 1;
-        else if (first->destChannelIndex < second->destChannelIndex)        return -1;
-        else if (first->destChannelIndex > second->destChannelIndex)        return 1;
+        if (first->sourceNodeId < second->sourceNodeId)                return -1;
+        if (first->sourceNodeId > second->sourceNodeId)                return 1;
+        if (first->destNodeId < second->destNodeId)                    return -1;
+        if (first->destNodeId > second->destNodeId)                    return 1;
+        if (first->sourceChannelIndex < second->sourceChannelIndex)    return -1;
+        if (first->sourceChannelIndex > second->sourceChannelIndex)    return 1;
+        if (first->destChannelIndex < second->destChannelIndex)        return -1;
+        if (first->destChannelIndex > second->destChannelIndex)        return 1;
 
         return 0;
     }
@@ -917,10 +916,8 @@ void AudioProcessorGraph::Node::unprepare()
 
 void AudioProcessorGraph::Node::setParentGraph (AudioProcessorGraph* const graph) const
 {
-    AudioProcessorGraph::AudioGraphIOProcessor* const ioProc
-        = dynamic_cast <AudioProcessorGraph::AudioGraphIOProcessor*> (processor.get());
-
-    if (ioProc != nullptr)
+    if (AudioProcessorGraph::AudioGraphIOProcessor* const ioProc
+            = dynamic_cast <AudioProcessorGraph::AudioGraphIOProcessor*> (processor.get()))
         ioProc->setParentGraph (graph);
 }
 

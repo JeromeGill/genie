@@ -10,6 +10,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "genieLogo.h"
 
 
 //==============================================================================
@@ -20,8 +21,8 @@ GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* owner
 :   AudioProcessorEditor (ownerFilter), 
 
     subsectionEditor(audioSubsectionManager_),
-    audioEditor(audioSubsectionManager_, audioFilePlayer_, subsectionEditor),
-logoImage("/Users/Jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Source/genieLogo2.png")
+    audioEditor(audioSubsectionManager_, audioFilePlayer_, subsectionEditor)
+
 
 {
     addAndMakeVisible(&sequenceEditor);
@@ -33,7 +34,7 @@ logoImage("/Users/Jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Sou
     genieTitle.setJustificationType(Justification::centred);
     genieTitle.setColour(0x1000281, Colours::white);
     addAndMakeVisible(&genieTitle);
-    
+
     
     // This is where our plugin's editor size is set.
     // Happens after creating the audio and sequence editors to prevent them being accessed by resized() before they are created
@@ -51,6 +52,8 @@ void GenieAudioProcessorEditor::paint (Graphics& g)
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
     g.drawRect(Bw, getHeight()/4 * 3 + twoBw, getWidth()/2-twoBw, getHeight()/4-twoBw - Bw ,Bw);
+
+   
 }
 //==============================================================================
 void GenieAudioProcessorEditor::resized()
