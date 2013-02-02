@@ -16,9 +16,8 @@ thread("voices")
 
 {
 
-   
-    
     Voices.ensureStorageAllocated(POLYPHONY);
+    
     //Initialise Voices
      for (int i = 0; i < POLYPHONY;) {
          Voices.add(new PolyPlayerVoice(thread));

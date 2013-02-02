@@ -80,7 +80,7 @@ private:
     
     ScopedPointer<MidiManager> midiManager;
     
-    AudioFormatManager* audioFormatManager; //Normal pointer as AudioFilePlayer contains a scoped pointer structure for it
+    ScopedPointer<AudioFormatManager> audioFormatManager;
     ScopedPointer<AudioSubsectionManager> subsectionManager;
     
     MidiKeyboardState keyboardState;

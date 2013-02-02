@@ -36,7 +36,7 @@ void SequenceEditor::paint (Graphics& g)
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
     g.drawRect(Bw, Bw, getWidth()-twoBw, getHeight()-twoBw,Bw);
-    g.drawImageAt(genieImage.rescaled (getWidth() / 2 - twoBw, getHeight() - fourBw),getWidth()/ 4 * 3 - Bw,  twoBw);
+    g.drawImageAt(genieImage.rescaled (getWidth() / 2 - twoBw, getHeight() - fourBw),getWidth()/ 4 - Bw,  twoBw);
     
 }
 //==============================================================================

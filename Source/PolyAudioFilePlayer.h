@@ -57,11 +57,12 @@ public:
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
     
 private:
-    AudioFilePlayer*    audioFilePlayer;
-    AudioFormatReader*  masterReader;
-    TimeSliceThread     thread;
-    
     MixerAudioSource mixer;
+    
+    AudioFilePlayer*                    audioFilePlayer;
+    ScopedPointer<AudioFormatReader>    masterReader;
+    TimeSliceThread                     thread;
+    
     OwnedArray<PolyPlayerVoice> Voices;
     
     double SampleRate;
