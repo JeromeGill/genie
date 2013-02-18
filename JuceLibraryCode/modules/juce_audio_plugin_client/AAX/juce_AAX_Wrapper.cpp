@@ -54,12 +54,38 @@
 #include "AAX_Errors.h"
 #include "AAX_CBinaryTaperDelegate.h"
 #include "AAX_CBinaryDisplayDelegate.h"
+#include "AAX_CLinearTaperDelegate.h"
+#include "AAX_CNumberDisplayDelegate.h"
 #include "AAX_CEffectGUI.h"
 #include "AAX_IViewContainer.h"
 #include "AAX_ITransport.h"
+#include "AAX_IMIDINode.h"
+#include "AAX_UtilsNative.h"
 
 #ifdef __clang__
  #pragma clang diagnostic pop
+#endif
+
+#if JUCE_WINDOWS
+ #ifndef JucePlugin_AAXLibs_path
+  #error "You need to define the JucePlugin_AAXLibs_path macro. (This is best done via the introjucer)"
+ #endif
+
+ #if JUCE_64BIT
+  #define JUCE_AAX_LIB "AAXLibrary_x64"
+ #else
+  #define JUCE_AAX_LIB "AAXLibrary"
+ #endif
+
+ #if JUCE_DEBUG
+  #define JUCE_AAX_LIB_PATH   "\\Debug\\"
+  #define JUCE_AAX_LIB_SUFFIX "_D"
+ #else
+  #define JUCE_AAX_LIB_PATH   "\\Release\\"
+  #define JUCE_AAX_LIB_SUFFIX ""
+ #endif
+
+ #pragma comment(lib, JucePlugin_AAXLibs_path JUCE_AAX_LIB_PATH JUCE_AAX_LIB JUCE_AAX_LIB_SUFFIX ".lib")
 #endif
 
 using juce::Component;
@@ -138,64 +164,15 @@ struct AAXClasses
     };
 
     //==============================================================================
+    class JuceAAX_Processor;
+
     struct PluginInstanceInfo
     {
-        PluginInstanceInfo (AudioProcessor& p)  : pluginInstance (p) {}
+        PluginInstanceInfo (JuceAAX_Processor& p)  : parameters (p) {}
 
-        void process (const float* const* inputs, float* const* outputs, const int bufferSize, const bool bypass)
-        {
-            const int numIns  = pluginInstance.getNumInputChannels();
-            const int numOuts = pluginInstance.getNumOutputChannels();
+        JuceAAX_Processor& parameters;
 
-            if (numOuts >= numIns)
-            {
-                for (int i = 0; i < numIns; ++i)
-                    memcpy (outputs[i], inputs[i], bufferSize * sizeof (float));
-
-                process (outputs, numOuts, bufferSize, bypass);
-            }
-            else
-            {
-                if (channelList.size() <= numIns)
-                    channelList.insertMultiple (-1, nullptr, 1 + numIns - channelList.size());
-
-                float** channels = channelList.getRawDataPointer();
-
-                for (int i = 0; i < numOuts; ++i)
-                {
-                    memcpy (outputs[i], inputs[i], bufferSize * sizeof (float));
-                    channels[i] = outputs[i];
-                }
-
-                for (int i = numOuts; i < numIns; ++i)
-                    channels[i] = const_cast <float*> (inputs[i]);
-
-                process (channels, numIns, bufferSize, bypass);
-            }
-        }
-
-        void process (float* const* channels, const int numChans, const int bufferSize, const bool bypass)
-        {
-            AudioSampleBuffer buffer (channels, numChans, bufferSize);
-
-            // XXX need to do midi..
-            midiBuffer.clear();
-
-            {
-                const ScopedLock sl (pluginInstance.getCallbackLock());
-
-                if (bypass)
-                    pluginInstance.processBlockBypassed (buffer, midiBuffer);
-                else
-                    pluginInstance.processBlock (buffer, midiBuffer);
-            }
-        }
-
-        AudioProcessor& pluginInstance;
-        MidiBuffer midiBuffer;
-        Array<float*> channelList;
-
-        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginInstanceInfo)
+        JUCE_DECLARE_NON_COPYABLE (PluginInstanceInfo)
     };
 
     //==============================================================================
@@ -205,6 +182,8 @@ struct AAXClasses
         float** outputChannels;
         int32_t* bufferSize;
         int32_t* bypass;
+        AAX_IMIDINode* midiNodeIn;
+        AAX_IMIDINode* midiNodeOut;
 
         PluginInstanceInfo* pluginInstance;
         int32_t* isPrepared;
@@ -218,6 +197,8 @@ struct AAXClasses
             outputChannels  = AAX_FIELD_INDEX (JUCEAlgorithmContext, outputChannels),
             bufferSize      = AAX_FIELD_INDEX (JUCEAlgorithmContext, bufferSize),
             bypass          = AAX_FIELD_INDEX (JUCEAlgorithmContext, bypass),
+            midiNodeIn      = AAX_FIELD_INDEX (JUCEAlgorithmContext, midiNodeIn),
+            midiNodeOut     = AAX_FIELD_INDEX (JUCEAlgorithmContext, midiNodeOut),
             pluginInstance  = AAX_FIELD_INDEX (JUCEAlgorithmContext, pluginInstance),
             preparedFlag    = AAX_FIELD_INDEX (JUCEAlgorithmContext, isPrepared)
         };
@@ -236,7 +217,7 @@ struct AAXClasses
         {
             if (component == nullptr)
             {
-                if (JuceAAX_Parameters* params = dynamic_cast <JuceAAX_Parameters*> (GetEffectParameters()))
+                if (JuceAAX_Processor* params = dynamic_cast <JuceAAX_Processor*> (GetEffectParameters()))
                     component = new ContentWrapperComponent (*this, params->getPluginInstance());
                 else
                     jassertfalse;
@@ -271,7 +252,7 @@ struct AAXClasses
             }
         }
 
-        virtual AAX_Result GetViewSize (AAX_Point* const viewSize) const
+        virtual AAX_Result GetViewSize (AAX_Point* viewSize) const
         {
             if (component != nullptr)
             {
@@ -285,7 +266,6 @@ struct AAXClasses
 
         AAX_Result ParameterUpdated (AAX_CParamID /*paramID*/)
         {
-
             return AAX_SUCCESS;
         }
 
@@ -348,23 +328,26 @@ struct AAXClasses
     };
 
     //==============================================================================
-    class JuceAAX_Parameters   : public AAX_CEffectParameters,
-                                 public juce::AudioPlayHead
+    class JuceAAX_Processor   : public AAX_CEffectParameters,
+                                public juce::AudioPlayHead,
+                                public AudioProcessorListener
     {
     public:
-        JuceAAX_Parameters()
+        JuceAAX_Processor()
         {
             pluginInstance = createPluginFilterOfType (AudioProcessor::wrapperType_AAX);
             pluginInstance->setPlayHead (this);
+            pluginInstance->addListener (this);
 
             AAX_CEffectParameters::GetNumberOfChunks (&juceChunkIndex);
         }
 
-        static AAX_CEffectParameters* AAX_CALLBACK Create()   { return new JuceAAX_Parameters(); }
+        static AAX_CEffectParameters* AAX_CALLBACK Create()   { return new JuceAAX_Processor(); }
 
         AAX_Result EffectInit()
         {
             addBypassParameter();
+            addAudioProcessorParameters();
             preparePlugin();
 
             return AAX_SUCCESS;
@@ -433,7 +416,7 @@ struct AAXClasses
                     jassert (numObjects == 1); // not sure how to handle more than one..
 
                     for (size_t i = 0; i < numObjects; ++i)
-                        new (objects + i) PluginInstanceInfo (*pluginInstance);
+                        new (objects + i) PluginInstanceInfo (const_cast<JuceAAX_Processor&> (*this));
 
                     break;
                 }
@@ -454,6 +437,19 @@ struct AAXClasses
 
             return AAX_SUCCESS;
             //return AAX_ERROR_INVALID_FIELD_INDEX;
+        }
+
+        AAX_Result UpdateParameterNormalizedValue (AAX_CParamID paramID, double value, AAX_EUpdateSource source)
+        {
+            AAX_Result result = AAX_CEffectParameters::UpdateParameterNormalizedValue (paramID, value, source);
+
+            if (AAX::IsParameterIDEqual (paramID, cDefaultMasterBypassID) == false)
+            {
+                const int parameterIndex = atoi (paramID);
+                pluginInstance->setParameter (parameterIndex, (float) value);
+            }
+
+            return result;
         }
 
         AudioProcessor& getPluginInstance() const noexcept   { return *pluginInstance; }
@@ -488,13 +484,152 @@ struct AAXClasses
             return true;
         }
 
+        void audioProcessorParameterChanged (AudioProcessor* /*processor*/, int parameterIndex, float newValue)
+        {
+            SetParameterNormalizedValue (IndexAsParamID (parameterIndex), (double) newValue);
+        }
+
+        void audioProcessorChanged (AudioProcessor* /*processor*/)
+        {
+            // TODO
+        }
+
+        void audioProcessorParameterChangeGestureBegin (AudioProcessor* /*processor*/, int parameterIndex)
+        {
+            TouchParameter (IndexAsParamID (parameterIndex));
+        }
+
+        void audioProcessorParameterChangeGestureEnd (AudioProcessor* /*processor*/, int parameterIndex)
+        {
+            ReleaseParameter (IndexAsParamID (parameterIndex));
+        }
+
+        void process (const float* const* inputs, float* const* outputs, const int bufferSize,
+                      const bool bypass, AAX_IMIDINode* midiNodeIn, AAX_IMIDINode* midiNodeOut)
+        {
+            const int numIns  = pluginInstance->getNumInputChannels();
+            const int numOuts = pluginInstance->getNumOutputChannels();
+
+            if (numOuts >= numIns)
+            {
+                for (int i = 0; i < numIns; ++i)
+                    memcpy (outputs[i], inputs[i], bufferSize * sizeof (float));
+
+                process (outputs, numOuts, bufferSize, bypass, midiNodeIn, midiNodeOut);
+            }
+            else
+            {
+                if (channelList.size() <= numIns)
+                    channelList.insertMultiple (-1, nullptr, 1 + numIns - channelList.size());
+
+                float** channels = channelList.getRawDataPointer();
+
+                for (int i = 0; i < numOuts; ++i)
+                {
+                    memcpy (outputs[i], inputs[i], bufferSize * sizeof (float));
+                    channels[i] = outputs[i];
+                }
+
+                for (int i = numOuts; i < numIns; ++i)
+                    channels[i] = const_cast <float*> (inputs[i]);
+
+                process (channels, numIns, bufferSize, bypass, midiNodeIn, midiNodeOut);
+            }
+        }
+
     private:
+        struct IndexAsParamID
+        {
+            inline explicit IndexAsParamID (int i) noexcept : index (i) {}
+
+            operator AAX_CParamID() noexcept
+            {
+                jassert (index >= 0);
+
+                char* t = name + sizeof (name);
+                *--t = 0;
+                int v = index;
+
+                do
+                {
+                    *--t = (char) ('0' + (v % 10));
+                    v /= 10;
+
+                } while (v > 0);
+
+                return static_cast <AAX_CParamID> (t);
+            }
+
+        private:
+            int index;
+            char name[32];
+
+            JUCE_DECLARE_NON_COPYABLE (IndexAsParamID)
+        };
+
+        void process (float* const* channels, const int numChans, const int bufferSize,
+                      const bool bypass, AAX_IMIDINode* midiNodeIn, AAX_IMIDINode* midiNodeOut)
+        {
+            AudioSampleBuffer buffer (channels, numChans, bufferSize);
+
+            midiBuffer.clear();
+
+           #if JucePlugin_WantsMidiInput
+            {
+                AAX_CMidiStream* const midiStream = midiNodeIn->GetNodeBuffer();
+                const uint32_t numMidiEvents = midiStream->mBufferSize;
+
+                for (uint32_t i = 0; i < numMidiEvents; ++i)
+                {
+                    // (This 8-byte alignment is a workaround to a bug in the AAX SDK. Hopefully can be
+                    // removed in future when the packet structure size is fixed)
+                    const AAX_CMidiPacket& m = *addBytesToPointer (midiStream->mBuffer,
+                                                                   i * ((sizeof (AAX_CMidiPacket) + 7) & ~7));
+                    jassert ((int) m.mTimestamp < bufferSize);
+                    midiBuffer.addEvent (m.mData, (int) m.mLength,
+                                         jlimit (0, (int) bufferSize - 1, (int) m.mTimestamp));
+                }
+            }
+           #endif
+
+            {
+                const ScopedLock sl (pluginInstance->getCallbackLock());
+
+                if (bypass)
+                    pluginInstance->processBlockBypassed (buffer, midiBuffer);
+                else
+                    pluginInstance->processBlock (buffer, midiBuffer);
+            }
+
+           #if JucePlugin_ProducesMidiOutput
+            {
+                const juce::uint8* midiEventData;
+                int midiEventSize, midiEventPosition;
+                MidiBuffer::Iterator i (midiBuffer);
+
+                AAX_CMidiPacket packet;
+                packet.mIsImmediate = false;
+
+                while (i.getNextEvent (midiEventData, midiEventSize, midiEventPosition))
+                {
+                    jassert (isPositiveAndBelow (midiEventPosition, bufferSize));
+
+                    if (midiEventSize <= 4)
+                    {
+                        packet.mTimestamp   = (uint32_t) midiEventPosition;
+                        packet.mLength      = (uint32_t) midiEventSize;
+                        memcpy (packet.mData, midiEventData, midiEventSize);
+
+                        check (midiNodeOut->PostMIDIPacket (&packet));
+                    }
+                }
+            }
+           #endif
+        }
+
         void addBypassParameter()
         {
-            AAX_CString bypassID;
-            GetMasterBypassParameter (&bypassID);
-
-            AAX_IParameter* masterBypass = new AAX_CParameter<bool> (bypassID.CString(),
+            AAX_IParameter* masterBypass = new AAX_CParameter<bool> (cDefaultMasterBypassID,
                                                                      AAX_CString ("Master Bypass"),
                                                                      false,
                                                                      AAX_CBinaryTaperDelegate<bool>(),
@@ -503,7 +638,31 @@ struct AAXClasses
             masterBypass->SetNumberOfSteps (2);
             masterBypass->SetType (AAX_eParameterType_Discrete);
             mParameterManager.AddParameter (masterBypass);
-            mPacketDispatcher.RegisterPacket (bypassID.CString(), JUCEAlgorithmIDs::bypass);
+            mPacketDispatcher.RegisterPacket (cDefaultMasterBypassID, JUCEAlgorithmIDs::bypass);
+        }
+
+        void addAudioProcessorParameters()
+        {
+            AudioProcessor& audioProcessor = getPluginInstance();
+            const int numParameters = audioProcessor.getNumParameters();
+
+            for (int parameterIndex = 0; parameterIndex < numParameters; ++parameterIndex)
+            {
+                if (audioProcessor.isParameterAutomatable (parameterIndex))
+                {
+                    AAX_IParameter* parameter
+                        = new AAX_CParameter<float> (IndexAsParamID (parameterIndex),
+                                                     audioProcessor.getParameterName (parameterIndex).toUTF8().getAddress(),
+                                                     audioProcessor.getParameter (parameterIndex),
+                                                     AAX_CLinearTaperDelegate<float, 0>(),
+                                                     AAX_CNumberDisplayDelegate<float, 3>(),
+                                                     true);
+
+                    parameter->SetNumberOfSteps (0x7fffffff);
+                    parameter->SetType (AAX_eParameterType_Continuous);
+                    mParameterManager.AddParameter (parameter);
+                }
+            }
         }
 
         void preparePlugin() const
@@ -536,14 +695,15 @@ struct AAXClasses
         JUCELibraryRefCount juceCount;
 
         ScopedPointer<AudioProcessor> pluginInstance;
-
+        MidiBuffer midiBuffer;
+        Array<float*> channelList;
         int32_t juceChunkIndex;
 
         // tempFilterData is initialized in GetChunkSize.
         // To avoid generating it again in GetChunk, we keep it as a member.
         mutable juce::MemoryBlock tempFilterData;
 
-        JUCE_DECLARE_NON_COPYABLE (JuceAAX_Parameters)
+        JUCE_DECLARE_NON_COPYABLE (JuceAAX_Processor)
     };
 
     //==============================================================================
@@ -554,18 +714,30 @@ struct AAXClasses
         {
             const JUCEAlgorithmContext& i = **iter;
 
-            i.pluginInstance->process (i.inputChannels, i.outputChannels,
-                                       *(i.bufferSize), *(i.bypass) != 0);
+            i.pluginInstance->parameters.process (i.inputChannels, i.outputChannels,
+                                                  *(i.bufferSize), *(i.bypass) != 0,
+                                                  i.midiNodeIn, i.midiNodeOut);
         }
     }
 
     //==============================================================================
-    static void createDescriptor (AAX_IComponentDescriptor& desc, int numInputs, int numOutputs)
+    static void createDescriptor (AAX_IComponentDescriptor& desc, int channelConfigIndex,
+                                  int numInputs, int numOutputs)
     {
         check (desc.AddAudioIn  (JUCEAlgorithmIDs::inputChannels));
         check (desc.AddAudioOut (JUCEAlgorithmIDs::outputChannels));
         check (desc.AddAudioBufferLength (JUCEAlgorithmIDs::bufferSize));
         check (desc.AddDataInPort (JUCEAlgorithmIDs::bypass, sizeof (int32_t)));
+
+       #if JucePlugin_WantsMidiInput
+        check (desc.AddMIDINode (JUCEAlgorithmIDs::midiNodeIn, AAX_eMIDINodeType_LocalInput,
+                                 JucePlugin_Name, 0xffff));
+       #endif
+
+       #if JucePlugin_ProducesMidiOutput
+        check (desc.AddMIDINode (JUCEAlgorithmIDs::midiNodeOut, AAX_eMIDINodeType_LocalOutput,
+                                 JucePlugin_Name " Out", 0xffff));
+       #endif
 
         check (desc.AddPrivateData (JUCEAlgorithmIDs::pluginInstance, sizeof (PluginInstanceInfo)));
 
@@ -585,7 +757,9 @@ struct AAXClasses
         properties->AddProperty (AAX_eProperty_InputStemFormat,     getFormatForChans (numInputs));
         properties->AddProperty (AAX_eProperty_OutputStemFormat,    getFormatForChans (numOutputs));
 
-        properties->AddProperty (AAX_eProperty_PlugInID_Native,     JucePlugin_AAXPluginId + (numInputs + 256 * numOutputs));
+        // This value needs to match the RTAS wrapper's Type ID, so that
+        // the host knows that the RTAS/AAX plugins are equivalent.
+        properties->AddProperty (AAX_eProperty_PlugInID_Native,     'jcaa' + channelConfigIndex);
 
         check (desc.AddProcessProc_Native (algorithmProcessCallback, properties));
     }
@@ -597,7 +771,7 @@ struct AAXClasses
         descriptor.AddCategory (JucePlugin_AAXCategory);
 
         check (descriptor.AddProcPtr ((void*) JuceAAX_GUI::Create,        kAAX_ProcPtrID_Create_EffectGUI));
-        check (descriptor.AddProcPtr ((void*) JuceAAX_Parameters::Create, kAAX_ProcPtrID_Create_EffectParameters));
+        check (descriptor.AddProcPtr ((void*) JuceAAX_Processor::Create,  kAAX_ProcPtrID_Create_EffectParameters));
 
         const short channelConfigs[][2] = { JucePlugin_PreferredChannelConfigurations };
         const int numConfigs = numElementsInArray (channelConfigs);
@@ -610,7 +784,7 @@ struct AAXClasses
         {
             if (AAX_IComponentDescriptor* const desc = descriptor.NewComponentDescriptor())
             {
-                createDescriptor (*desc,
+                createDescriptor (*desc, i,
                                   channelConfigs [i][0],
                                   channelConfigs [i][1]);
 

@@ -68,6 +68,10 @@
         </GROUP>
       </GROUP>
       <GROUP id="{948199C5-849D-DB83-6FF6-BDB0AE8CFA87}" name="Shared">
+        <FILE id="fsjPeB" name="SequenceGenerator.cpp" compile="1" resource="0"
+              file="Source/SequenceGenerator.cpp"/>
+        <FILE id="HEWbrq" name="SequenceGenerator.h" compile="0" resource="0"
+              file="Source/SequenceGenerator.h"/>
         <FILE id="JRVtaB" name="AudioSubsectionManager.cpp" compile="1" resource="0"
               file="Source/AudioSubsectionManager.cpp"/>
         <FILE id="Echw8c" name="AudioSubsectionManager.h" compile="0" resource="0"

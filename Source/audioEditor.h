@@ -21,13 +21,12 @@
  
  It comprises of;
     An audioFile generic file play back object, adapted from the dRowAudio class AudioFilePlayer
-    An audioDisplay object for rendering waveforms, adapted from the dRowAudio class AudioThumbnail Image
+    A  SplitableWaveDisplay object for rendering waveforms
     A Slice Management Class, for storing each slice's midi data, start and end sample and duration in samples.
 
  
  This will load an audio file and display its waveform. Clicking on the waveform will reposition the transport source.
  
- It contains positional data for slices in a positionalWaveDisplay object
  It allows the user to see and modify the position of the start and end point of a slice.
  They may also create new slices by splitting an existing slice by adding a marker or adjoin two slices into one by removing one.
  

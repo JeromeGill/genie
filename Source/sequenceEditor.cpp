@@ -15,14 +15,7 @@ SequenceEditor::SequenceEditor()
                                       genieLogo::genielogo2_pngSize))
 {
  
-    hitTypes.add("Grooves");
-    hitTypes.add("Fills");
-    
-    
-    //addAndMakeVisible(&functionOptions);
 
-    for (int i = 0; i<hitTypes.size(); i++)
-        functionOptions.addItem(hitTypes[i], i+1);
 
 }
 
@@ -31,6 +24,7 @@ SequenceEditor::~SequenceEditor()
 }
 
 //==============================================================================
+/**@Internal@*/
 void SequenceEditor::paint (Graphics& g)
 {
     g.fillAll (Colours::black);
@@ -39,12 +33,12 @@ void SequenceEditor::paint (Graphics& g)
     g.drawImageAt(genieImage.rescaled (getWidth() / 2 - twoBw, getHeight() - fourBw),getWidth()/ 4 - Bw,  twoBw);
     
 }
-//==============================================================================
+/**@Internal@*/
 void SequenceEditor::resized()
 {
     int w = getWidth();
     int h = getHeight();
-    
-       functionOptions.setBounds(twoBw,  twoBw,  w - fourBw , h/10 - Bw);
 
 }
+
+//==============================================================================

@@ -1,8 +1,8 @@
 dependencies: \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/PluginProcessor.cpp \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/PluginProcessor.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/genieHeader.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/../JuceLibraryCode/JuceHeader.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/PluginProcessor.cpp \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/PluginProcessor.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/genieHeader.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/../JuceLibraryCode/JuceHeader.h \
   ../../JuceLibraryCode/AppConfig.h \
   ../../JuceLibraryCode/modules/dRowAudio/dRowAudio.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.h \
@@ -91,6 +91,7 @@ dependencies: \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/text/juce_TextDiff.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_ChildProcess.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_DynamicLibrary.h \
+  ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_HighResolutionTimer.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_InterProcessLock.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_Process.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_ScopedReadLock.h \
@@ -447,16 +448,17 @@ dependencies: \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SystemTrayIconComponent.h \
   ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_WebBrowserComponent.h \
   ../../JuceLibraryCode/BinaryData.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/Oscillator.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/AudioSubsectionManager.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/PolyAudioFilePlayer.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/PolyPlayerVoice.H \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/MidiManager.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/PluginEditor.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/audioEditor.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/audioFile.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/MidiControl.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SplittableWaveDisplay.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/SubsectionEditor.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/sequenceEditor.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Artwork/genieLogo.h
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/Oscillator.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/AudioSubsectionManager.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/PolyAudioFilePlayer.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/PolyPlayerVoice.H \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/MidiManager.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/PluginEditor.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/audioEditor.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/audioFile.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/MidiControl.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/SplittableWaveDisplay.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/SubsectionEditor.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/sequenceEditor.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Artwork/genieLogo.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/SequenceGenerator.h

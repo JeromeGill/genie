@@ -18,9 +18,18 @@
 #include "MidiManager.h"
 
 
-//==============================================================================
-/**
-*/
+/**==============================================================================
+ GenieAudioProcessor is the heart of the plugin.
+ 
+ It consists of;
+    GenieAudioProcessorEditor   - responsible for all the GUI components.
+    PolyAudioFilePlayer         - A file player that plays subsections of an audio file.
+    AudioFilePlayer             - A master audio file player
+    MixerAudioSource            - A juce class for combining AudioSource objects
+    
+ 
+ 
+ ==============================================================================*/
 class GenieAudioProcessor  :    public AudioProcessor
 {
 public:

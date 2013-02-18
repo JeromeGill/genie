@@ -11,15 +11,19 @@
 
 #include "genieHeader.h"
 #include "genieLogo.h"
+#include "SequenceGenerator.h"
 
 /**==============================================================================
- SequenceEditor is where all the Automatic editing functions can be generated
+ SequenceEditor is where automatic sequence rearrangments can be generated
  
  Features;
+ Inherits from @SequenceGenerator
  
  ToDo;
+ Export sequence as midifile to host
 ============================================================================== */
-class SequenceEditor : public Component
+class SequenceEditor : public Component,
+                        public SequenceGenerator
 
 {
 public:
@@ -34,18 +38,8 @@ public:
     
 private:
     
-    //Types of automatic editing algortythms
-    enum
-    {
-        Edits = 0,
-        Rolls,
-        TotalFunctions
-    };
-    
-    StringArray hitTypes;
     const Image genieImage;
-    ComboBox functionOptions;
- 
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)
     
 };

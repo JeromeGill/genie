@@ -23,6 +23,7 @@
  Todo;
  
     Crop and scale highlights when zoomed in
+    Return high-Def image for slice highlighting
     
     Manage Mouseclicks
         Crash when dragging too far left

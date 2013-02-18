@@ -13,7 +13,7 @@
 
 #include "genieHeader.h"
 
-/**
+/**==============================================================================
  MidiControl provides an interface for exporting slice time values as a MidiFile
  
  Features;
@@ -21,7 +21,7 @@
  ToDo;
     convert the number of beats between two times into a BPM
     
- */
+ ==============================================================================*/
 class MidiControl : public Component,
 public Slider::Listener
 {

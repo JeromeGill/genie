@@ -24,18 +24,23 @@ MidiManager::~MidiManager(){
     state.removeListener(this);
 }
 
+//====================================================================================
+/** Requests a voice from a PolyAudioFilePlayer for a subsection
+ */
 void MidiManager::handleNoteOn (MidiKeyboardState* source,
                                  int midiChannel, int midiNoteNumber, float velocity){
     
     std::cout<<"NoteNumber = "<<midiNoteNumber<<"\n";
     if (midiNoteNumber >= 48) playSubsection(midiNoteNumber - 48, velocity);
 }
-
+/** Stops the voice PolyAudioFilePlayer voice playing a subsection if any
+ */
 void MidiManager::handleNoteOff (MidiKeyboardState* source,
                                   int midiChannel, int midiNoteNumber){
     if (midiNoteNumber >= 48) stopSubsection(midiNoteNumber - 48);
 }
-
+//====================================================================================
+/**@Internal@*/
 void MidiManager::playSubsection(int subsectionIndex, float gain){
     std::cout<<"SM: Playing slice"<<subsectionIndex<<"\n";
     if (subsections.size() > subsectionIndex) {        
@@ -47,6 +52,7 @@ void MidiManager::playSubsection(int subsectionIndex, float gain){
     else std::cout<<"playSlice subsectionIndex "<<subsectionIndex<<" out of scope \n";
     
 }
+/**@Internal@*/
 void MidiManager::stopSubsection(int subsectionIndex){
     
     if (subsections.size() > subsectionIndex) {

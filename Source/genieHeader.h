@@ -11,22 +11,10 @@
 #ifndef __GENIEHEADER_H_636F1999__
 #define __GENIEHEADER_H_636F1999__
 
-/**
- ==============================================================================
- 
- Functions
- 
- Open Files
- Render Wave Form
- Store start and end point of each slice
- Highlight Slices
- 
- To Do
- 
- Save and load slice settings
- 
- ==============================================================================
-*/
+
+/**==============================================================================
+
+ ==============================================================================*/
 
 #include "../JuceLibraryCode/JuceHeader.h"
 using namespace drow;
@@ -40,8 +28,6 @@ using namespace drow;
 #define twoBw 4
 #define fourBw 8
 
-// size definitions in pixels
-
 //Sample offset used for playback buffer
 #define SAMPLEOFFSET_ 512
 
@@ -50,5 +36,16 @@ using namespace drow;
 
 //Stride for output buffer (incase of potential interlacing decision later?)
 #define STRIDE 1
+
+//some common Strings for this project
+namespace HitType
+{
+    //Juce Strings
+    static const String Kick    = "Kick";
+    static const String Snare   = "Snare";
+    static const String Ride    = "Ride";
+    static const String Crash   = "Crash";
+    static const String Highhat = "High hat";
+}
 
 #endif  // __GENIEHEADER_H_636F1999__

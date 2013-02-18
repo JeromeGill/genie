@@ -28,6 +28,26 @@ public:
     }
 };
 
+
+/**==============================================================================
+ AudioSubsectionManager holds an OwnedArray of SubSection data structures.
+ 
+ Contains a JUCE style Listener Class
+ 
+ Features;
+    Create subsection
+    Delete Subsection
+    Set start + length of a particular subsection
+    Return subsection that contains a particular sample
+    Return the nearest subsection to a particular sample
+ 
+    Sort subsections by startsample
+    Convert samples to timestamps
+ 
+ ToDo;
+ 
+ ============================================================================== */
+
 class AudioSubsectionManager
 {
 public:
@@ -72,11 +92,12 @@ public:
     /** Returns the index of the Subsection to the left of the sample clicked on
      */
     int getPreviousSubsection (int64 Sample);
-    /** Returns the index of subsection that contains sample
+    /** Returns the index of subsection that contains Sample
      
      Returns -1 if no subsection contains sample provided
      */
     int getSubsection (int64 Sample);
+    
     //====================================================================================
     /** Returns size of subsection array
      */

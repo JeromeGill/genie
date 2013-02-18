@@ -51,9 +51,18 @@
       <PathRunnable
          FilePath = "/Applications/Developer Extras/AU Lab.app">
       </PathRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1A035AD63D85FD939DEFC6E1"
+            BuildableName = "Genie.component"
+            BlueprintName = "Genie"
+            ReferencedContainer = "container:Genie.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/Jerome/Documents/Work/Degree/Year3/finalMajorProject/Testing/AulabGenie.trak"
+            argument = "/Users/Jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Testing/GenieAuLab.trak"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

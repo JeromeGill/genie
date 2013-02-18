@@ -12,10 +12,11 @@
 #define __SUBSECTIONEDITOR_H_9D58F006__
 #include "genieHeader.h"
 #include "AudioSubsectionManager.h"
+
 class SubsectionEditor :    public Component,
-public AudioSubsectionManager::Listener,
-public Button::Listener,
-public ComboBox::Listener
+                            public AudioSubsectionManager::Listener,
+                            public Button::Listener,
+                            public ComboBox::Listener
 {
 public:
     SubsectionEditor(AudioSubsectionManager &audioSubsectionManager);
@@ -44,6 +45,7 @@ public:
     /** @Internal@ */
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
 
+    
 private:
     int activeSubsection;
     

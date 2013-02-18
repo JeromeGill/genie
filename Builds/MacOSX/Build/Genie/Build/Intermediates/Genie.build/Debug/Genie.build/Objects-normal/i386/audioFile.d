@@ -1,8 +1,8 @@
 dependencies: \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/audioFile.cpp \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/audioFile.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/genieHeader.h \
-  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/Genie/Builds/MacOSX/../../Source/../JuceLibraryCode/JuceHeader.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/audioFile.cpp \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/audioFile.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/genieHeader.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../Source/../JuceLibraryCode/JuceHeader.h \
   ../../JuceLibraryCode/AppConfig.h \
   ../../JuceLibraryCode/modules/dRowAudio/dRowAudio.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.h \
@@ -91,6 +91,7 @@ dependencies: \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/text/juce_TextDiff.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_ChildProcess.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_DynamicLibrary.h \
+  ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_HighResolutionTimer.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_InterProcessLock.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_Process.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/threads/juce_ScopedReadLock.h \
