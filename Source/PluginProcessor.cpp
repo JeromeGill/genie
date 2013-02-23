@@ -174,9 +174,7 @@ void GenieAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& m
     //const float *pfInBuffer1;
     
     AudioSourceChannelInfo channelInfo(buffer);
-    
-    mixerAudioSource.getNextAudioBlock(channelInfo);
-    
+    mixerAudioSource.getNextAudioBlock(channelInfo); 
     keyboardState.processNextMidiBuffer(midiMessages, 0, numSamples, true);
     
     

@@ -22,7 +22,8 @@
  ToDo;
  Export sequence as midifile to host
 ============================================================================== */
-class SequenceEditor : public Component,
+class SequenceEditor :  public Component,
+                        public ButtonListener,
                         public SequenceGenerator
 
 {
@@ -31,14 +32,19 @@ public:
     ~SequenceEditor();
     
     //==============================================================================
-    /**Internal@*/
+    /**@Internal@*/
     void paint (Graphics& g);
-    /**Internal@*/
+    /**@Internal@*/
     void resized();
+    
+    //==============================================================================
+    /**@Internal@*/
+    void buttonClicked (Button* button);
     
 private:
     
     const Image genieImage;
+    TextButton generatePattern;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)
     

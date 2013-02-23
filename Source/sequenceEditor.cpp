@@ -10,13 +10,14 @@
 
 //==============================================================================
 SequenceEditor::SequenceEditor()
-: genieImage(
-             ImageCache::getFromMemory (genieLogo::genielogo2_png,
-                                      genieLogo::genielogo2_pngSize))
+: genieImage(ImageCache::getFromMemory (genieLogo::genielogo2_png,
+                                        genieLogo::genielogo2_pngSize))
 {
- 
 
-
+    generatePattern.addListener(this);
+    generatePattern.setButtonText("Generate Pattern");
+    //addAndMakeVisible(&generatePattern);
+    
 }
 
 SequenceEditor::~SequenceEditor()
@@ -27,10 +28,13 @@ SequenceEditor::~SequenceEditor()
 /**@Internal@*/
 void SequenceEditor::paint (Graphics& g)
 {
+    int w = getWidth();
+    int h = getHeight();
+    
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
-    g.drawRect(Bw, Bw, getWidth()-twoBw, getHeight()-twoBw,Bw);
-    g.drawImageAt(genieImage.rescaled (getWidth() / 2 - twoBw, getHeight() - fourBw),getWidth()/ 4 - Bw,  twoBw);
+    g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
+    g.drawImageAt(genieImage.rescaled (w / 2 - twoBw, h - fourBw), w/ 4 - Bw,  twoBw);
     
 }
 /**@Internal@*/
@@ -38,7 +42,12 @@ void SequenceEditor::resized()
 {
     int w = getWidth();
     int h = getHeight();
+    
+    generatePattern.setBounds(twoBw, h/5 * 4, w - fourBw, h/5 - twoBw);
 
 }
 
+void SequenceEditor::buttonClicked (Button* button){
+    
+}
 //==============================================================================

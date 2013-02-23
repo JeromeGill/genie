@@ -16,14 +16,46 @@ SequenceGenerator::SequenceGenerator(){
 SequenceGenerator::~SequenceGenerator(){
     
 }
+
+//==============================================================================
+/**Generate a Pattern.
+  Takes a PatternPreset struct and generates a Pattern from it.
+ */
+Pattern SequenceGenerator::GeneratePattern(PatternPreset P){
+    
+    Pattern NewPattern;
+    if (P.d() || P.x()) { //If Pattern preset exists else return an empty pattern
+        
+    }
+
+    return NewPattern;
+}
+
+/**Generate a Random PatternPreset
+ 
+ Each of its member variables are randomised.
+ 
+ */
+//PatternPreset RandomPatternPreset(){
+//    PatternPreset P(1,1);
+//    
+//    for (int i = 0; i < P.d(); i++) {
+//        for (int ii = 0; ii < P.x(); ii++) {
+//            
+//            P.n(ii, i).m = 8; //Not random at the moment for testing.
+//            P.n(ii, i).p = 3;
+//            
+//        }
+//    }
+//    return P;
+//}
+
 /**Generate a single necklace.
  */
 Sequence SequenceGenerator::GenerateNecklace(int Intervals, int Pulses, bool BreakEarly)
 {
     
     Pattern necklace(Intervals, Sequence(1,0));
-    
-
     
     for (int i = 0; i < Intervals ; i++) {
         if (Intervals < Pulses)
@@ -43,6 +75,12 @@ Sequence SequenceGenerator::GenerateNecklace(int Intervals, int Pulses, bool Bre
 /**The recursive part of the GenerateNecklace() function
  */
 int SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly){
+  
+    //Sequences are divided into blocks, postitive and remainders.
+    //A remainder block is appended onto a positive block.
+    //The remainder block is then poped
+    //The process is repeated untill there are no remainders.
+    //The positive block each remainder is placed on is cycled to ensure even distribution of remainders
     
     int end = (int)BreakEarly;
     
@@ -90,8 +128,8 @@ void AddSequence(Pattern pattern, Sequence sequence){
 /**Append Sequence two onto the end of Sequence one
  */
 void SequenceGenerator::AppendSequence(Sequence one, Sequence two){
-    for (int i = two.size() - 1; i >= 0; i--) {
-      
+    for (int i = 0; i < two.size(); i++) {
+        one.push_back(two[i]);
     }
 
 }
@@ -99,7 +137,6 @@ void SequenceGenerator::AppendSequence(Sequence one, Sequence two){
     
 /**Returns the number of true values at a given position of a pattern
  Returns 0 if Position is invalid
-
  */
 int SequenceGenerator::GetPulses(Pattern pattern, int position){
     
