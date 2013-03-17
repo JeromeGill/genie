@@ -141,12 +141,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "383083938.215743"
+         timestampString = "385158531.326588"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
+         startingLineNumber = "29"
+         endingLineNumber = "29"
          landmarkName = "SequenceGenerator::GeneratePattern(PatternPreset P)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SequenceGenerator.cpp"
+         timestampString = "385208970.662696"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "195"
+         endingLineNumber = "195"
+         landmarkName = "SequenceGenerator::PrintSequence(Sequence SequenceToPrint, bool newLine)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

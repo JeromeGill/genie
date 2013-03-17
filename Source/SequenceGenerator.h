@@ -45,16 +45,16 @@ typedef std::vector<Sequence> Pattern;
 
 /**PatternPreset is used to store all the constituent values that generate a complete pattern
  
-Values cannot be modified after initialisation.
+ Values cannot be modified after initialisation.
  
  x - the number of necklaces in a sequence
  d - the number of sequences that form the pattern
  
  n - an individual necklace in a std::vector
-    n consists of;
-        m - the number of available intervals
-        p - the number of pulses to be distributed over the available intervals
-        breakEarly - which rotation the necklace is
+ n consists of;
+ m - the number of available intervals
+ p - the number of pulses to be distributed over the available intervals
+ breakEarly - which rotation the necklace is
  
  see @RandomPattern() for a detailed example of how to initialise one of these.
  */
@@ -75,7 +75,7 @@ struct PatternPreset {
         bool b; //BreakEarly toggle
     };
     
-    PatternPreset(int necklaces, int depth) 
+    PatternPreset(int necklaces, int depth)
     :necklaces(necklaces), depth(depth)
     {
         if (necklaces < 0 || necklaces > MAXNECKLACES || depth < 0 || depth > MAXDEPTH) { //protect against invalid values.
@@ -102,7 +102,6 @@ private:
 };
 
 
-
 class SequenceGenerator {
     
 protected:
@@ -118,7 +117,7 @@ protected:
      
      Each of its member variables are randomised
      */
-    //PatternPreset RandomPatternPreset();
+    PatternPreset GetRandomPatternPreset();
     
     //==============================================================================
     /**Generate a single necklace.
@@ -141,15 +140,18 @@ protected:
     Sequence GenerateNecklace(int Intervals, int Pulses, bool BreakEarly = false);
     /**Adds an additional sequence to a pattern
      */
-    void AddSequence(Pattern pattern, Sequence sequence);
+    void AddSequence(Pattern& pattern, Sequence sequence);
     /**Append Sequence two onto the end of Sequence one
      */
-    void AppendSequence(Sequence one, Sequence two);
+    void AppendSequence(Sequence &one, Sequence two);
 
     //==============================================================================
     /**Outputs Pattern to the console
      */
     void PrintPattern(Pattern PatternToPrint);
+    /**Outputs Sequence to the console
+     */
+    void PrintSequence(Sequence SequenceToPrint, bool newLine = true);
     
     /**Returns the number of true values at a given position of a pattern
      Returns 0 if Position is invalid. (If 
@@ -159,7 +161,7 @@ protected:
 private:
     /**The recursive part of the GenerateNecklace() function
      */
-    int DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly = false);
+    Sequence DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly = false);
 };
 
 

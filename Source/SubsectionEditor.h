@@ -52,7 +52,7 @@ private:
     Image subsectionWaveform;
     
     OwnedArray<ToggleButton> HitClassButtons;
-    ComboBox subsectionSelector;
+    ComboBox subsectionSelector, hitType;
     
     AudioThumbnailImage* imageSource;
     AudioSubsectionManager &subsection;

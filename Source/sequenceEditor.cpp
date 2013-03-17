@@ -7,6 +7,7 @@
 //
 
 #include "SequenceEditor.h"
+#include "SequenceGenerator.h"
 
 //==============================================================================
 SequenceEditor::SequenceEditor()
@@ -16,8 +17,8 @@ SequenceEditor::SequenceEditor()
 
     generatePattern.addListener(this);
     generatePattern.setButtonText("Generate Pattern");
-    //addAndMakeVisible(&generatePattern);
-    
+    addAndMakeVisible(&generatePattern);
+    generatePattern.addListener(this);
 }
 
 SequenceEditor::~SequenceEditor()
@@ -48,6 +49,8 @@ void SequenceEditor::resized()
 }
 
 void SequenceEditor::buttonClicked (Button* button){
-    
+    if (button == &generatePattern) {
+        PrintPattern(GeneratePattern(GetRandomPatternPreset()));
+    }
 }
 //==============================================================================

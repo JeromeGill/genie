@@ -16,6 +16,7 @@ SubsectionEditor::SubsectionEditor(AudioSubsectionManager &audioSubsectionManage
 //imageSource(&sourceToBeUsed),
 subsection(audioSubsectionManager)
 {
+    hitTypes.add("Unnamed");
     hitTypes.add("Kick");
     hitTypes.add("Snare");
     hitTypes.add("Hat");
@@ -24,20 +25,17 @@ subsection(audioSubsectionManager)
     
     subsection.addListener(this);
     subsectionSelector.addListener(this);
-    std::cout<<"Adding Button ";
+   
+    hitType.addListener(this);
     for(int i =0; i < hitTypes.size(); i++){
-        
-        HitClassButtons.add(new ToggleButton(hitTypes[i]));
-        
-        addAndMakeVisible(HitClassButtons[i]);
-        HitClassButtons[i]->setColour(0x1006501, Colours::white);
-        HitClassButtons[i]->addListener(this);
-        std::cout<<i<<" ";
-        
+        hitType.addItem(hitTypes[i], i+1);
     }
+    
+    
+    
     std::cout<<"\n";
     addAndMakeVisible(&subsectionSelector);
-    
+    addAndMakeVisible(&hitType);
     activeSubsection = 0;
 }
 
@@ -97,8 +95,11 @@ void SubsectionEditor::buttonClicked (Button* button)
 //**@Internal@*/
 void SubsectionEditor::comboBoxChanged (ComboBox* comboBox)
 {
-    activeSubsection = comboBox->getSelectedId();
-    repaint();
+    if (comboBox == &subsectionSelector) {
+        activeSubsection = comboBox->getSelectedId();
+        repaint();
+    }
+    
 }
 
 
@@ -135,12 +136,13 @@ void SubsectionEditor::resized(){
     int w = getWidth();
     int h = getHeight();
     
-    for(int i = 0; i < hitTypes.size(); i++){
-        HitClassButtons[i]->setBounds(((w/ hitTypes.size()) * i) + fourBw,
-                                      h / 8 - twoBw,
-                                      w / hitTypes.size() - fourBw,
-                                      h/ 8 - fourBw);
-    }
+//    for(int i = 0; i < hitTypes.size(); i++){
+//        HitClassButtons[i]->setBounds(((w/ hitTypes.size()) * i) + fourBw,
+//                                      h / 8 - twoBw,
+//                                      w / hitTypes.size() - fourBw,
+//                                      h/ 8 - fourBw);
+//    }
     
-    subsectionSelector.setBounds(twoBw, twoBw, w - fourBw, h/8 - fourBw);
+    subsectionSelector.setBounds(twoBw, twoBw, w - fourBw, h/8 - twoBw);
+    hitType.setBounds(twoBw,h/8 ,w / 2 - fourBw , h/8 - twoBw);
 }

@@ -23,12 +23,26 @@ SequenceGenerator::~SequenceGenerator(){
  */
 Pattern SequenceGenerator::GeneratePattern(PatternPreset P){
     
-    Pattern NewPattern;
-    if (P.d() || P.x()) { //If Pattern preset exists else return an empty pattern
-        
+    Pattern p;
+    
+  
+    if (P.d() || P.x()) { //If Pattern preset is valid
+       for (int i = 0; i < P.d(); i++) { //cycle through the depth of the pattern
+           
+           Sequence s; //Initialise a blank sequence
+            
+            for (int ii = 0; ii < P.x(); ii++){//cycle through the number of necklaces at each level of the pattern.
+                
+                Sequence z =  GenerateNecklace(P.n(i, ii).m, P.n(i, ii).p, P.n(i, ii).b);
+                AppendSequence(s, z); //generate each necklace and append to sequence s
+            }
+            
+            AddSequence(p, s);//add sequence s to the pattern
+        }
     }
-
-    return NewPattern;
+    else{std::cout<<"Generate Pattern received invalid preset \n";}
+    
+    return p;
 }
 
 /**Generate a Random PatternPreset
@@ -36,45 +50,46 @@ Pattern SequenceGenerator::GeneratePattern(PatternPreset P){
  Each of its member variables are randomised.
  
  */
-//PatternPreset RandomPatternPreset(){
-//    PatternPreset P(1,1);
-//    
-//    for (int i = 0; i < P.d(); i++) {
-//        for (int ii = 0; ii < P.x(); ii++) {
-//            
-//            P.n(ii, i).m = 8; //Not random at the moment for testing.
-//            P.n(ii, i).p = 3;
-//            
-//        }
-//    }
-//    return P;
-//}
+PatternPreset SequenceGenerator::GetRandomPatternPreset(){
+    
+    PatternPreset P(5,5);
+    
+    for (int i = 0; i < P.d(); i++) {
+        for (int ii = 0; ii < P.x(); ii++) {
+            
+            P.n(ii, i).m = 8; //Not random at the moment for testing.
+            P.n(ii, i).p = 3;
+            P.n(ii, i).b = true;
+        }
+    }
+    
+    return P;
+}
 
 /**Generate a single necklace.
  */
 Sequence SequenceGenerator::GenerateNecklace(int Intervals, int Pulses, bool BreakEarly)
 {
     
-    Pattern necklace(Intervals, Sequence(1,0));
+    Pattern necklace(Intervals, Sequence(1,1));
     
-    for (int i = 0; i < Intervals ; i++) {
-        if (Intervals < Pulses)
+    for (int i = 0; i < Intervals; i++) {
+        if (i < Pulses)
             necklace[i][0] = true;
         else
             necklace[i][0] = false;
-        
-        std::cout<<necklace[i][0];
     }
-    std::cout<<"\n";
+
+    Sequence s = DistributePulses(Intervals, Pulses, necklace, BreakEarly);
     
-    DistributePulses(Intervals, Pulses, necklace, BreakEarly);
-    Sequence seq = necklace[0];
-    return seq;
+    return s;
 }
 
 /**The recursive part of the GenerateNecklace() function
+ 
+ Returns a sequence Intervals long with n pulses distributed evenly
  */
-int SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly){
+Sequence SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly){
   
     //Sequences are divided into blocks, postitive and remainders.
     //A remainder block is appended onto a positive block.
@@ -84,14 +99,14 @@ int SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern Neckl
     
     int end = (int)BreakEarly;
     
-    if (Pulses == end)
-        return Intervals;
+    if (Pulses == end){
+//        std::cout<<"Distribute Pulses ";
+//        PrintSequence(Necklace[0]);
+        return Necklace[0];
+    }
     
     else{
         int i = 0;      //The counter for the number of positive blocks
-        int r = Intervals - Pulses;  //The number of remainder blocks
-        
-        std::cout<<r<<"\n";
         
         for (int r = 0; r < Intervals - Pulses; r++)     //while r < the total remainder blocks
         {
@@ -108,30 +123,32 @@ int SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern Neckl
             if(i == Pulses) i = 0;
         }
         
-        
-        for (int i = 0; i < Intervals; i++) {
-            for (int p = 0; p < Necklace[i].size(); p++)
-                std::cout<<Necklace[i][p];
-        }
-        std::cout<<"\n";
-        
         return DistributePulses(Pulses, Intervals % Pulses, Necklace);
     }
 }
 
 /**Adds an additional sequence to a pattern
  */
-void AddSequence(Pattern pattern, Sequence sequence){
+void SequenceGenerator::AddSequence(Pattern& pattern, Sequence sequence){
   
     pattern.push_back(sequence);
 }
 /**Append Sequence two onto the end of Sequence one
  */
-void SequenceGenerator::AppendSequence(Sequence one, Sequence two){
+void SequenceGenerator::AppendSequence(Sequence& one, Sequence two){
+    
+//    std::cout<<"AppendSequence : ";
+//    PrintSequence(one, false);
+//    std::cout<<" : ";
+//    PrintSequence(two);
+    
     for (int i = 0; i < two.size(); i++) {
         one.push_back(two[i]);
     }
 
+    //PrintSequence(one);
+
+    
 }
 //==============================================================================
     
@@ -161,10 +178,23 @@ int SequenceGenerator::GetPulses(Pattern pattern, int position){
 /**Outputs Pattern to the console
  */
 void SequenceGenerator::PrintPattern(Pattern PatternToPrint){
+    std::cout<<"Printing Pattern "<<PatternToPrint.size()<<"\n";
+    
     for (int i = 0; i < PatternToPrint.size(); i++) {
-        for (int ii = 0; ii < PatternToPrint[i].size(); ii++) {
-            std::cout<<PatternToPrint[i][ii];
-        }
-        std::cout<<"\n";
+        std::cout<<"Sequence "<<i<<" : ";
+        PrintSequence(PatternToPrint[i]);
     }
+}
+
+/**Outputs Sequence to the console
+ */
+void SequenceGenerator::PrintSequence(Sequence SequenceToPrint, bool newLine){
+    
+    for (int i = 0; i < SequenceToPrint.size(); i++) {
+        
+            std::cout<<SequenceToPrint[i];
+        }
+    
+    if (newLine)
+        std::cout<<"\n";
 }
