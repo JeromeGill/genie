@@ -109,6 +109,7 @@ dependencies: \
   ../../JuceLibraryCode/modules/juce_audio_basics/buffers/juce_AudioSampleBuffer.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/effects/juce_Decibels.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/effects/juce_IIRFilter.h \
+  ../../JuceLibraryCode/modules/juce_audio_basics/effects/juce_LagrangeInterpolator.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/effects/juce_Reverb.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/midi/juce_MidiBuffer.h \
   ../../JuceLibraryCode/modules/juce_audio_basics/midi/juce_MidiMessage.h \
@@ -149,12 +150,14 @@ dependencies: \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormat.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatReader.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatWriter.h \
+  ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_MemoryMappedAudioFormatReader.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatManager.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatReaderSource.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioSubsectionReader.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_AiffAudioFormat.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_CoreAudioFormat.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_FlacAudioFormat.h \
+  ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_LAMEEncoderAudioFormat.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_MP3AudioFormat.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_OggVorbisAudioFormat.h \
   ../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_QuickTimeAudioFormat.h \

@@ -15,10 +15,8 @@ SequenceEditor::SequenceEditor()
                                         genieLogo::genielogo2_pngSize))
 {
 
-    generatePattern.addListener(this);
-    generatePattern.setButtonText("Generate Pattern");
-    addAndMakeVisible(&generatePattern);
-    generatePattern.addListener(this);
+    addAndMakeVisible(&sequenceGenerator);
+
 }
 
 SequenceEditor::~SequenceEditor()
@@ -44,13 +42,8 @@ void SequenceEditor::resized()
     int w = getWidth();
     int h = getHeight();
     
-    generatePattern.setBounds(twoBw, h/5 * 4, w - fourBw, h/5 - twoBw);
+    sequenceGenerator.setBounds(twoBw, h/5 * 4, w - fourBw, h/5 - twoBw);
 
 }
 
-void SequenceEditor::buttonClicked (Button* button){
-    if (button == &generatePattern) {
-        PrintPattern(GeneratePattern(GetRandomPatternPreset()));
-    }
-}
 //==============================================================================

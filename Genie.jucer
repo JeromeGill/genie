@@ -61,6 +61,10 @@
           </GROUP>
         </GROUP>
         <GROUP id="{2E10A5A4-F935-62A8-FEC3-07384F970F22}" name="SequenceEditor">
+          <FILE id="aTBvHc" name="SequenceGeneratorEditor.cpp" compile="1" resource="0"
+                file="Source/SequenceGeneratorEditor.cpp"/>
+          <FILE id="vjoHnW" name="SequenceGeneratorEditor.h" compile="0" resource="0"
+                file="Source/SequenceGeneratorEditor.h"/>
           <FILE id="Z33G3U" name="sequenceEditor.cpp" compile="1" resource="0"
                 file="Source/sequenceEditor.cpp"/>
           <FILE id="n4Nmu5" name="sequenceEditor.h" compile="0" resource="0"
@@ -68,6 +72,14 @@
         </GROUP>
       </GROUP>
       <GROUP id="{948199C5-849D-DB83-6FF6-BDB0AE8CFA87}" name="Shared">
+        <FILE id="P9xtDV" name="SliceComponent.cpp" compile="1" resource="0"
+              file="Source/SliceComponent.cpp"/>
+        <FILE id="nY5QC7" name="SliceComponent.h" compile="0" resource="0"
+              file="Source/SliceComponent.h"/>
+        <FILE id="VpcNGt" name="SequenceManager.cpp" compile="1" resource="0"
+              file="Source/SequenceManager.cpp"/>
+        <FILE id="llIIrF" name="SequenceManager.h" compile="0" resource="0"
+              file="Source/SequenceManager.h"/>
         <FILE id="fsjPeB" name="SequenceGenerator.cpp" compile="1" resource="0"
               file="Source/SequenceGenerator.cpp"/>
         <FILE id="HEWbrq" name="SequenceGenerator.h" compile="0" resource="0"

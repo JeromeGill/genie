@@ -127,6 +127,7 @@ dependencies: \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_basics/buffers/juce_AudioSampleBuffer.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_basics/effects/juce_Decibels.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_basics/effects/juce_IIRFilter.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_basics/effects/juce_LagrangeInterpolator.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_basics/effects/juce_Reverb.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_basics/midi/juce_MidiBuffer.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_basics/midi/juce_MidiMessage.h \
@@ -147,12 +148,14 @@ dependencies: \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormat.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatReader.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatWriter.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_MemoryMappedAudioFormatReader.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatManager.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatReaderSource.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioSubsectionReader.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_AiffAudioFormat.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_CoreAudioFormat.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_FlacAudioFormat.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_LAMEEncoderAudioFormat.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_MP3AudioFormat.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_OggVorbisAudioFormat.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_QuickTimeAudioFormat.h \

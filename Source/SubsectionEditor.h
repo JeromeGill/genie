@@ -52,11 +52,10 @@ private:
     Image subsectionWaveform;
     
     OwnedArray<ToggleButton> HitClassButtons;
-    ComboBox subsectionSelector, hitType;
+    ComboBox subsectionSelector, hitTypeSelector;
     
     AudioThumbnailImage* imageSource;
     AudioSubsectionManager &subsection;
-    StringArray hitTypes;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SubsectionEditor)
 };

@@ -294,6 +294,7 @@ dependencies: \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_processors/../juce_audio_basics/buffers/juce_AudioSampleBuffer.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_processors/../juce_audio_basics/effects/juce_Decibels.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_processors/../juce_audio_basics/effects/juce_IIRFilter.h \
+  /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_processors/../juce_audio_basics/effects/juce_LagrangeInterpolator.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_processors/../juce_audio_basics/effects/juce_Reverb.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_processors/../juce_audio_basics/midi/juce_MidiBuffer.h \
   /Users/jerome/Documents/Work/Degree/Year3/finalMajorProject/GenieProject/Genie/Builds/MacOSX/../../JuceLibraryCode/modules/juce_audio_processors/../juce_audio_basics/midi/juce_MidiMessage.h \
