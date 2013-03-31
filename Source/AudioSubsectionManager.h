@@ -11,14 +11,13 @@
 #ifndef __AudioSubsectionManager_H_8C3A6156__
 #define __AudioSubsectionManager_H_8C3A6156__
 #include "genieHeader.h"
+#include "SliceComponent.h"
+#include "SubSection.h"
 
-#define DEBUGSSM 0 //set to a positive value to print debug messages
 
-struct SubSection{
-    int64 StartSample;
-    int64 LengthInSamples = 0;
-    String name = "null";
-};
+#define DEBUGSSM 1 //set to a positive value to print debug messages
+
+
 
 class SubsectionComparator
 {
@@ -27,6 +26,8 @@ public:
         return first->StartSample - second->StartSample;
     }
 };
+
+
 
 
 /**==============================================================================
@@ -51,10 +52,17 @@ public:
 class AudioSubsectionManager
 {
 public:
-
+    
+    
+    StringArray HitTypeStringArray;
+    
     AudioSubsectionManager(AudioFilePlayer &filePlayer_);
     ~AudioSubsectionManager();
- 
+
+    /**Returns a pointer to a Subsection
+     */
+    SliceComponent* operator[] (int subsectionIndex);
+    
     //====================================================================================
     /**Set False to prevent subsection overlap
      */
@@ -64,12 +72,7 @@ public:
     /** Creates a Subsection on a specific sample of the waveDisplay
      */
     void addSubsection (int64 startSample);
-    /** Names a Subsection
-     */
-    void nameSubsection (int SubsectionIndex, String Name);
-    /** Returns a Subsection's name
-     */
-    String getName(int SubsectionIndex);
+   
     /** Deletes a Subsection at a particular index
      */
     void removeSubsection (int SubsectionIndex);
@@ -97,6 +100,24 @@ public:
      Returns -1 if no subsection contains sample provided
      */
     int getSubsection (int64 Sample);
+    /** Names a Subsection
+     */
+    void nameSubsection (int SubsectionIndex, String Name);
+    /** Returns a Subsection's name
+     */
+    String getName(int SubsectionIndex);
+    /** Sets a Subsection's type
+     */
+    void setSubsectionType(int SubsectionIndex, int type);
+    /** Returns a Subsection's Type as a Juce String
+     */
+    const String getTypeAsString(int SubsectionIndex);
+    /** Returns a Subsection's Type
+     */
+    HitTypeValue getSubsectionType(int SubsectionIndex);
+    /** Returns a waveform image of a subsection (If it has one)
+     */
+    Image getSubsectionImage(int SubsectionIndex)
     
     //====================================================================================
     /** Returns size of subsection array
@@ -108,8 +129,10 @@ public:
     /** Sorts subsections by StartSample
      */
     void sortSubsections();
-    
-   
+    //====================================================================================
+    /**Return HitTypeValue as Juce String
+     */
+    const String HitTypeString(HitTypeValue hitTypeValue);
     //====================================================================================
     /** Sample to time conversion
      */
@@ -152,7 +175,7 @@ private:
     ListenerList<Listener> listenerList;
     
     SubsectionComparator subsectionComparator;
-    OwnedArray<SubSection> subsection;
+    OwnedArray<SliceComponent> subsection;
     AudioFilePlayer* filePlayer;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioSubsectionManager)

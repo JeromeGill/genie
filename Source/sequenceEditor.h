@@ -11,7 +11,8 @@
 
 #include "genieHeader.h"
 #include "genieLogo.h"
-#include "SequenceGenerator.h"
+#include "SequenceGeneratorEditor.h"
+#include "SequenceManager.h"
 
 /**==============================================================================
  SequenceEditor is where automatic sequence rearrangments can be generated
@@ -22,9 +23,7 @@
  ToDo;
  Export sequence as midifile to host
 ============================================================================== */
-class SequenceEditor :  public Component,
-                        public ButtonListener,
-                        public SequenceGenerator
+class SequenceEditor :  public Component
 
 {
 public:
@@ -39,12 +38,13 @@ public:
     
     //==============================================================================
     /**@Internal@*/
-    void buttonClicked (Button* button);
+
     
 private:
     
+    SequenceGeneratorEditor sequenceGenerator;
     const Image genieImage;
-    TextButton generatePattern;
+    
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)
     

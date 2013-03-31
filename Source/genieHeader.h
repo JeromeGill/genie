@@ -37,15 +37,5 @@ using namespace drow;
 //Stride for output buffer (incase of potential interlacing decision later?)
 #define STRIDE 1
 
-//some common Strings for this project
-namespace HitType
-{
-    //Juce Strings
-    static const String Kick    = "Kick";
-    static const String Snare   = "Snare";
-    static const String Ride    = "Ride";
-    static const String Crash   = "Crash";
-    static const String Highhat = "High hat";
-}
 
 #endif  // __GENIEHEADER_H_636F1999__

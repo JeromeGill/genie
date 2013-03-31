@@ -58,7 +58,7 @@ PatternPreset SequenceGenerator::GetRandomPatternPreset(){
         for (int ii = 0; ii < P.x(); ii++) {
             
             P.n(ii, i).m = 8; //Not random at the moment for testing.
-            P.n(ii, i).p = 3;
+            P.n(ii, i).p = 5;
             P.n(ii, i).b = true;
         }
     }
@@ -100,8 +100,6 @@ Sequence SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern 
     int end = (int)BreakEarly;
     
     if (Pulses == end){
-//        std::cout<<"Distribute Pulses ";
-//        PrintSequence(Necklace[0]);
         return Necklace[0];
     }
     
