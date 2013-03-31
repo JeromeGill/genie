@@ -115,9 +115,6 @@ public:
     /** Returns a Subsection's Type
      */
     HitTypeValue getSubsectionType(int SubsectionIndex);
-    /** Returns a waveform image of a subsection (If it has one)
-     */
-    Image getSubsectionImage(int SubsectionIndex)
     
     //====================================================================================
     /** Returns size of subsection array

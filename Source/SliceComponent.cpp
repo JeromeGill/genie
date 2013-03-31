@@ -25,12 +25,7 @@ void SliceComponent::paint(Graphics &g){
     
     int w = getWidth();
     int h = getHeight();
-    if (subsectionWaveform.isValid()) {
-        g.drawImageAt(subsectionWaveform.rescaled(getWidth() - fourBw,
-                                                  getHeight() - fourBw),
-                      twoBw,
-                      twoBw);
-    }
+   
     Name.setBounds(0, 0, w, h);
     
 }
