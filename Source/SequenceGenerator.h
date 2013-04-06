@@ -38,6 +38,7 @@
     Store structs used to generate sequence vector on hard disk
     Print a pattern preset
     Protection against stupid numbers in PatternPreset struct
+    Export a pattern as a midifile
   
  ============================================================================== */
 typedef std::vector<bool> Sequence;

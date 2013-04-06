@@ -60,9 +60,6 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
     waveDisplay = new SplittableWaveDisplay (*audioThumbnailImage, backgroundThread, audioSubsectionManager_);
    
     addAndMakeVisible (waveDisplay);
-    
-    //Component
-    addAndMakeVisible(&midiControl);
 
     //The file loading bar
     addAndMakeVisible(&LoadBar);
@@ -107,8 +104,6 @@ void AudioEditor::resized()
     label.setBounds(twoBw, h / 5 * 4 - twoBw, w - fourBw, h/5 - fourBw);
     
     waveDisplay->setBounds(twoBw, (h/5 * 2) - twoBw, w - fourBw,( h/5 * 3 ));
-    
-    midiControl.setBounds (w/4 *3, twoBw, w/4  - twoBw, h/5 - Bw);
     
     
 }

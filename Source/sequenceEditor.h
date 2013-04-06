@@ -17,7 +17,6 @@
  SequenceEditor is where automatic sequence rearrangments can be generated
  
  Features;
- Inherits from @SequenceGenerator
  
  ToDo;
  Export sequence as midifile to host
@@ -40,6 +39,7 @@ public:
 
     
 private:
+
     
     SequenceGeneratorEditor sequenceGenerator;
     const Image genieImage;

@@ -17,6 +17,12 @@
       <FILE id="SLBsWI" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
     </GROUP>
     <GROUP id="{78A5896F-F05D-A04F-1CBB-D48031D44577}" name="Source">
+      <GROUP id="{8098A738-2E94-C3C4-D31B-4A68FC06E057}" name="Sequence">
+        <FILE id="PtWame" name="SequenceManager.cpp" compile="1" resource="0"
+              file="Source/SequenceManager.cpp"/>
+        <FILE id="rL2lZ9" name="SequenceManager.h" compile="0" resource="0"
+              file="Source/SequenceManager.h"/>
+      </GROUP>
       <GROUP id="{C9CD087E-24B1-358B-8F23-2F80CB20FD8E}" name="Midi">
         <FILE id="YofMFe" name="MidiManager.cpp" compile="1" resource="0" file="Source/MidiManager.cpp"/>
         <FILE id="VsWDVs" name="MidiManager.h" compile="0" resource="0" file="Source/MidiManager.h"/>
@@ -37,8 +43,6 @@
               file="Source/PluginProcessor.h"/>
       </GROUP>
       <GROUP id="{F0D8B97B-E026-B5C0-E168-47884A84F25A}" name="Gui">
-        <FILE id="fgOYKA" name="MidiControl.cpp" compile="1" resource="0" file="Source/MidiControl.cpp"/>
-        <FILE id="VtvChV" name="MidiControl.h" compile="0" resource="0" file="Source/MidiControl.h"/>
         <GROUP id="{220AABB6-6A86-9D64-A102-D6FE11B8E21E}" name="SubsectionEditor">
           <FILE id="c0rLqf" name="SubsectionEditor.cpp" compile="1" resource="0"
                 file="Source/SubsectionEditor.cpp"/>
@@ -72,14 +76,6 @@
         </GROUP>
       </GROUP>
       <GROUP id="{948199C5-849D-DB83-6FF6-BDB0AE8CFA87}" name="Shared">
-        <FILE id="P9xtDV" name="SliceComponent.cpp" compile="1" resource="0"
-              file="Source/SliceComponent.cpp"/>
-        <FILE id="nY5QC7" name="SliceComponent.h" compile="0" resource="0"
-              file="Source/SliceComponent.h"/>
-        <FILE id="VpcNGt" name="SequenceManager.cpp" compile="1" resource="0"
-              file="Source/SequenceManager.cpp"/>
-        <FILE id="llIIrF" name="SequenceManager.h" compile="0" resource="0"
-              file="Source/SequenceManager.h"/>
         <FILE id="fsjPeB" name="SequenceGenerator.cpp" compile="1" resource="0"
               file="Source/SequenceGenerator.cpp"/>
         <FILE id="HEWbrq" name="SequenceGenerator.h" compile="0" resource="0"

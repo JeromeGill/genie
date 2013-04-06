@@ -86,7 +86,7 @@ void SubsectionEditor::comboBoxChanged (ComboBox* comboBox)
 {
     if (comboBox == &subsectionSelector) {
         activeSubsection = comboBox->getSelectedId() - 1;
-        hitTypeSelector.setSelectedItemIndex(subsection.getSubsectionType(activeSubsection) - 1);
+        hitTypeSelector.setSelectedItemIndex(subsection.getSubsectionType(activeSubsection));
         std::cout<<"Selected "<<subsection[activeSubsection].name<<" : "<<subsection.getTypeAsString(activeSubsection)<<"\n";
         repaint();
     }

@@ -11,7 +11,6 @@
 
 #include "genieHeader.h"
 #include "audioFile.h"
-#include "MidiControl.h"
 #include "SplittableWaveDisplay.h"
 #include "SubsectionEditor.h"
 
@@ -93,7 +92,6 @@ private:
     ScopedPointer<AudioThumbnailImage>    audioThumbnailImage;
     ScopedPointer<SplittableWaveDisplay>  waveDisplay;
     
-    MidiControl midiControl;
     
     SubsectionEditor& editor;
     
