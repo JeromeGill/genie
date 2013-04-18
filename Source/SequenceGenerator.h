@@ -18,6 +18,8 @@
 #define MAXNECKLACES    5  //The maxmimum available necklaces in a sequence
 #define MAXDEPTH        5  //The maximum sequences in a pattern
 
+#define MINNECKLACESIZE 3 //The minimum intervals in a necklace
+
 
  /**==============================================================================
   SequenceGenerator generates a vector of vectors of Bools that represents a rhythmic sequence.
@@ -63,15 +65,15 @@ struct PatternPreset {
     
     struct NecklacePreset{
         NecklacePreset(int intervals = 0, int pulses = 0, bool BreakEarly = false)
-        :m(intervals), p(pulses), b(BreakEarly)
+        :n(intervals), p(pulses), b(BreakEarly)
         {
-            if (pulses > MAXNECKLACESIZE || pulses>intervals || intervals > MAXNECKLACESIZE || pulses < 0 || intervals < 0){ //protect against invalid values.
+            if (pulses > MAXNECKLACESIZE || pulses>intervals || intervals > MAXNECKLACESIZE){ //protect against invalid values.
                 pulses = intervals = 0;
                 std::cout<<"Necklace received invalid initialisation.\n";
             }
         }
         
-        int m; //Available intervals
+        int n; //Available intervals
         int p;  //Pulses
         bool b; //BreakEarly toggle
     };
@@ -85,18 +87,18 @@ struct PatternPreset {
         }
         
         for (int i = 0; i < necklaces * depth; i++) {
-            N.push_back(NecklacePreset());
+            NP.push_back(NecklacePreset());
         }
     }
     
     const int x(){return necklaces;}
     const int d(){return depth;}
     
-    NecklacePreset & n(size_t x, size_t d) { return N[x + d * this->x()]; }
+    NecklacePreset & np(size_t x, size_t d) { return NP[x + d * this->x()]; }
     
 private:
     
-    std::vector<NecklacePreset> N; //Size = necklaces * depth (x * d).
+    std::vector<NecklacePreset> NP; //Size = necklaces * depth (x * d).
     
     int necklaces;      //The number of necklaces to form one sequence
     int depth;          //The number of sequences to form one pattern
@@ -105,7 +107,7 @@ private:
 
 class SequenceGenerator {
     
-protected:
+public:
     SequenceGenerator();
     ~SequenceGenerator();
     
@@ -120,6 +122,20 @@ protected:
      */
     PatternPreset GetRandomPatternPreset();
     
+    /**Generate a PatternPreset
+     
+     Number of necklaces per sequence, sequences per pattern and total number of intervals per sequence is defined by the user.
+     Values of 0 randomise that value.
+     
+     Ranges
+     
+     NecklacesPerSequence   = 0 - 5
+     SequencesPerPattern    = 0 - 5
+     IntervalsPerSequence   = 0 - 4 (equivilant to the number of bars generated assuming a 4/4 rythmn)
+     
+     Values outside of these ranges get rounded
+     */
+    PatternPreset GeneratePatternPreset(int necklacesPerSequence = 3, int sequencesPerPatten = 3, int intervalsPerSequence = 2);
     //==============================================================================
     /**Generate a single necklace.
      

@@ -14,7 +14,7 @@
 #include "genieHeader.h"
 #include "SequenceGenerator.h"
 /**==============================================================================
- SequenceGeneratorEditor is where automatic sequence rearrangments can be generated
+ SequenceGeneratorEditor provides an interface for @SequenceGenerator
  
  Features;
  Inherits from @SequenceGenerator
@@ -40,10 +40,13 @@ public:
     //==============================================================================
     /**@Internal@*/
     void buttonClicked (Button* button);
+
     
 private:
     
     TextButton generatePattern;
+    Slider phraseValue;
+    Slider sequenceLength;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceGeneratorEditor)
     

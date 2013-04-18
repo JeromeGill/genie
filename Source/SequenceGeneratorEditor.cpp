@@ -19,11 +19,17 @@ SequenceGeneratorEditor::SequenceGeneratorEditor()
     generatePattern.addListener(this);
     generatePattern.setButtonText("Generate Pattern");
     addAndMakeVisible(&generatePattern);
-    generatePattern.addListener(this);
+
+
+    phraseValue.setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
+    sequenceLength.setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
+    addAndMakeVisible(&phraseValue);
+    addAndMakeVisible(&sequenceLength);
 }
 
 SequenceGeneratorEditor::~SequenceGeneratorEditor()
 {
+    generatePattern.removeListener(this);
 }
 
 //==============================================================================
@@ -44,13 +50,15 @@ void SequenceGeneratorEditor::resized()
     int w = getWidth();
     int h = getHeight();
     
-    generatePattern.setBounds(twoBw, twoBw, w - fourBw, h - fourBw);
-    
+    generatePattern.setBounds(twoBw, h/4-twoBw, w - fourBw, h/4- twoBw);
+    phraseValue.setBounds(twoBw, twoBw, w / 4 - fourBw, h/4 - twoBw);
+    sequenceLength.setBounds(w/4 + twoBw, twoBw, w /4 - fourBw, h/4 - twoBw);
 }
-
+//==============================================================================
+/**@Internal@*/
 void SequenceGeneratorEditor::buttonClicked (Button* button){
     if (button == &generatePattern) {
         PrintPattern(GeneratePattern(GetRandomPatternPreset()));
     }
 }
-//==============================================================================
+/**@Internal@*/

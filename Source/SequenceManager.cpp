@@ -9,3 +9,11 @@
 */
 
 #include "SequenceManager.h"
+
+SequenceManager::SequenceManager(AudioSubsectionManager audioSubsectionManager,
+                                  SequenceGenerator seqGenerator)
+: subsection(audioSubsectionManager),
+seqGenerator(seqGenerator)
+{
+    
+}

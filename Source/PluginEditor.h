@@ -14,7 +14,7 @@
 #include "genieHeader.h"
 #include "PluginProcessor.h"
 #include "audioEditor.h"
-#include "sequenceEditor.h"
+#include "SequenceGeneratorEditor.h"
 #include "SubsectionEditor.h"
 
 
@@ -22,12 +22,10 @@
  
  GenieAudioProcessorEditor is the visual parent component of Genie.
  
- 
  It comprises of;
     AudioEditor
     SequenceEditor
     SliceEditor
-
  
 ==============================================================================*/
 class GenieAudioProcessorEditor  : public AudioProcessorEditor
@@ -47,7 +45,7 @@ private:
 
     SubsectionEditor subsectionEditor;
     AudioEditor audioEditor;
-    SequenceEditor sequenceEditor;
+    SequenceGeneratorEditor sequenceEditor;
     
     
     //==============================================================================

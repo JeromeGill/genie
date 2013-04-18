@@ -154,12 +154,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "385218754.671398"
+         timestampString = "387971568.097712"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "193"
-         endingLineNumber = "193"
-         landmarkName = "SequenceGenerator::PrintSequence(Sequence SequenceToPrint, bool newLine)"
+         startingLineNumber = "224"
+         endingLineNumber = "224"
+         landmarkName = "SequenceGenerator::GetPulses(Pattern pattern, int position)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -199,6 +199,19 @@
          startingLineNumber = "35"
          endingLineNumber = "35"
          landmarkName = "AudioSubsectionManager::operator[] (int SubsectionIndex)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SequenceManager.cpp"
+         timestampString = "386966607.043918"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "15"
+         endingLineNumber = "15"
+         landmarkName = "SequenceManager::SequenceManager(AudioSubsectionManager audioSubsectionManager, SequenceGenerator seqGenerator)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

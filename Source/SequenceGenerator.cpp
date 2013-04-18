@@ -33,7 +33,10 @@ Pattern SequenceGenerator::GeneratePattern(PatternPreset P){
             
             for (int ii = 0; ii < P.x(); ii++){//cycle through the number of necklaces at each level of the pattern.
                 
-                Sequence z =  GenerateNecklace(P.n(i, ii).m, P.n(i, ii).p, P.n(i, ii).b);
+                Sequence z =  GenerateNecklace(P.np(i, ii).n,
+                                               P.np(i, ii).p,
+                                               P.np(i, ii).b);
+                
                 AppendSequence(s, z); //generate each necklace and append to sequence s
             }
             
@@ -51,19 +54,64 @@ Pattern SequenceGenerator::GeneratePattern(PatternPreset P){
  
  */
 PatternPreset SequenceGenerator::GetRandomPatternPreset(){
+    return GeneratePatternPreset();
+}
+
+/**Generate a PatternPreset
+ 
+ 
+ Number of necklaces per sequence, sequences per pattern and total number of intervals per sequence is defined by the user.
+ Values of 0 randomise that value.
+ 
+ Ranges
+ 
+ NecklacesPerSequence   = 0 - 10
+ SequencesPerPattern    = 0 - 5
+ IntervalsPerSequence   = 0 - 4 (equivilant to the number of bars generated assuming a 4/4 rythmn)
+ 
+ Values outside of these ranges get rounded
+ */
+PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
+                                                  int sequencesPerPatten,
+                                                  int intervalsPerSequence){
+    PatternPreset P(necklacesPerSequence,sequencesPerPatten);
     
-    PatternPreset P(5,5);
+
     
-    for (int i = 0; i < P.d(); i++) {
-        for (int ii = 0; ii < P.x(); ii++) {
+    //std::cout<<"Intervals "<<intervalsPerSequence<<"\n";
+    
+    for (int i = 0; i < P.d(); i++) { //Cycle through each sequence in a pattern
+        
+        int remainderIntervals = intervalsPerSequence * 8; //For each sequence determine how many intervals need distributing between each necklace
+        
+        for (int ii = 0; remainderIntervals>0; ii++) { //Move through each necklace in the sequence for as long as there are intervals to distribute
             
-            P.n(ii, i).m = 8; //Not random at the moment for testing.
-            P.n(ii, i).p = 5;
-            P.n(ii, i).b = true;
+            if(ii == P.x()){ //Move back to the first necklace if reached the end of the cycle
+             ii = 0;
+            }
+            
+            int n = MINNECKLACESIZE + (rand() % (intervalsPerSequence - MINNECKLACESIZE)); //Generate a random number between the minimum number of necklaces and the total intervals in a sequence
+            
+            remainderIntervals -= n; //Subtract that number from the remainding intervals
+            
+            if  (remainderIntervals < 0) { //If the remainding intervals are less than zero add the difference back on to n
+                n += remainderIntervals;
+            }
+           
+            std::cout<<"n "<<n<<"\n";
+            std::cout<<"Remainder Intervals "<<remainderIntervals<<"\n";
+            
+            P.np(ii, i).n += n; //Add n to the number of intervals in the necklace
+            P.np(ii, i).p = rand() %  P.np(ii, i).n; //Generate a random number of pulses between 0 and the number of intervals in the necklace
+           
+            P.np(ii, i).b = true;
+        
+            std::cout<<"Pattern "<<ii<<" "<<i<<" n "<<P.np(ii, i).n<<" p "<<P.np(ii, i).p<<"\n";
         }
     }
     
     return P;
+    
 }
 
 /**Generate a single necklace.
@@ -99,8 +147,13 @@ Sequence SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern 
     
     int end = (int)BreakEarly;
     
-    if (Pulses == end){
+    if (Pulses <= end){
+        
+        for (int i = 1; i < Necklace.size(); i++) {
+            AppendSequence(Necklace[0], Necklace[i]);
+        }
         return Necklace[0];
+        
     }
     
     else{

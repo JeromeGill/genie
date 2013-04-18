@@ -190,16 +190,22 @@ void SplittableWaveDisplay::mouseUp (const MouseEvent &e){
     else waveDisplay.mouseUp(e);
 }
 void SplittableWaveDisplay::mouseDrag(const MouseEvent &e){
-
+    
+   
     if (e.mods.isShiftDown()){
         
-        int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
-        
-        if(i >= 0){
-            int64 duration = PixelToSample(e.x) - subsections.getStart(i);
-            if (!duration) duration = 0;
-            subsections.SetSubsectionDuration(duration, i);
-            //std::cout<<i<<" : setting length by drag "<<subsections.getLength(i)<<"\n";
+        if (!e.mods.isAltDown()) {
+             int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
+            if(i >= 0){
+                int64 duration = PixelToSample(e.x) - subsections.getStart(i);
+                if (!duration) duration = 0;
+                subsections.SetSubsectionDuration(duration, i);
+            }
+        }
+        else{
+            int64 start = PixelToSample(e.x);
+            int i = subsections.getNearestSubsection(start);
+            if (i >= 0) subsections.SetSubsectionStart(start, i);
         }
     }
     else waveDisplay.mouseDrag(e);
