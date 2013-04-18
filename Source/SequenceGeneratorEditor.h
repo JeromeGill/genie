@@ -22,9 +22,9 @@
  ToDo;
  Export sequence as midifile to host
  ============================================================================== */
-class SequenceGeneratorEditor :  public Component,
-                        public ButtonListener,
-                        public SequenceGenerator
+class SequenceGeneratorEditor : public Component,
+                                public ButtonListener,
+                                public SequenceGenerator
 
 {
 public:
@@ -45,9 +45,9 @@ public:
 private:
     
     TextButton generatePattern;
-
-    Slider phraseValue;
-    Slider sequenceLength;
+    
+    OwnedArray<Button> hitGrid;
+    OwnedArray<Slider> slider;
 
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceGeneratorEditor)

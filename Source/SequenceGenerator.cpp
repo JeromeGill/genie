@@ -72,8 +72,8 @@ PatternPreset SequenceGenerator::GetRandomPatternPreset(){
  Values outside of these ranges get rounded
  */
 PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
-                                                  int sequencesPerPatten,
-                                                  int intervalsPerSequence){
+                                                       int sequencesPerPatten,
+                                                       int intervalsPerSequence){
     PatternPreset P(necklacesPerSequence,sequencesPerPatten);
     
 

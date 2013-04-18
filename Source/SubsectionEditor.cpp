@@ -147,9 +147,7 @@ void SubsectionEditor::paint(Graphics &g){
       
         }
     }
-//    else{
-//            }
-    
+
 }
 /**@Internal@*/
 void SubsectionEditor::resized(){

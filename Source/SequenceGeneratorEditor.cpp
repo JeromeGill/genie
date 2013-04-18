@@ -21,18 +21,23 @@ SequenceGeneratorEditor::SequenceGeneratorEditor()
     addAndMakeVisible(&generatePattern);
 
 
+    slider.add(new Slider("SequenceLength"));
+    slider.add(new Slider("SequenceDepth"));
 
-    phraseValue.setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
-    sequenceLength.setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
-    addAndMakeVisible(&phraseValue);
-    addAndMakeVisible(&sequenceLength);
+    slider[0]->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
+    slider[0]->setRange(1, 5, 1);
+    slider[1]->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
+    slider[1]->setRange(1, 4, 1);
+    
+    for (int i = 0; i < slider.size(); i++) {
+        addAndMakeVisible(slider[i]);
+    }
+
 
 }
 
 SequenceGeneratorEditor::~SequenceGeneratorEditor()
 {
-
-    
     generatePattern.removeListener(this);
 
 }
@@ -56,9 +61,10 @@ void SequenceGeneratorEditor::resized()
     int h = getHeight();
     
 
-    generatePattern.setBounds(twoBw, h/4-twoBw, w - fourBw, h/4- twoBw);
-    phraseValue.setBounds(twoBw, twoBw, w / 4 - fourBw, h/4 - twoBw);
-    sequenceLength.setBounds(w/4 + twoBw, twoBw, w /4 - fourBw, h/4 - twoBw);
+    generatePattern.setBounds(twoBw, h/8 * 7 - twoBw, w - fourBw, h/8);
+    for (int i = 0; i < slider.size(); i++) {
+       slider[i]->setBounds(w/slider.size() * i - twoBw, h/8 - twoBw,  w/slider.size() - fourBw, h/8);;
+    }
 }
 //==============================================================================
 /**@Internal@*/
@@ -66,7 +72,9 @@ void SequenceGeneratorEditor::resized()
 
 void SequenceGeneratorEditor::buttonClicked (Button* button){
     if (button == &generatePattern) {
-        PrintPattern(GeneratePattern(GetRandomPatternPreset()));
+        PrintPattern(GeneratePattern(GeneratePatternPreset((int)slider[0]->getValue(),
+                                                           2,
+                                                           (int)slider[1]->getValue())));
     }
 }
 
