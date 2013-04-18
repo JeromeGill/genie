@@ -12,10 +12,8 @@
 #include "genieHeader.h"
 #include "genieLogo.h"
 #include "SequenceGeneratorEditor.h"
-<<<<<<< HEAD
-=======
 #include "SequenceManager.h"
->>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
+
 
 /**==============================================================================
  SequenceEditor is where automatic sequence rearrangments can be generated
@@ -47,11 +45,6 @@ private:
     
     SequenceGeneratorEditor sequenceGenerator;
     const Image genieImage;
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)
     

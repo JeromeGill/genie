@@ -62,20 +62,10 @@ void SubsectionEditor::subsectionDeleted(int SubsectionIndex){
 }
 //**@Internal@*/
 void SubsectionEditor::subsectionChanged(int SubsectionIndex){
-<<<<<<< HEAD
+
    //  std::cout<<"Changed"<<SubsectionIndex<<"\n";
     repaint();
-=======
-    
-    double start    = subsection.SampleToTime(subsection.getStart(SubsectionIndex));
-    double duration = subsection.SampleToTime(subsection.getLength(SubsectionIndex));
-    
-    if (imageSource->getImage().isValid() && duration){
-        subsection[SubsectionIndex]->subsectionWaveform = imageSource->getImageAtTime (start, duration);
-        subsection[SubsectionIndex]->repaint();
-        
-    }
->>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
+
 }
 //**@Internal@*/
 void SubsectionEditor::subsectionsCleared(){
@@ -89,29 +79,10 @@ void SubsectionEditor::comboBoxChanged (ComboBox* comboBox)
 {
     if (comboBox == &subsectionSelector) {
         activeSubsection = comboBox->getSelectedId() - 1;
-<<<<<<< HEAD
         hitTypeSelector.setSelectedItemIndex(subsection.getSubsectionType(activeSubsection));
         std::cout<<"Selected "<<subsection[activeSubsection].name<<" : "<<subsection.getTypeAsString(activeSubsection)<<"\n";
         repaint();
-=======
-        hitTypeSelector.setSelectedId(subsection.getSubsectionType(activeSubsection) - 1);
-        
-        std::cout<<"Selected "<<subsection.getName(activeSubsection)
-        <<" : "<<subsection.getTypeAsString(activeSubsection)<<"\n";
-        
-        SubsectionViewer = subsection[activeSubsection];
-        addAndMakeVisible(SubsectionViewer);
-        
-        SubsectionViewer->setBounds(twoBw,
-                                    twoBw + (getWidth()/8 *2),
-                                    getWidth() - fourBw,
-                                    getHeight()/8 * 6 - twoBw);
-    }
-    
-    
-    if (comboBox == &hitTypeSelector) {
-        subsection.setSubsectionType(activeSubsection, hitTypeSelector.getSelectedItemIndex());
->>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
+
     }
     if (comboBox == &hitTypeSelector) {
         subsection.setSubsectionType(activeSubsection, hitTypeSelector.getSelectedItemIndex());
@@ -126,7 +97,7 @@ void SubsectionEditor::paint(Graphics &g){
     
     
     g.fillAll(Colours::black);
-<<<<<<< HEAD
+//<<<<<<< HEAD
     
     if (activeSubsection >= 0){
         
@@ -136,11 +107,11 @@ void SubsectionEditor::paint(Graphics &g){
        if (imageSource->getImage().isValid() && duration)
             subsectionWaveform = imageSource->getImageAtTime (start, duration);
 
-=======
-    g.setColour(Colours::white);
-    g.drawRect(Bw, Bw, getWidth()-twoBw, getHeight()-twoBw,Bw);
-    if (subsectionWaveform.isValid()) {
->>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
+//=======
+//    g.setColour(Colours::white);
+//    g.drawRect(Bw, Bw, getWidth()-twoBw, getHeight()-twoBw,Bw);
+//    if (subsectionWaveform.isValid()) {
+//>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
         g.drawImageAt(subsectionWaveform.rescaled(getWidth() - fourBw,
                                                   getHeight() - fourBw),
                       twoBw,

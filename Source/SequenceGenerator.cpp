@@ -86,7 +86,6 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
         
         for (int ii = 0; remainderIntervals>0; ii++) { //Move through each necklace in the sequence for as long as there are intervals to distribute
             
-<<<<<<< HEAD
             if(ii == P.x()){ //Move back to the first necklace if reached the end of the cycle
              ii = 0;
             }
@@ -108,11 +107,9 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
             P.np(ii, i).b = true;
         
             std::cout<<"Pattern "<<ii<<" "<<i<<" n "<<P.np(ii, i).n<<" p "<<P.np(ii, i).p<<"\n";
-=======
-            P.n(ii, i).m = 8; //Not random at the moment for testing.
-            P.n(ii, i).p = 5;
-            P.n(ii, i).b = true;
->>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
+//            P.n(ii, i).m = 8; //Not random at the moment for testing.
+//            P.n(ii, i).p = 5;
+//            P.n(ii, i).b = true;
         }
     }
     
@@ -153,15 +150,11 @@ Sequence SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern 
     
     int end = (int)BreakEarly;
     
-<<<<<<< HEAD
     if (Pulses <= end){
         
         for (int i = 1; i < Necklace.size(); i++) {
             AppendSequence(Necklace[0], Necklace[i]);
         }
-=======
-    if (Pulses == end){
->>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
         return Necklace[0];
         
     }
