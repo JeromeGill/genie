@@ -11,7 +11,13 @@
 #ifndef __AudioSubsectionManager_H_8C3A6156__
 #define __AudioSubsectionManager_H_8C3A6156__
 #include "genieHeader.h"
+#include "SliceComponent.h"
+#include "SubSection.h"
 
+
+#define DEBUGSSM 1 //set to a positive value to print debug messages
+
+<<<<<<< HEAD
 #define DEBUGSSM 1 //set to a positive value to print debug messages
 
 //Some common Strings for this project
@@ -44,6 +50,9 @@ struct SubSection{
     String name = "Slice";
     HitTypeValue TypeValue = Unnamed;
 };
+=======
+
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
 
 class SubsectionComparator
 {
@@ -85,9 +94,15 @@ public:
     AudioSubsectionManager(AudioFilePlayer &filePlayer_);
     ~AudioSubsectionManager();
 
+<<<<<<< HEAD
     /**Returns a copy of a Subsection
      */
     SubSection operator[] (int subsectionIndex);
+=======
+    /**Returns a pointer to a Subsection
+     */
+    SliceComponent* operator[] (int subsectionIndex);
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
     
     //====================================================================================
     /**Set False to prevent subsection overlap
@@ -198,7 +213,7 @@ private:
     ListenerList<Listener> listenerList;
     
     SubsectionComparator subsectionComparator;
-    OwnedArray<SubSection> subsection;
+    OwnedArray<SliceComponent> subsection;
     AudioFilePlayer* filePlayer;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioSubsectionManager)

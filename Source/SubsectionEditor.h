@@ -12,10 +12,11 @@
 #define __SUBSECTIONEDITOR_H_9D58F006__
 #include "genieHeader.h"
 #include "AudioSubsectionManager.h"
+#include "SliceComponent.h"
 
 class SubsectionEditor :    public Component,
                             public AudioSubsectionManager::Listener,
-                            public Button::Listener,
+                            //public Button::Listener,
                             public ComboBox::Listener
 {
 public:
@@ -40,8 +41,6 @@ public:
     void paint(Graphics &g);
     /**@Internal@*/
     void resized();
-    /**@Internal@*/
-    void buttonClicked (Button* button);
     /** @Internal@ */
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
 
@@ -50,6 +49,8 @@ private:
     int activeSubsection;
     
     Image subsectionWaveform;
+    
+    SliceComponent* SubsectionViewer;
     
     OwnedArray<ToggleButton> HitClassButtons;
     ComboBox subsectionSelector, hitTypeSelector;

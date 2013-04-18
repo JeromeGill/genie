@@ -1,2 +1,6 @@
 Builds/MacOSX/Build/*
+<<<<<<< HEAD
 *.DS_Store
+=======
+*.DS_Store
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a

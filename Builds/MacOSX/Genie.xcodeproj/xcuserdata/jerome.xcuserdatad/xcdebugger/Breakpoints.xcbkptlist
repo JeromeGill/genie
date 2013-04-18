@@ -128,11 +128,19 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/AudioSubsectionManager.cpp"
+<<<<<<< HEAD
          timestampString = "385840741.922696"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "294"
          endingLineNumber = "294"
+=======
+         timestampString = "386434962.00176"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "299"
+         endingLineNumber = "299"
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
          landmarkName = "AudioSubsectionManager::clear()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -154,6 +162,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
+<<<<<<< HEAD
          timestampString = "387971568.097712"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
@@ -212,7 +221,65 @@
          startingLineNumber = "15"
          endingLineNumber = "15"
          landmarkName = "SequenceManager::SequenceManager(AudioSubsectionManager audioSubsectionManager, SequenceGenerator seqGenerator)"
+=======
+         timestampString = "385218754.671398"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "193"
+         endingLineNumber = "193"
+         landmarkName = "SequenceGenerator::PrintSequence(Sequence SequenceToPrint, bool newLine)"
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/AudioSubsectionManager.cpp"
+         timestampString = "386363960.051419"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "122"
+         endingLineNumber = "122"
+         landmarkName = "AudioSubsectionManager::setSubsectionType(int SubsectionIndex, int type)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/MidiManager.cpp"
+         timestampString = "385836966.549418"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
+         landmarkName = "MidiManager::MidiManager(PolyAudioFilePlayer&amp; polyAudioFilePlayer_, AudioSubsectionManager&amp; audioSubsectionManager_, MidiKeyboardState &amp;keyboardState_)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/AudioSubsectionManager.cpp"
+         timestampString = "386363960.051419"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "36"
+         endingLineNumber = "36"
+         landmarkName = "AudioSubsectionManager::operator[] (int SubsectionIndex)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SliceComponent.h"
+         timestampString = "386434962.00176"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "27"
+         endingLineNumber = "27">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

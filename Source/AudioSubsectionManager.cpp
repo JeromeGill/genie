@@ -26,6 +26,7 @@ AudioSubsectionManager::~AudioSubsectionManager(){
     
 }
 
+<<<<<<< HEAD
 /**Returns a copy of a Subsection
  */
  SubSection AudioSubsectionManager::operator[] (int SubsectionIndex){
@@ -33,6 +34,16 @@ AudioSubsectionManager::~AudioSubsectionManager(){
     SubSection s;
     if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
         s = *subsection[SubsectionIndex];
+=======
+/**Returns a Subsection
+ */
+SliceComponent* AudioSubsectionManager::operator[] (int SubsectionIndex){
+    
+     SliceComponent *s;
+    
+     if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
+          s = subsection[SubsectionIndex];
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
     }
     else if(DEBUGSSM){
         std::cout<<"SubsectionManager : Name received invalid index.\n";
@@ -61,8 +72,10 @@ void AudioSubsectionManager::addSubsection (int64 startSample){
     int index;
     if (filePlayer->getFile().exists()) {
     std::cout<<"Adding Subsection \n";
-    subsection.add(new SubSection);
+    subsection.add(new SliceComponent);
     subsection.getLast()->StartSample = startSample;
+    subsection.getLast()->name = "Slice ";
+    subsection.getLast()->name += subsection.size() - 1;
     sortSubsections();
     
     index = getSubsection(startSample);
@@ -121,7 +134,13 @@ void AudioSubsectionManager::setSubsectionType(int SubsectionIndex, int type){
     
     if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
         if (type > 0 && type < TotalHitTypes) {
+<<<<<<< HEAD
              subsection[SubsectionIndex]->TypeValue = i;
+=======
+            subsection[SubsectionIndex]->TypeValue = i;
+            subsection[SubsectionIndex]->Name.setText(getTypeAsString(SubsectionIndex), true);
+            std::cout<<"SubsectionManager : "<<getTypeAsString(SubsectionIndex)<<"\n";
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
         }
         else if (DEBUGSSM){
            std::cout<<"SubsectionManager : setSubsectionType received invalid type value.\n";
@@ -131,13 +150,21 @@ void AudioSubsectionManager::setSubsectionType(int SubsectionIndex, int type){
         std::cout<<"SubsectionManager : setSubsectionType received invalid index.\n";
     }
 }
+<<<<<<< HEAD
 /** returnss a Subsection's type
+=======
+/** returns a Subsection's type
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
  */
 HitTypeValue AudioSubsectionManager::getSubsectionType(int SubsectionIndex){
     HitTypeValue v = Unnamed;
     if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
         
+<<<<<<< HEAD
         HitTypeValue v = subsection[SubsectionIndex]->TypeValue;
+=======
+        v = subsection[SubsectionIndex]->TypeValue;
+>>>>>>> 32630d546c700eb5a22f0b938fff1b24b0da079a
     }
     else if(DEBUGSSM){
         std::cout<<"SubsectionManager : getSubsectionType received invalid index.\n";
@@ -301,6 +328,13 @@ void AudioSubsectionManager::sortSubsections(){
     for(int i = 0; i < subsection.size() -1; i ++){
         if (subsection[i]->StartSample == subsection[i+1]->StartSample)
             subsection.remove(i);
+        subsection[i]->name = "Slice ";
+        subsection[i]->name += i;
+        
+        if (subsection[i]->TypeValue != Unnamed) {
+            subsection[i]->name <<" ";
+            subsection[i]->name += HitTypeString(subsection[i]->TypeValue);
+        }
         std::cout<<"subsection Start"<<subsection[i]->StartSample<<"\n";
     }
 }
