@@ -88,8 +88,10 @@ private:
     
     //Display
     AudioThumbnail          audioThumbNail;
+    AudioThumbnail          audioThumbNailHighDef;
     AudioThumbnailCache     audioThumbNailCache;
     ScopedPointer<AudioThumbnailImage>    audioThumbnailImage;
+    ScopedPointer<AudioThumbnailImage>    audioThumbnailImageHighDef;
     ScopedPointer<SplittableWaveDisplay>  waveDisplay;
     
     
@@ -99,6 +101,7 @@ private:
     
     //Display Controls
     Slider SlZoom;
+    Slider SlOffset;
     
     //Label
     Label label;

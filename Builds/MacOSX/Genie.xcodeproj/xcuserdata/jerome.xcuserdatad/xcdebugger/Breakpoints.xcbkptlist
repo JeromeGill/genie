@@ -128,11 +128,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/AudioSubsectionManager.cpp"
-         timestampString = "387974713.116376"
+         timestampString = "387993439.446623"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "274"
-         endingLineNumber = "274"
+         startingLineNumber = "275"
+         endingLineNumber = "275"
          landmarkName = "AudioSubsectionManager::getSubsection (int64 Sample)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -159,7 +159,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "217"
          endingLineNumber = "217"
-         landmarkName = "SequenceGenerator::DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly)"
+         landmarkName = "SequenceGenerator::GetPulses(Pattern pattern, int position)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -200,17 +200,6 @@
          endingLineNumber = "34"
          landmarkName = "AudioSubsectionManager::operator[] (int SubsectionIndex)"
          landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Source/SequenceManager.cpp"
-         timestampString = "387974713.116376"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "10"
-         endingLineNumber = "10">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -100,11 +100,18 @@ void AudioFile::buttonClicked (Button* button)
     {
         audioFilePlayer.start();
         std::cout<<"Playing\n";
+        buttons[stop]->setButtonText("stop");
     }
     else if (button == buttons[stop])
     {
+        if (audioFilePlayer.isPlaying()) {
         audioFilePlayer.stop();
         std::cout<<"Stop\n";
+            buttons[stop]->setButtonText("reset");
+        }
+        else{
+            audioFilePlayer.setNextReadPosition(0);
+        }
     }
 }
 

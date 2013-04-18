@@ -10,11 +10,15 @@
 
 #include "SubsectionEditor.h"
 
-SubsectionEditor::SubsectionEditor(AudioSubsectionManager &audioSubsectionManager)
+SubsectionEditor::SubsectionEditor(AudioSubsectionManager &audioSubsectionManager,
+                                   PolyAudioFilePlayer& polyAudioFilePlayer_)
                                   // ,AudioThumbnailImage& sourceToBeUsed)
 :
 //imageSource(&sourceToBeUsed),
-subsection(audioSubsectionManager)
+subsection(audioSubsectionManager),
+polyAudioFilePlayer(polyAudioFilePlayer_),
+genieImage(ImageCache::getFromMemory (genieLogo::genielogo2_png,
+                                        genieLogo::genielogo2_pngSize))
 {
 
     hitTypeSelector.addItemList(subsection.HitTypeStringArray, 1);
@@ -67,17 +71,20 @@ void SubsectionEditor::subsectionDeleted(int SubsectionIndex){
         hitTypeSelector.setVisible(false);
         Preview.setVisible(false);
     }
+    
+    repaint();
 }
 //**@Internal@*/
 void SubsectionEditor::subsectionChanged(int SubsectionIndex){
 
-   //  std::cout<<"Changed"<<SubsectionIndex<<"\n";
+    activeSubsection = SubsectionIndex;
+    subsectionSelector.setValue(SubsectionIndex + 1);
     repaint();
 
 }
 //**@Internal@*/
 void SubsectionEditor::subsectionsCleared(){
-    activeSubsection = 0;
+
     repaint();
     
 }
@@ -103,7 +110,7 @@ void SubsectionEditor::sliderValueChanged (Slider* slider){
 /** @Internal@ */
 void SubsectionEditor::buttonClicked(Button *button){
     if (button == &Preview) {
-        
+        polyAudioFilePlayer.playSubSection(subsection[activeSubsection].StartSample, subsection[activeSubsection].LengthInSamples, 1);
     }
 }
 
@@ -111,26 +118,38 @@ void SubsectionEditor::buttonClicked(Button *button){
 /**@Internal@*/
 void SubsectionEditor::paint(Graphics &g){
     
-    
+    int w = getWidth();
+    int h = getHeight();
     g.fillAll(Colours::black);
     
+    g.setColour(Colours::white);
+    g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
+    g.drawImageAt(genieImage.rescaled (w / 3 - twoBw, h - fourBw), twoBw,  twoBw);
+
+    
+    //If there is an active subsection, draw it, else draw the genie logo
     if (activeSubsection >= 0){
         
         double start    = subsection.SampleToTime(subsection.getStart(activeSubsection));
         double duration = subsection.SampleToTime(subsection.getLength(activeSubsection));
+
         
         if (imageSource->getImage().isValid() && duration)
             subsectionWaveform = imageSource->getImageAtTime (start, duration);
         
-        g.setColour(Colours::white);
-        g.drawRect(Bw, Bw, getWidth()-twoBw, getHeight()-twoBw,Bw);
+        
         if (subsectionWaveform.isValid()) {
-            g.drawImageAt(subsectionWaveform.rescaled(getWidth() - fourBw,
-                                                      getHeight() - fourBw),
+            g.setOpacity(0.9);
+            g.drawImageAt(subsectionWaveform.rescaled(w - fourBw,
+                                                      h - fourBw),
                           twoBw,
                           twoBw);
+      
         }
     }
+//    else{
+//            }
+    
 }
 /**@Internal@*/
 void SubsectionEditor::resized(){
@@ -138,7 +157,7 @@ void SubsectionEditor::resized(){
     int h = getHeight();
 
    
-    Preview.setBounds(w/2, h/8, w/2 - twoBw, h/8 - twoBw);
-    subsectionSelector.setBounds(twoBw, twoBw, w - fourBw, h/8 - twoBw);
-    hitTypeSelector.setBounds(twoBw,h/8 ,w / 2 - fourBw , h/8 - twoBw);
+    Preview.setBounds(w/4* 3, h/8, w/4 - twoBw, h/8 - twoBw);
+    subsectionSelector.setBounds(w/5 * 2, twoBw, w/5 * 3 - twoBw, h/8 - twoBw);
+    hitTypeSelector.setBounds(w/2 ,h/8 ,w / 4 - fourBw , h/8 - twoBw);
 }

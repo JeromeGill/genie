@@ -231,7 +231,7 @@ int AudioSubsectionManager::getNearestSubsection (int64 Sample){
     
     int i;
     
-    std::cout<<"SubsectionManager : getNearestSubsection = ";
+    if(DEBUGSSM)std::cout<<"SubsectionManager : getNearestSubsection = ";
     
     if (subsection.size() > 1){
         
@@ -247,7 +247,8 @@ int AudioSubsectionManager::getNearestSubsection (int64 Sample){
         }
     }
     else i =0;
-    std::cout<<i<<"\n";
+    
+    if(DEBUGSSM)std::cout<<i<<"\n";
     return i;
 }
 /** Returns the index of the Subsection to the left of the sample clicked on

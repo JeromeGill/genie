@@ -17,10 +17,11 @@
 
 GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter,
                                                       AudioFilePlayer& audioFilePlayer_,
-                                                      AudioSubsectionManager &audioSubsectionManager_)
+                                                      AudioSubsectionManager &audioSubsectionManager_,
+                                                      PolyAudioFilePlayer &polyAudioFilePlayer_)
 :   AudioProcessorEditor (ownerFilter), 
-
-    subsectionEditor(audioSubsectionManager_),
+    subsectionEditor(audioSubsectionManager_,
+                     polyAudioFilePlayer_),
     audioEditor(audioSubsectionManager_, audioFilePlayer_, subsectionEditor)
 
 

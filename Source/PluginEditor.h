@@ -33,7 +33,8 @@ class GenieAudioProcessorEditor  : public AudioProcessorEditor
 public:
     GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter,
                                AudioFilePlayer& audioFilePlayer_,
-                               AudioSubsectionManager &audioSubsectionManager_);
+                               AudioSubsectionManager &audioSubsectionManager_,
+                               PolyAudioFilePlayer &polyAudioFilePlayer_);
     ~GenieAudioProcessorEditor();
 
     //==============================================================================

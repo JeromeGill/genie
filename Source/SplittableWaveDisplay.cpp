@@ -195,12 +195,17 @@ void SplittableWaveDisplay::mouseDrag(const MouseEvent &e){
     if (e.mods.isShiftDown()){
         
         if (!e.mods.isAltDown()) {
-             int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
+        
+            int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
             if(i >= 0){
-                int64 duration = PixelToSample(e.x) - subsections.getStart(i);
-                if (!duration) duration = 0;
-                subsections.SetSubsectionDuration(duration, i);
             }
+            else{
+                i = subsections.getNearestSubsection(PixelToSample(e.getMouseDownX()));
+            }
+            
+            int64 duration = PixelToSample(e.x) - subsections.getStart(i);
+            if (!duration) duration = 0;
+            subsections.SetSubsectionDuration(duration, i);
         }
         else{
             int64 start = PixelToSample(e.x);

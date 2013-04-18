@@ -13,6 +13,8 @@
 #include "genieHeader.h"
 #include "AudioSubsectionManager.h"
 #include "SliceComponent.h"
+#include "PolyAudioFilePlayer.h"
+#include "genieLogo.h"
 
 class SubsectionEditor :    public Component,
                             public AudioSubsectionManager::Listener,
@@ -21,7 +23,8 @@ class SubsectionEditor :    public Component,
                             public ComboBox::Listener
 {
 public:
-    SubsectionEditor(AudioSubsectionManager &audioSubsectionManager);
+    SubsectionEditor(AudioSubsectionManager &audioSubsectionManager,
+                     PolyAudioFilePlayer& polyAudioFilePlayer_);
     //,AudioThumbnailImage& sourceToBeUsed);
     ~SubsectionEditor();
     
@@ -62,10 +65,15 @@ private:
     Slider subsectionSelector;
     
     TextButton Preview;
+    Label      SliceSelLabel;
     
     AudioThumbnailImage* imageSource;
     AudioSubsectionManager &subsection;
     
+    
+    PolyAudioFilePlayer& polyAudioFilePlayer;
+    
+    const Image genieImage;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SubsectionEditor)
 };
 

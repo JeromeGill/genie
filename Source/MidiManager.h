@@ -15,10 +15,7 @@
 #include "PolyAudioFilePlayer.h"
 #include "AudioSubsectionManager.h"
 
-/**
- MidiManager provides a MIDI interface for a PolyAudioFilePlayer object
- 
- 
+/**MidiManager provides a MIDI interface for a PolyAudioFilePlayer object
  */
 
 

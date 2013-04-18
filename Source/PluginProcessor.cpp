@@ -220,7 +220,10 @@ bool GenieAudioProcessor::hasEditor() const
 
 AudioProcessorEditor* GenieAudioProcessor::createEditor()
 {
-    return new GenieAudioProcessorEditor (this, *audioFilePlayer, *subsectionManager);
+    return new GenieAudioProcessorEditor (this,
+                                          *audioFilePlayer,
+                                          *subsectionManager,
+                                          *polyPlayer);
 }
 
 //==============================================================================

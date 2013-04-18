@@ -35,7 +35,8 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
     LoadBar(audioFilePlayer_),
     backgroundThread("Waveform Thread"),
     audioThumbNail (renderSampleRatio, *audioFilePlayer_.getAudioFormatManager(), audioThumbNailCache),
-    audioThumbNailCache (1),
+    audioThumbNailHighDef (renderSampleRatio / 2, *audioFilePlayer_.getAudioFormatManager(), audioThumbNailCache),
+    audioThumbNailCache (2),
     editor(subsectionEditor)
     
 
@@ -46,16 +47,25 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
     
     //The waveform bitmap rendering device
     audioThumbnailImage = new AudioThumbnailImage(audioFilePlayer_,
-                                                  backgroundThread,
-                                                  //&audioThumbNailCache,
+                                                  audioThumbNailCache.getTimeSliceThread(),
                                                   audioThumbNail,
                                                   renderSampleRatio);
     
-    audioThumbnailImage->setBackgroundColour(Colours::black);
+    audioThumbnailImage->setBackgroundColour(Colours::transparentBlack);
     audioThumbnailImage->setWaveformColour  (Colours::white);
     audioThumbnailImage->setResolution(thumbResolution);
     
+
+//    audioThumbnailImageHighDef = new AudioThumbnailImage(audioFilePlayer_,
+//                                                         audioThumbNailCache.getTimeSliceThread(),
+//                                                         audioThumbNailHighDef,
+//                                                         renderSampleRatio/4);
+//    audioThumbnailImageHighDef->setBackgroundColour(Colours::transparentBlack);
+//    audioThumbnailImageHighDef->setWaveformColour  (Colours::white);
+//    audioThumbnailImageHighDef->setResolution(thumbResolution * 100);
     editor.setImageSource(*audioThumbnailImage);
+    
+    
     //The bitmap display
     waveDisplay = new SplittableWaveDisplay (*audioThumbnailImage, backgroundThread, audioSubsectionManager_);
    
@@ -74,8 +84,8 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
           
     //Text Labels
     
-    label.setText("Shift Double-Click to create a slice, Alt-Shift Double-Click to delete one", false);
-    label.setJustificationType(Justification::centred);
+    label.setText("Shift Double-Click to create a slice,\nAlt-Shift Double-Click to delete one.\n Shift drag to change slice's duration,\nAlt-Shift Drag to move one", false);
+    label.setJustificationType(Justification::right);
     addAndMakeVisible(&label);
     label.setColour(0x1000281, Colours::white);
     label.setInterceptsMouseClicks(false, false);
@@ -101,7 +111,7 @@ void AudioEditor::resized()
     LoadBar.setBounds(twoBw, twoBw, w/4* 3 - twoBw, h / 5 - Bw);
     
     SlZoom.setBounds(twoBw, h/5 + Bw, w/4,  h/ 5 - Bw);
-    label.setBounds(twoBw, h / 5 * 4 - twoBw, w - fourBw, h/5 - fourBw);
+    label.setBounds(twoBw, h - twoBw, w - fourBw, h - fourBw);
     
     waveDisplay->setBounds(twoBw, (h/5 * 2) - twoBw, w - fourBw,( h/5 * 3 ));
     
