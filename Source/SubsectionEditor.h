@@ -16,7 +16,8 @@
 
 class SubsectionEditor :    public Component,
                             public AudioSubsectionManager::Listener,
-                            //public Button::Listener,
+                            public Slider::Listener,
+                            public Button::Listener,
                             public ComboBox::Listener
 {
 public:
@@ -43,6 +44,10 @@ public:
     void resized();
     /** @Internal@ */
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
+    /** @Internal@ */
+    void sliderValueChanged (Slider* slider);
+    /** @Internal@ */
+    void buttonClicked (Button* button);
 
     
 private:
@@ -53,7 +58,10 @@ private:
     SliceComponent* SubsectionViewer;
     
     OwnedArray<ToggleButton> HitClassButtons;
-    ComboBox subsectionSelector, hitTypeSelector;
+    ComboBox hitTypeSelector;
+    Slider subsectionSelector;
+    
+    TextButton Preview;
     
     AudioThumbnailImage* imageSource;
     AudioSubsectionManager &subsection;
