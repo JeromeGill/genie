@@ -205,14 +205,14 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Source/SequenceGeneratorEditor.h"
-         timestampString = "388008685.012222"
+         filePath = "../../Source/MonomeDisplay.h"
+         timestampString = "388055720.205674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "67"
-         endingLineNumber = "67"
-         landmarkName = "addColumn()"
-         landmarkType = "5">
+         startingLineNumber = "20"
+         endingLineNumber = "20"
+         landmarkName = "class SequenceElement"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -65,6 +65,9 @@
           </GROUP>
         </GROUP>
         <GROUP id="{2E10A5A4-F935-62A8-FEC3-07384F970F22}" name="SequenceEditor">
+          <FILE id="LiPuYn" name="MonomeDisplay.cpp" compile="1" resource="0"
+                file="Source/MonomeDisplay.cpp"/>
+          <FILE id="UYyySC" name="MonomeDisplay.h" compile="0" resource="0" file="Source/MonomeDisplay.h"/>
           <FILE id="aTBvHc" name="SequenceGeneratorEditor.cpp" compile="1" resource="0"
                 file="Source/SequenceGeneratorEditor.cpp"/>
           <FILE id="vjoHnW" name="SequenceGeneratorEditor.h" compile="0" resource="0"

@@ -13,6 +13,7 @@
 
 //==============================================================================
 SequenceGeneratorEditor::SequenceGeneratorEditor()
+: display(8,1)
 
 {
     
@@ -96,7 +97,7 @@ void SequenceGeneratorEditor::sliderValueChanged (Slider* slider){
         display.setColumns(slider->getValue() * 8);
     }
     if(slider->getName() == "SequenceDepth"){
-        display.setRows(slider->getValue());
+         display.setRows(slider->getValue());
     }
 }
 
