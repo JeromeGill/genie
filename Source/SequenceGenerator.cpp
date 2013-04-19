@@ -84,7 +84,7 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
         
         int remainderIntervals = intervalsPerSequence * 8; //For each sequence determine how many intervals need distributing between each necklace
         
-        for (int ii = 0; remainderIntervals>0; ii++) { //Move through each necklace in the sequence for as long as there are intervals to distribute
+        for (int ii = 0; remainderIntervals > 0; ii++) { //Move through each necklace in the sequence for as long as there are intervals to distribute
             
             if(ii == P.x()){ //Move back to the first necklace if reached the end of the cycle
              ii = 0;

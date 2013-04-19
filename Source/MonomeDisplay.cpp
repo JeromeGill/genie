@@ -64,9 +64,15 @@ void MonomeDisplay::resized()
     }
 }
 
+
+void MonomeDisplay::setActive(size_t column, size_t row, bool setActive){
+    btn[row * columns + column]->isOn(setActive);
+    repaint();
+}
+
 void MonomeDisplay::addRow(){
     
-    std::cout<<"Monome Add Row: "<<columns<<" "<<rows;
+    //std::cout<<"Monome Add Row: "<<columns<<" "<<rows;
     for (int i = 0; i < columns; i++) {
         
         btn.add(new SequenceElement);
@@ -84,9 +90,11 @@ void MonomeDisplay::addColumn()
         SequenceElement *a = new SequenceElement;
         addAndMakeVisible(a);
         btn.insert(i*columns + columns, a);
+        std::cout<<"o";
     }
     columns++;
     resized();
+    std::cout<<"\n";
 }
 
 void MonomeDisplay::removeRow(){
@@ -108,12 +116,12 @@ void MonomeDisplay::setColumns(int numberOfColumns){
         
         
         if (columns < numberOfColumns) {
-            for (int i = 0; i < numberOfColumns - columns; i++) {
+            for (int i = columns; i <= numberOfColumns; i++) {
                 addColumn();
             }
         }
         else{
-            for (int i = 0; i < columns - numberOfColumns; i++) {
+            for (int i = columns; i > numberOfColumns; i--) {
                 removeColumn();
             }
         }
@@ -125,7 +133,7 @@ void MonomeDisplay::setColumns(int numberOfColumns){
 void MonomeDisplay::setRows(int numberOfRows){
     if (numberOfRows < 33 && numberOfRows> 0) {
         if (rows < numberOfRows) {
-            for (int i = 0; i < numberOfRows - rows; i++) {
+            for (int i = 0; i <= numberOfRows - rows; i++) {
                 addRow();
             }
         }

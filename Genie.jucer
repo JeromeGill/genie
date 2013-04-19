@@ -24,6 +24,10 @@
               file="Source/SequenceManager.h"/>
       </GROUP>
       <GROUP id="{C9CD087E-24B1-358B-8F23-2F80CB20FD8E}" name="Midi">
+        <FILE id="J5DMEm" name="MidiFileGenerator.cpp" compile="1" resource="0"
+              file="Source/MidiFileGenerator.cpp"/>
+        <FILE id="emq5C3" name="MidiFileGenerator.h" compile="0" resource="0"
+              file="Source/MidiFileGenerator.h"/>
         <FILE id="YofMFe" name="MidiManager.cpp" compile="1" resource="0" file="Source/MidiManager.cpp"/>
         <FILE id="VsWDVs" name="MidiManager.h" compile="0" resource="0" file="Source/MidiManager.h"/>
       </GROUP>

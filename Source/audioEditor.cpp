@@ -84,7 +84,7 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
           
     //Text Labels
     
-    label.setText("Shift Double-Click to create a slice,\nAlt-Shift Double-Click to delete one.\n Shift drag to change slice's duration,\nAlt-Shift Drag to move one", false);
+    label.setText("Shift Double-Click to create a slice,Alt-Shift Double-Click to delete one.\n Shift drag to change slice's duration,Alt-Shift Drag to move one", false);
     label.setJustificationType(Justification::right);
     addAndMakeVisible(&label);
     label.setColour(0x1000281, Colours::white);
@@ -111,7 +111,7 @@ void AudioEditor::resized()
     LoadBar.setBounds(twoBw, twoBw, w/4* 3 - twoBw, h / 5 - Bw);
     
     SlZoom.setBounds(twoBw, h/5 + Bw, w/4,  h/ 5 - Bw);
-    label.setBounds(twoBw, h - twoBw, w - fourBw, h - fourBw);
+    label.setBounds(twoBw, h/5 + twoBw, w - fourBw, h - fourBw);
     
     waveDisplay->setBounds(twoBw, (h/5 * 2) - twoBw, w - fourBw,( h/5 * 3 ));
     

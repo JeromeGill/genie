@@ -12,7 +12,6 @@
 #define __SUBSECTIONEDITOR_H_9D58F006__
 #include "genieHeader.h"
 #include "AudioSubsectionManager.h"
-#include "SliceComponent.h"
 #include "PolyAudioFilePlayer.h"
 #include "genieLogo.h"
 
@@ -58,9 +57,6 @@ private:
     
     Image subsectionWaveform;
     
-    SliceComponent* SubsectionViewer;
-    
-    OwnedArray<ToggleButton> HitClassButtons;
     ComboBox hitTypeSelector;
     Slider subsectionSelector;
     

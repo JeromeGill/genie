@@ -41,8 +41,12 @@ public:
         int w = getWidth();
         int h = getHeight();
         
-        if (active) g.fillAll (Colours::green);
-        else  g.fillAll (Colours::black);
+        g.fillAll (Colours::black);
+        if (active){
+            g.setColour(Colours::green);
+            g.fillRect(twoBw, twoBw, w-fourBw, h-fourBw);
+         }
+      
         
         g.setColour(Colours::white);
         g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
@@ -59,6 +63,7 @@ public:
     MonomeDisplay(int columns, int rows);
     ~MonomeDisplay();
 
+    void setActive(size_t column, size_t row, bool isActive);
     void addRow();
     void addColumn();
     

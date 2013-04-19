@@ -22,6 +22,7 @@
 		F61DFCF67144F2355AA22141 = { isa = PBXBuildFile; fileRef = B1B607D7FD3A763863FA04D5; };
 		A21C0083D157898875D7EB62 = { isa = PBXBuildFile; fileRef = E77EEC2372459FC19766C859; };
 		6E65B3A2094D857B6094E794 = { isa = PBXBuildFile; fileRef = AF22B1955EAB5D3053F177FB; };
+		5F223FB15C08CA5EB101A24C = { isa = PBXBuildFile; fileRef = 3B4AD4947257692FE81E9295; };
 		E6CD964D8CFE160AC4070F25 = { isa = PBXBuildFile; fileRef = F9AE7F8DC2BE94C17A873C66; };
 		B5DD8CB3BB1EA7B48276446A = { isa = PBXBuildFile; fileRef = CCF332049F69F207B075944C; };
 		DAAED0541496DCC9F6DE90B6 = { isa = PBXBuildFile; fileRef = 6454EFDD02F8A5A47C17734D; };
@@ -314,6 +315,7 @@
 		3A93221F3FA617EEAD591623 = { isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_RelativeParallelogram.h"; path = "../../JuceLibraryCode/modules/juce_gui_basics/positioning/juce_RelativeParallelogram.h"; sourceTree = "SOURCE_ROOT"; };
 		3AE408FA923B7D5C7119F32F = { isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_SplashScreen.h"; path = "../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SplashScreen.h"; sourceTree = "SOURCE_ROOT"; };
 		3AEEB355E57D545D9CDFF7E1 = { isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_ImagePreviewComponent.h"; path = "../../JuceLibraryCode/modules/juce_gui_basics/filebrowser/juce_ImagePreviewComponent.h"; sourceTree = "SOURCE_ROOT"; };
+		3B4AD4947257692FE81E9295 = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MidiFileGenerator.cpp; path = ../../Source/MidiFileGenerator.cpp; sourceTree = "SOURCE_ROOT"; };
 		3B4F63341527225BBEDF4B11 = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_TreeView.cpp"; path = "../../JuceLibraryCode/modules/juce_gui_basics/widgets/juce_TreeView.cpp"; sourceTree = "SOURCE_ROOT"; };
 		3B60944D2EA04B41B3963AE3 = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_DrawableText.cpp"; path = "../../JuceLibraryCode/modules/juce_gui_basics/drawables/juce_DrawableText.cpp"; sourceTree = "SOURCE_ROOT"; };
 		3B79A742490781367F7E0ACC = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "juce_mac_MainMenu.mm"; path = "../../JuceLibraryCode/modules/juce_gui_basics/native/juce_mac_MainMenu.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -797,6 +799,7 @@
 		B91C47C14ABA27B049AB7B5A = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_win32_Windowing.cpp"; path = "../../JuceLibraryCode/modules/juce_gui_basics/native/juce_win32_Windowing.cpp"; sourceTree = "SOURCE_ROOT"; };
 		B937905631D24F47BF4FF66C = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = dRowAudio.mm; path = ../../JuceLibraryCode/modules/dRowAudio/dRowAudio.mm; sourceTree = "SOURCE_ROOT"; };
 		B954B11FCCF9AAFC2955321B = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_ThreadPool.cpp"; path = "../../JuceLibraryCode/modules/juce_core/threads/juce_ThreadPool.cpp"; sourceTree = "SOURCE_ROOT"; };
+		B99A205BA9BA8423D4A2721C = { isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MidiFileGenerator.h; path = ../../Source/MidiFileGenerator.h; sourceTree = "SOURCE_ROOT"; };
 		B9A8F1AEEC63CE258838EAAE = { isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "dRowAudio_ITunesLibraryParser.h"; path = "../../JuceLibraryCode/modules/dRowAudio/utility/dRowAudio_ITunesLibraryParser.h"; sourceTree = "SOURCE_ROOT"; };
 		B9B3C556E4DE56F7E4DE8711 = { isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_PathIterator.h"; path = "../../JuceLibraryCode/modules/juce_graphics/geometry/juce_PathIterator.h"; sourceTree = "SOURCE_ROOT"; };
 		B9D51EB8CA5AEF2478BF3DB3 = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_MouseInputSource.cpp"; path = "../../JuceLibraryCode/modules/juce_gui_basics/mouse/juce_MouseInputSource.cpp"; sourceTree = "SOURCE_ROOT"; };
@@ -1106,6 +1109,8 @@
 				AF22B1955EAB5D3053F177FB,
 				6308AFDEEEA5B2C1FD07F178 ); name = Sequence; sourceTree = "<group>"; };
 		D3509F46C59766C94204FFC4 = { isa = PBXGroup; children = (
+				3B4AD4947257692FE81E9295,
+				B99A205BA9BA8423D4A2721C,
 				F9AE7F8DC2BE94C17A873C66,
 				B1773EE60F0D23734739029F ); name = Midi; sourceTree = "<group>"; };
 		3FDB60CD125CE1CE101B2991 = { isa = PBXGroup; children = (
@@ -2475,6 +2480,7 @@
 				F61DFCF67144F2355AA22141,
 				A21C0083D157898875D7EB62,
 				6E65B3A2094D857B6094E794,
+				5F223FB15C08CA5EB101A24C,
 				E6CD964D8CFE160AC4070F25,
 				B5DD8CB3BB1EA7B48276446A,
 				DAAED0541496DCC9F6DE90B6,
