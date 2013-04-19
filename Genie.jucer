@@ -80,10 +80,6 @@
       </GROUP>
       <GROUP id="{948199C5-849D-DB83-6FF6-BDB0AE8CFA87}" name="Shared">
         <FILE id="PFIfoC" name="SubSection.h" compile="0" resource="0" file="Source/SubSection.h"/>
-        <FILE id="P9xtDV" name="SliceComponent.cpp" compile="1" resource="0"
-              file="Source/SliceComponent.cpp"/>
-        <FILE id="nY5QC7" name="SliceComponent.h" compile="0" resource="0"
-              file="Source/SliceComponent.h"/>
         <FILE id="VpcNGt" name="SequenceManager.cpp" compile="1" resource="0"
               file="Source/SequenceManager.cpp"/>
         <FILE id="llIIrF" name="SequenceManager.h" compile="0" resource="0"
