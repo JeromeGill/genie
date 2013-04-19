@@ -14,7 +14,7 @@
 #include "genieHeader.h"
 #include "PluginProcessor.h"
 #include "audioEditor.h"
-#include "SequenceGeneratorEditor.h"
+#include "SequenceEditor.h"
 #include "SubsectionEditor.h"
 
 
@@ -46,7 +46,7 @@ private:
 
     SubsectionEditor subsectionEditor;
     AudioEditor audioEditor;
-    SequenceGeneratorEditor sequenceEditor;
+    SequenceEditor sequenceEditor;
     
     
     //==============================================================================

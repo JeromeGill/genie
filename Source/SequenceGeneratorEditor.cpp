@@ -12,8 +12,8 @@
 
 
 //==============================================================================
-SequenceGeneratorEditor::SequenceGeneratorEditor()
-: display(8,1)
+SequenceGeneratorEditor::SequenceGeneratorEditor(MonomeDisplay& display)
+:display(display)
 
 {
     
@@ -32,14 +32,17 @@ SequenceGeneratorEditor::SequenceGeneratorEditor()
     labels[2]->setText("Length", false);
     labels[3]->setText("Depth", false);
     
-    labels[0]->setColour(0x1000280, Colours::white);
-    labels[0]->setJustificationType(Justification::centred);
+    
     
     for (int i = 0; i < labels.size(); i++) {
-        //labels[i]->setColour(0x1000281, Colours::white);
+        labels[i]->setColour(0x1000280, Colours::black);
+        labels[i]->setColour(0x1000281, Colours::white);
         addAndMakeVisible(labels[i]);
     }
     
+    labels[0]->setColour(0x1000280, Colours::white);
+    labels[0]->setColour(0x1000281, Colours::black);
+    labels[0]->setJustificationType(Justification::centred);
 
     
     slider.add(new Slider("SequenceComplexity"));
@@ -62,8 +65,6 @@ SequenceGeneratorEditor::SequenceGeneratorEditor()
     for (int i = 0; i < slider.size(); i++)
         addAndMakeVisible(slider[i]);
     
-    addAndMakeVisible(&display);
-
 }
 
 SequenceGeneratorEditor::~SequenceGeneratorEditor()
@@ -82,7 +83,7 @@ void SequenceGeneratorEditor::paint (Graphics& g)
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
     g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
-    g.fillRect(fourBw, h/8 - twoBw, w/2 - fourBw - twoBw, h/8 * slider.size() - twoBw);
+    g.fillRect(fourBw, h/8 - twoBw, w - (2*fourBw), h/8 *7 - twoBw);
       
 }
 /**@Internal@*/
@@ -92,18 +93,17 @@ void SequenceGeneratorEditor::resized()
     int h = getHeight();
     
 
-    generatePattern.setBounds(twoBw, h/8 * 7 - twoBw, w - fourBw, h/8);
+    generatePattern.setBounds(fourBw, h/5 * 4 - twoBw, w - (2*fourBw), h/5 - twoBw);
     
     for (int i = 0; i < slider.size(); i++) {
-       slider[i]->setBounds(twoBw, h/8 * (i + 1),  w/4 - fourBw, h/8);;
+       slider[i]->setBounds(twoBw, h/5 * (i + 1),  w/2 - fourBw, h/5);
     }
-    labels[0]->setBounds(fourBw, fourBw, w/2 - fourBw, h/8 - (2*fourBw));
+    labels[0]->setBounds(w / 8 - twoBw, fourBw , w/ 8 * 6 + fourBw , h/5 - (2*fourBw));
     
     for (int i = 1; i < labels.size(); i++) {
-        labels[i]->setBounds (w/4, h/8 * i,  w/4 - fourBw, h/8);
+        labels[i]->setBounds (w/2, h/5 * (i) + twoBw,  w/2 - fourBw, h/5 - fourBw);
     }
     
-    display.setBounds(twoBw, h/8 * (slider.size() + 1), w - fourBw, h/4);
 }
 //==============================================================================
 /**@Internal@*/

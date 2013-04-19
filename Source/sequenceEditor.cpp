@@ -11,12 +11,14 @@
 
 //==============================================================================
 SequenceEditor::SequenceEditor()
-: genieImage(ImageCache::getFromMemory (genieLogo::genielogo2_png,
-                                        genieLogo::genielogo2_pngSize))
+:
+sequenceGenerator(display),
+display(8,1)
+
 {
 
     addAndMakeVisible(&sequenceGenerator);
-
+    addAndMakeVisible(&display);
 }
 
 SequenceEditor::~SequenceEditor()
@@ -33,7 +35,6 @@ void SequenceEditor::paint (Graphics& g)
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
     g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
-    g.drawImageAt(genieImage.rescaled (w / 2 - twoBw, h - fourBw), w/ 4 - Bw,  twoBw);
     
 }
 /**@Internal@*/
@@ -42,7 +43,8 @@ void SequenceEditor::resized()
     int w = getWidth();
     int h = getHeight();
     
-    sequenceGenerator.setBounds(twoBw, h/5 * 4, w - fourBw, h/5 - twoBw);
+    sequenceGenerator.setBounds(twoBw, twoBw, w / 2 - fourBw, h /2  - fourBw);
+    display.setBounds(twoBw, h/4 * 3 - twoBw, w - fourBw, h/4 - twoBw);
 
 }
 

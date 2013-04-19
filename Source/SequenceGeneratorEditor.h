@@ -33,7 +33,7 @@ class SequenceGeneratorEditor : public Component,
 
 {
 public:
-    SequenceGeneratorEditor();
+    SequenceGeneratorEditor(MonomeDisplay& display);
     ~SequenceGeneratorEditor();
     
     //==============================================================================
@@ -49,12 +49,13 @@ public:
     void sliderValueChanged (Slider* slider);
     
     void displayPattern(Pattern pattern);
+
 private:
     
     OwnedArray<Label> labels;
     TextButton generatePattern;
     OwnedArray<Slider> slider;
-    MonomeDisplay display;
+    MonomeDisplay& display;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceGeneratorEditor)
     

@@ -10,7 +10,6 @@
 #define __Genie__SequenceEditor__
 
 #include "genieHeader.h"
-#include "genieLogo.h"
 #include "SequenceGeneratorEditor.h"
 #include "SequenceManager.h"
 
@@ -42,9 +41,8 @@ public:
     
 private:
 
-    
     SequenceGeneratorEditor sequenceGenerator;
-    const Image genieImage;
+    MonomeDisplay display;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)
     
