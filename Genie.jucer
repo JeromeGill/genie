@@ -83,11 +83,11 @@
         </GROUP>
       </GROUP>
       <GROUP id="{948199C5-849D-DB83-6FF6-BDB0AE8CFA87}" name="Shared">
+        <FILE id="rshu7g" name="SequenceToMidiManager.cpp" compile="1" resource="0"
+              file="Source/SequenceToMidiManager.cpp"/>
+        <FILE id="aXxziI" name="SequenceToMidiManager.h" compile="0" resource="0"
+              file="Source/SequenceToMidiManager.h"/>
         <FILE id="PFIfoC" name="SubSection.h" compile="0" resource="0" file="Source/SubSection.h"/>
-        <FILE id="VpcNGt" name="SequenceManager.cpp" compile="1" resource="0"
-              file="Source/SequenceManager.cpp"/>
-        <FILE id="llIIrF" name="SequenceManager.h" compile="0" resource="0"
-              file="Source/SequenceManager.h"/>
         <FILE id="fsjPeB" name="SequenceGenerator.cpp" compile="1" resource="0"
               file="Source/SequenceGenerator.cpp"/>
         <FILE id="HEWbrq" name="SequenceGenerator.h" compile="0" resource="0"

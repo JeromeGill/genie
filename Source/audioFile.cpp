@@ -25,15 +25,12 @@ AudioFile::AudioFile (AudioFilePlayer &audioFilePlayer_)
     
     //formatManager = audioFilePlayer->getAudioFormatManager();
 
-    
     fileChooser = new FilenameComponent ("AudioFile",
                                          File::nonexistent,
                                          true, false, false,
                                          audioFilePlayer.getAudioFormatManager()->getWildcardForAllFormats(),
                                          String::empty,
                                          "(choose an audio file)");
-    
-  
     
     addAndMakeVisible (fileChooser);
     fileChooser->addListener (this);

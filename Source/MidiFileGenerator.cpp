@@ -18,4 +18,6 @@ MidiFileGenerator::~MidiFileGenerator(){
     
 }
 
-//void MidiFileGenerator::AddNoteAtTime(int noteNumber, int velocity, int channel, double time){
+void MidiFileGenerator::AddNoteAtTime(MidiMessageSequence* midiSequence,int noteNumber, int velocity, int channel, double time, double duration){
+
+}

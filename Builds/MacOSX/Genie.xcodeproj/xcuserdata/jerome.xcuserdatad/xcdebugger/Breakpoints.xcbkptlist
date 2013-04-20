@@ -214,5 +214,16 @@
          landmarkName = "class SequenceElement"
          landmarkType = "3">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SequenceToMidiManager.cpp"
+         timestampString = "388139099.912395"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "13"
+         endingLineNumber = "13">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

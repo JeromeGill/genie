@@ -19,7 +19,7 @@ public:
     MidiFileGenerator();
     ~MidiFileGenerator();
     
-    void AddNoteAtTime(MidiFile* midiFile, int noteNumber, int velocity, int channel, double time);
+    void AddNoteAtTime(MidiMessageSequence* midiSequence, int noteNumber, int velocity, int channel, double time, double duration);
 };
 
 
