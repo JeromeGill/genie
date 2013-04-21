@@ -11,7 +11,6 @@
 
 #include "genieHeader.h"
 #include "SequenceGeneratorEditor.h"
-#include "SequenceManager.h"
 
 
 /**==============================================================================
@@ -22,7 +21,9 @@
  ToDo;
  Export sequence as midifile to host
 ============================================================================== */
-class SequenceEditor :  public Component
+class SequenceEditor :  public Component,
+                        public Slider::Listener,
+                        public SequenceGenerator::Listener
 
 {
 public:
@@ -37,12 +38,18 @@ public:
     
     //==============================================================================
     /**@Internal@*/
-
+    void displayPattern(Pattern pattern, MonomeDisplay& display);
+    void displayPatternTotals(Pattern pattern, MonomeDisplay& display);
     
+    /**@Internal@*/
+    void sliderValueChanged(Slider* slider);
+    
+    void patternGenerated(Pattern& p);
 private:
 
     SequenceGeneratorEditor sequenceGenerator;
-    MonomeDisplay display;
+    MonomeDisplay sequenceDisplay;
+    MonomeDisplay totalDisplay;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)
     

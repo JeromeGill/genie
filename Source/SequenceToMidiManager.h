@@ -15,17 +15,22 @@
 #include "AudioSubsectionManager.h"
 #include "SequenceGenerator.h"
 
-class SequenceToMidiManager {
+class SequenceToMidiManager : public SequenceGenerator
+
+{
 public:
-    SequenceToMidiManager(SequenceGenerator &sequenceGenerator,
-                    AudioSubsectionManager &subsectionManager);
+    SequenceToMidiManager();
     ~SequenceToMidiManager();
     
-    MidiFile writePatternToMidiFile(Pattern pattern);
+    MidiFile& writePatternToMidiFile(Pattern pattern, int BPM);
+    void addNoteToSequence(MidiMessageSequence Sequence,
+                           int noteNumber,
+                           float velocity,
+                           double ticks,
+                           double duration);
     
 private:
-    SequenceGenerator& seqGenerator;
-    AudioSubsectionManager& subsection;
+    
     OwnedArray<MidiFile> midiFiles;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceToMidiManager)

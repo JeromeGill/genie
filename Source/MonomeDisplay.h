@@ -19,10 +19,12 @@
 
 class SequenceElement : public Component {
     bool active;
-    
+    Colour activeColour;
 public:
     SequenceElement()
-    :   active(false)
+    :   active(false),
+    activeColour(Colours::green)
+    
     {
         
     }
@@ -36,6 +38,10 @@ public:
         repaint();
     }
     
+    void onColour(Colour colour){
+        activeColour = colour;
+        repaint();
+    }
     
     void paint(Graphics &g){
         int w = getWidth();
@@ -43,7 +49,7 @@ public:
         
         g.fillAll (Colours::black);
         if (active){
-            g.setColour(Colours::green);
+            g.setColour(activeColour);
             g.fillRect(twoBw, twoBw, w-fourBw, h-fourBw);
          }
       
@@ -63,7 +69,7 @@ public:
     MonomeDisplay(int columns, int rows);
     ~MonomeDisplay();
 
-    void setActive(size_t column, size_t row, bool isActive);
+    void setActive(size_t column, size_t row, bool isActive, Colour colour = Colours::green);
     void addRow();
     void addColumn();
     

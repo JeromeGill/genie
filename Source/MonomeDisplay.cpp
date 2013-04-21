@@ -65,7 +65,8 @@ void MonomeDisplay::resized()
 }
 
 
-void MonomeDisplay::setActive(size_t column, size_t row, bool setActive){
+void MonomeDisplay::setActive(size_t column, size_t row, bool setActive, Colour colour){
+    btn[row * columns + column]->onColour(colour);
     btn[row * columns + column]->isOn(setActive);
     repaint();
 }

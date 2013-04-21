@@ -45,6 +45,7 @@ Pattern SequenceGenerator::GeneratePattern(PatternPreset P){
     }
     else{std::cout<<"Generate Pattern received invalid preset \n";}
     
+    listenerList.call(&Listener::patternGenerated, p);
     return p;
 }
 
@@ -113,6 +114,7 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
         }
     }
     
+
     return P;
     
 }
@@ -251,4 +253,16 @@ void SequenceGenerator::PrintSequence(Sequence SequenceToPrint, bool newLine){
     
     if (newLine)
         std::cout<<"\n";
+}
+
+//==============================================================================
+/** Add a listener
+ */
+void SequenceGenerator::addListener(Listener* listener){
+    listenerList.add(listener);
+}
+/** Remove a listener
+ */
+void SequenceGenerator::removeListener(Listener* listener){
+    listenerList.remove(listener);
 }

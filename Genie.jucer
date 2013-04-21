@@ -17,12 +17,7 @@
       <FILE id="SLBsWI" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
     </GROUP>
     <GROUP id="{78A5896F-F05D-A04F-1CBB-D48031D44577}" name="Source">
-      <GROUP id="{8098A738-2E94-C3C4-D31B-4A68FC06E057}" name="Sequence">
-        <FILE id="PtWame" name="SequenceManager.cpp" compile="1" resource="0"
-              file="Source/SequenceManager.cpp"/>
-        <FILE id="rL2lZ9" name="SequenceManager.h" compile="0" resource="0"
-              file="Source/SequenceManager.h"/>
-      </GROUP>
+      <GROUP id="{8098A738-2E94-C3C4-D31B-4A68FC06E057}" name="Sequence"/>
       <GROUP id="{C9CD087E-24B1-358B-8F23-2F80CB20FD8E}" name="Midi">
         <FILE id="J5DMEm" name="MidiFileGenerator.cpp" compile="1" resource="0"
               file="Source/MidiFileGenerator.cpp"/>

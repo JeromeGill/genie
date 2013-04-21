@@ -12,7 +12,7 @@
 #define __SEQUENCEGENERATOREDITOR_H_86DD913__
 
 #include "genieHeader.h"
-#include "SequenceGenerator.h"
+#include "SequenceToMidiManager.h"
 #include "MonomeDisplay.h"
 
 
@@ -29,11 +29,11 @@
 class SequenceGeneratorEditor : public Component,
                                 public ButtonListener,
                                 public Slider::Listener,
-                                public SequenceGenerator
+                                public SequenceToMidiManager
 
 {
 public:
-    SequenceGeneratorEditor(MonomeDisplay& display);
+    SequenceGeneratorEditor();
     ~SequenceGeneratorEditor();
     
     //==============================================================================
@@ -47,15 +47,14 @@ public:
     void buttonClicked (Button* button);
     /**@Internal@*/
     void sliderValueChanged (Slider* slider);
-    
-    void displayPattern(Pattern pattern);
 
+    void addSliderListeners (Slider::Listener *listener);
+    void removeSliderListeners (Slider::Listener *listener);
 private:
     
     OwnedArray<Label> labels;
     TextButton generatePattern;
     OwnedArray<Slider> slider;
-    MonomeDisplay& display;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceGeneratorEditor)
     

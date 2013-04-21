@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <vector>
+#include "genieHeader.h"
 
 #define MAXNECKLACESIZE 30 //The maximum available intervals in a necklace
 #define MAXNECKLACES    5  //The maxmimum available necklaces in a sequence
@@ -175,10 +176,28 @@ public:
      */
     int GetPulses(Pattern pattern, int position);
 
+    //==============================================================================
+    /** Listener
+     */
+    class Listener
+    {
+    public:
+        virtual ~Listener(){};
+        /** Called when a pattern is generated
+         */
+        virtual void patternGenerated(Pattern& p){};
+    };
+    /** add a listener
+     */
+    void addListener(Listener* listener);
+    /** Remove a listener
+     */
+    void removeListener(Listener* listener);
 private:
     /**The recursive part of the GenerateNecklace() function
      */
     Sequence DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly = false);
+    ListenerList<Listener> listenerList;
 };
 
 

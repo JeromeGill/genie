@@ -12,9 +12,7 @@
 
 
 //==============================================================================
-SequenceGeneratorEditor::SequenceGeneratorEditor(MonomeDisplay& display)
-:display(display)
-
+SequenceGeneratorEditor::SequenceGeneratorEditor()
 {
     
     generatePattern.addListener(this);
@@ -115,26 +113,30 @@ void SequenceGeneratorEditor::buttonClicked (Button* button){
                                                           (int)slider[2]->getValue(),
                                                           (int)slider[1]->getValue()));
         PrintPattern(p);
-        displayPattern(p);
+        //displayPattern(p);
+        writePatternToMidiFile(p, 120);
         
     }
 }
 
 /**@Internal@*/
 void SequenceGeneratorEditor::sliderValueChanged (Slider* slider){
-    if(slider->getName() == "SequenceLength"){
-        display.setColumns((int) slider->getValue() * 8);
+//    if(slider->getName() == "SequenceLength"){
+//        display.setColumns((int) slider->getValue() * 8);
+//    }
+//    if(slider->getName() == "SequenceDepth"){
+//         display.setRows((int) slider->getValue());
+//    }
+}
+
+void SequenceGeneratorEditor::addSliderListeners (Slider::Listener *listener){
+    for (int i = 0; i < slider.size(); i++) {
+        slider[i]->addListener(listener);
     }
-    if(slider->getName() == "SequenceDepth"){
-         display.setRows((int) slider->getValue());
+}
+void SequenceGeneratorEditor::removeSliderListeners (Slider::Listener *listener){
+    for (int i = 0; i < slider.size(); i++) {
+        slider[i]->removeListener(listener);
     }
 }
 
-
-void SequenceGeneratorEditor::displayPattern(Pattern pattern){
-    for (int i = 0; i < pattern.size(); i++) {
-        for (int ii = 0; ii < pattern[i].size(); ii++){
-            display.setActive(ii, i, pattern[i][ii]);
-        }
-    }
-}
