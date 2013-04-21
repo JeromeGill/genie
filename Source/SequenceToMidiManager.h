@@ -22,9 +22,9 @@ public:
     SequenceToMidiManager();
     ~SequenceToMidiManager();
     
-    MidiFile& writePatternToMidiFile(Pattern pattern, int BPM);
+    void writePatternToMidiFile(MidiFile& file, Pattern pattern, int BPM);
     
-    void addNoteToSequence(MidiMessageSequence Sequence,
+    void addNoteToSequence(MidiMessageSequence& Sequence,
                            int noteNumber,
                            float velocity,
                            double ticks,
@@ -33,7 +33,7 @@ public:
 private:
     
     OwnedArray<MidiFile> midiFiles;
-    
+    MidiMessageSequence* seq;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceToMidiManager)
 };
 

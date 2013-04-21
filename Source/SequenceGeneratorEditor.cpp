@@ -132,8 +132,9 @@ void SequenceGeneratorEditor::buttonClicked (Button* button){
            File midiFile = chooser.getResult();
            
            FileOutputStream outStream (midiFile);
-           
-           writePatternToMidiFile(*pattern.getLast(), 120).writeTo(outStream);
+           MidiFile output;
+           writePatternToMidiFile(output, *pattern.getLast(), 120);
+           output.writeTo(outStream);
        }
 }
 

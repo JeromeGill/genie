@@ -21,20 +21,19 @@ SequenceToMidiManager::~SequenceToMidiManager(){
 
 }
 
-MidiFile& SequenceToMidiManager::writePatternToMidiFile(Pattern pattern, int BPM){
-    
-    MidiFile *newFile = new MidiFile;
-    MidiMessageSequence seq;
-    
-    const int tpq = 96;
-    newFile->addTrack(seq);
-    
-    newFile->setTicksPerQuarterNote (tpq);
+void SequenceToMidiManager::writePatternToMidiFile(MidiFile& newFile, Pattern pattern, int BPM){
     
 
-    newFile->setSmpteTimeFormat (24,
-                                 4);
+    MidiMessageSequence *seq = new MidiMessageSequence;
     
+    newFile.addTrack(*seq);
+    
+    
+    newFile.setSmpteTimeFormat (4,
+                                 25);
+    //newFile->setTicksPerQuarterNote (tpq);
+    
+
     //A bit cack handed at present
     
     for (int i = 0; i < pattern[0].size(); i++) {
@@ -61,20 +60,22 @@ MidiFile& SequenceToMidiManager::writePatternToMidiFile(Pattern pattern, int BPM
             noteNumber = 44; //Open Highhat
         }
         
-        double ticks = (tpq*0.5) * i;
-        double noteLength = (tpq*0.5) - 1;
+        double ticks = 60.0/(double)BPM * 0.5 * i *1000;
+        double noteLength = (60.0/(double)BPM * 0.5 *1000);
         
         float velocity = 1.0;
       
         
         std::cout<<noteNumber<<" "<<velocity<<" / "<<ticks<<" : "<<ticks+noteLength<<"\n";
+        
+        addNoteToSequence(*seq, noteNumber, velocity, ticks, ticks+noteLength);
     }
 
     
-    return *newFile;
+    //return newFile;
 }
 
-void SequenceToMidiManager::addNoteToSequence(MidiMessageSequence Sequence,
+void SequenceToMidiManager::addNoteToSequence(MidiMessageSequence& Sequence,
                                               int noteNumber,
                                               float velocity,
                                               double ticks,
