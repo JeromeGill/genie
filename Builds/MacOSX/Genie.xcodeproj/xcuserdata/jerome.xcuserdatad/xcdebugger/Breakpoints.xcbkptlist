@@ -232,11 +232,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceToMidiManager.cpp"
-         timestampString = "388248410.252315"
+         timestampString = "388264099.575035"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
+         startingLineNumber = "73"
+         endingLineNumber = "73"
          landmarkName = "SequenceToMidiManager::writePatternToMidiFile(Pattern pattern, int BPM)"
          landmarkType = "5">
       </FileBreakpoint>

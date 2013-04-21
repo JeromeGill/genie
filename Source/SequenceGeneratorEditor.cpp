@@ -19,6 +19,9 @@ SequenceGeneratorEditor::SequenceGeneratorEditor()
     generatePattern.setButtonText("Generate Pattern");
     addAndMakeVisible(&generatePattern);
 
+    savePattern.addListener(this);
+    savePattern.setButtonText("Save Pattern");
+    addAndMakeVisible(&savePattern);
 
     labels.add(new Label);//("SeqGenLabel", "Sequence Controls"));
     labels.add(new Label);//("SeqComLabel", "Complexity"));
@@ -91,7 +94,8 @@ void SequenceGeneratorEditor::resized()
     int h = getHeight();
     
 
-    generatePattern.setBounds(fourBw, h/5 * 4 - twoBw, w - (2*fourBw), h/5 - twoBw);
+    generatePattern.setBounds(fourBw, h/5 * 4 - twoBw, w - (2*fourBw), h/10 - twoBw);
+    savePattern.setBounds(fourBw, h/10 * 9 - twoBw, w - (2*fourBw), h/10    - twoBw);
     
     for (int i = 0; i < slider.size(); i++) {
        slider[i]->setBounds(twoBw, h/5 * (i + 1),  w/2 - fourBw, h/5);
@@ -109,14 +113,28 @@ void SequenceGeneratorEditor::resized()
 
 void SequenceGeneratorEditor::buttonClicked (Button* button){
     if (button == &generatePattern) {
-        Pattern p = GeneratePattern(GeneratePatternPreset((int)slider[0]->getValue(),
+        p = new Pattern( GeneratePattern(GeneratePatternPreset((int)slider[0]->getValue(),
                                                           (int)slider[2]->getValue(),
-                                                          (int)slider[1]->getValue()));
-        PrintPattern(p);
-        //displayPattern(p);
-        writePatternToMidiFile(p, 120);
+                                                          (int)slider[1]->getValue())));
+        PrintPattern(*p);
+        
+        pattern.add(p);
+        
+
         
     }
+       else if (button == &savePattern) {
+           FileChooser chooser("Select Generated Sequence Destination", File::nonexistent,
+                               "mid",
+                               true);
+           chooser.browseForFileToSave(true);
+           
+           File midiFile = chooser.getResult();
+           
+           FileOutputStream outStream (midiFile);
+           
+           writePatternToMidiFile(*pattern.getLast(), 120).writeTo(outStream);
+       }
 }
 
 /**@Internal@*/

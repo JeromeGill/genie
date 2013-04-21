@@ -51,9 +51,11 @@ public:
     void addSliderListeners (Slider::Listener *listener);
     void removeSliderListeners (Slider::Listener *listener);
 private:
-    
+    Pattern *p;
+    OwnedArray<Pattern> pattern;
     OwnedArray<Label> labels;
     TextButton generatePattern;
+    TextButton savePattern;
     OwnedArray<Slider> slider;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceGeneratorEditor)

@@ -23,12 +23,13 @@ public:
     ~SequenceToMidiManager();
     
     MidiFile& writePatternToMidiFile(Pattern pattern, int BPM);
+    
     void addNoteToSequence(MidiMessageSequence Sequence,
                            int noteNumber,
                            float velocity,
                            double ticks,
                            double duration);
-    
+    void exportMidiFile(MidiFile &f);
 private:
     
     OwnedArray<MidiFile> midiFiles;

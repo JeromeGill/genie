@@ -25,11 +25,19 @@ MidiFile& SequenceToMidiManager::writePatternToMidiFile(Pattern pattern, int BPM
     
     MidiFile *newFile = new MidiFile;
     MidiMessageSequence seq;
+    
+    const int tpq = 96;
     newFile->addTrack(seq);
+    
+    newFile->setTicksPerQuarterNote (tpq);
+    
+
+    newFile->setSmpteTimeFormat (24,
+                                 4);
     
     //A bit cack handed at present
     
-    for (int i = 0; i < pattern.size(); i++) {
+    for (int i = 0; i < pattern[0].size(); i++) {
         int hit = GetPulses(pattern, i);
        
         int noteNumber;
@@ -53,13 +61,13 @@ MidiFile& SequenceToMidiManager::writePatternToMidiFile(Pattern pattern, int BPM
             noteNumber = 44; //Open Highhat
         }
         
-        double ticks = ((BPM/60)/2) * 1000 * pattern.size() * i;
-        double noteLength = (BPM/60) / 2;
+        double ticks = (tpq*0.5) * i;
+        double noteLength = (tpq*0.5) - 1;
         
         float velocity = 1.0;
       
         
-        std::cout<<noteNumber<<" "<<velocity<<" / "<<ticks<<" : "<<ticks+noteLength;
+        std::cout<<noteNumber<<" "<<velocity<<" / "<<ticks<<" : "<<ticks+noteLength<<"\n";
     }
 
     
@@ -77,6 +85,9 @@ void SequenceToMidiManager::addNoteToSequence(MidiMessageSequence Sequence,
     MidiMessage noteOff(juce::MidiMessage::noteOff(1, noteNumber));
     Sequence.addEvent(noteOff, ticks+duration);
     Sequence.updateMatchedPairs();
-    
+}
+
+void SequenceToMidiManager::exportMidiFile(MidiFile &f){
+    File midiSequencefile;
     
 }
