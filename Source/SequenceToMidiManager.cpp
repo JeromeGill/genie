@@ -24,14 +24,12 @@ SequenceToMidiManager::~SequenceToMidiManager(){
 void SequenceToMidiManager::writePatternToMidiFile(MidiFile& newFile, Pattern pattern, int BPM){
     
 
-    MidiMessageSequence *seq = new MidiMessageSequence;
+    MidiMessageSequence seq;
+   
     
-    newFile.addTrack(*seq);
-    
-    
-    newFile.setSmpteTimeFormat (4,
-                                 25);
-    //newFile->setTicksPerQuarterNote (tpq);
+    int tpq = 1000;
+    newFile.setSmpteTimeFormat (4, 25);
+    newFile.setTicksPerQuarterNote (tpq);
     
 
     //A bit cack handed at present
@@ -60,18 +58,18 @@ void SequenceToMidiManager::writePatternToMidiFile(MidiFile& newFile, Pattern pa
             noteNumber = 44; //Open Highhat
         }
         
-        double ticks = 60.0/(double)BPM * 0.5 * i *1000;
-        double noteLength = (60.0/(double)BPM * 0.5 *1000);
+       double ticks = 60.0/(double)BPM * 0.5 * i *1000;
+       double noteLength = (60.0/(double)BPM * 0.5 *1000);
         
         float velocity = 1.0;
       
         
         std::cout<<noteNumber<<" "<<velocity<<" / "<<ticks<<" : "<<ticks+noteLength<<"\n";
         
-        addNoteToSequence(*seq, noteNumber, velocity, ticks, ticks+noteLength);
+        addNoteToSequence(seq, noteNumber, velocity, ticks, ticks+noteLength);
     }
 
-    
+     newFile.addTrack(seq);
     //return newFile;
 }
 
@@ -81,9 +79,9 @@ void SequenceToMidiManager::addNoteToSequence(MidiMessageSequence& Sequence,
                                               double ticks,
                                               double duration)
 {
-    MidiMessage note(juce::MidiMessage::noteOn(1, noteNumber, velocity));
+    MidiMessage note(juce::MidiMessage::noteOn(10, noteNumber, velocity));
     Sequence.addEvent(note, ticks);
-    MidiMessage noteOff(juce::MidiMessage::noteOff(1, noteNumber));
+    MidiMessage noteOff(juce::MidiMessage::noteOff(10, noteNumber));
     Sequence.addEvent(noteOff, ticks+duration);
     Sequence.updateMatchedPairs();
 }

@@ -100,7 +100,6 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
             }
            
             std::cout<<"n "<<n<<"\n";
-            std::cout<<"Remainder Intervals "<<remainderIntervals<<"\n";
             
             P.np(ii, i).n += n; //Add n to the number of intervals in the necklace
             P.np(ii, i).p = rand() %  P.np(ii, i).n; //Generate a random number of pulses between 0 and the number of intervals in the necklace

@@ -32,7 +32,6 @@ public:
     void exportMidiFile(MidiFile &f);
 private:
     
-    OwnedArray<MidiFile> midiFiles;
     MidiMessageSequence* seq;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceToMidiManager)
 };
