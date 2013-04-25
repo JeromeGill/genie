@@ -124,6 +124,7 @@ void SequenceGeneratorEditor::buttonClicked (Button* button){
         
     }
        else if (button == &savePattern) {
+           
            FileChooser chooser("Select Generated Sequence Destination", File::nonexistent,
                                "mid",
                                true);

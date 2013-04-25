@@ -10,7 +10,7 @@
 #define __Genie__audioEditor__
 
 #include "genieHeader.h"
-#include "audioFile.h"
+#include "audioFileLoader.h"
 #include "SplittableWaveDisplay.h"
 #include "SubsectionEditor.h"
 
@@ -80,7 +80,7 @@ private:
     // Member Objects
     
     //File Loading bar
-    AudioFile LoadBar;
+    AudioFileLoader LoadBar;
    
     
     //Rendering Thread

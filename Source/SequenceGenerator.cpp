@@ -73,9 +73,9 @@ PatternPreset SequenceGenerator::GetRandomPatternPreset(){
  Values outside of these ranges get rounded
  */
 PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
-                                                       int sequencesPerPatten,
+                                                       int sequencesPerPattern,
                                                        int intervalsPerSequence){
-    PatternPreset P(necklacesPerSequence,sequencesPerPatten);
+    PatternPreset P(necklacesPerSequence,sequencesPerPattern);
     
 
     
@@ -85,31 +85,26 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
         
         int remainderIntervals = intervalsPerSequence * 8; //For each sequence determine how many intervals need distributing between each necklace
         
+        
+        
         for (int ii = 0; remainderIntervals > 0; ii++) { //Move through each necklace in the sequence for as long as there are intervals to distribute
             
             if(ii == P.x()){ //Move back to the first necklace if reached the end of the cycle
              ii = 0;
             }
             
-            int n = MINNECKLACESIZE + (rand() % (intervalsPerSequence - MINNECKLACESIZE)); //Generate a random number between the minimum number of necklaces and the total intervals in a sequence
+            int n = MINNECKLACESIZE + (rand() % (intervalsPerSequence - MINNECKLACESIZE)); //Generate a random number between the minimum necklace size and the total intervals in a sequence
             
             remainderIntervals -= n; //Subtract that number from the remainding intervals
             
             if  (remainderIntervals < 0) { //If the remainding intervals are less than zero add the difference back on to n
                 n += remainderIntervals;
             }
-           
-            std::cout<<"n "<<n<<"\n";
             
             P.np(ii, i).n += n; //Add n to the number of intervals in the necklace
             P.np(ii, i).p = rand() %  P.np(ii, i).n; //Generate a random number of pulses between 0 and the number of intervals in the necklace
            
             P.np(ii, i).b = true;
-        
-            std::cout<<"Pattern "<<ii<<" "<<i<<" n "<<P.np(ii, i).n<<" p "<<P.np(ii, i).p<<"\n";
-//            P.n(ii, i).m = 8; //Not random at the moment for testing.
-//            P.n(ii, i).p = 5;
-//            P.n(ii, i).b = true;
         }
     }
     
@@ -264,4 +259,77 @@ void SequenceGenerator::addListener(Listener* listener){
  */
 void SequenceGenerator::removeListener(Listener* listener){
     listenerList.remove(listener);
+}
+
+//==============================================================================
+/** Add a MidiNote to a midi sequence at ticks.
+ 
+ A noteoff is automatically placed at ticks+duration
+ */
+void SequenceGenerator::addNoteToSequence(MidiMessageSequence& Sequence,
+                                          double ticks,
+                                          double duration,
+                                          int noteNumber,
+                                          int channel,
+                                          float velocity)
+{
+    MidiMessage note(juce::MidiMessage::noteOn(channel, noteNumber, velocity));
+    Sequence.addEvent(note, ticks);
+    MidiMessage noteOff(juce::MidiMessage::noteOff(channel, noteNumber));
+    Sequence.addEvent(noteOff, ticks+duration);
+    Sequence.updateMatchedPairs();
+}
+/** Write a generated pattern to midifile at a specified BPM
+ 
+ */
+void SequenceGenerator::writePatternToMidiFile(MidiFile& newFile, Pattern pattern, int BPM){
+    
+    
+    MidiMessageSequence seq;
+    
+    
+    int tpq = 1000;
+    newFile.setSmpteTimeFormat (4, 25);
+    newFile.setTicksPerQuarterNote (tpq);
+    
+    
+    //A bit cack handed at present
+    
+    for (int i = 0; i < pattern[0].size(); i++) {
+        int hit = GetPulses(pattern, i);
+        
+        int noteNumber;
+        
+        if (hit == 0) {
+            noteNumber = 42; //Closed Highhat
+        }
+        else if (hit == pattern.size()){
+            noteNumber = 36; //Kick
+        }
+        else if (hit == pattern.size() - 1 && hit > 0){
+            noteNumber = 38; //Snare
+        }
+        else if (hit == pattern.size() - 2 && hit > 0){
+            noteNumber = 44; //Open Highhat
+        }
+        else if (hit == pattern.size() - 3 && hit > 0){
+            noteNumber = 52; //Cymbol
+        }
+        else if (hit == pattern.size() - 4 && hit > 0){
+            noteNumber = 44; //Open Highhat
+        }
+        
+        double ticks = 60.0/(double)BPM * 0.5 * i *1000;
+        double noteLength = (60.0/(double)BPM * 0.5 *1000);
+        
+        float velocity = 1.0;
+        
+        
+        std::cout<<noteNumber<<" "<<velocity<<" / "<<ticks<<" : "<<ticks+noteLength<<"\n";
+        
+        addNoteToSequence(seq, noteNumber, velocity, ticks, ticks+noteLength);
+    }
+    
+    newFile.addTrack(seq);
+    //return newFile;
 }

@@ -12,7 +12,7 @@
 #define __SEQUENCEGENERATOREDITOR_H_86DD913__
 
 #include "genieHeader.h"
-#include "SequenceToMidiManager.h"
+#include "SequenceGenerator.h"
 #include "MonomeDisplay.h"
 
 
@@ -29,7 +29,7 @@
 class SequenceGeneratorEditor : public Component,
                                 public ButtonListener,
                                 public Slider::Listener,
-                                public SequenceToMidiManager
+                                public SequenceGenerator
 
 {
 public:
@@ -50,6 +50,7 @@ public:
 
     void addSliderListeners (Slider::Listener *listener);
     void removeSliderListeners (Slider::Listener *listener);
+    
 private:
     Pattern *p;
     OwnedArray<Pattern> pattern;

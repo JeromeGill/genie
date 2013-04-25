@@ -154,11 +154,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388248410.252315"
+         timestampString = "388349530.874797"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "219"
-         endingLineNumber = "219"
+         startingLineNumber = "215"
+         endingLineNumber = "215"
          landmarkName = "SequenceGenerator::GetPulses(Pattern pattern, int position)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -231,26 +231,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Source/SequenceToMidiManager.cpp"
-         timestampString = "388328489.443108"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "72"
-         endingLineNumber = "72"
-         landmarkName = "SequenceToMidiManager::writePatternToMidiFile(MidiFile&amp; newFile, Pattern pattern, int BPM)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388248410.252315"
+         timestampString = "388349530.874797"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "117"
-         endingLineNumber = "117"
-         landmarkName = "SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence, int sequencesPerPatten, int intervalsPerSequence)"
+         startingLineNumber = "113"
+         endingLineNumber = "113"
+         landmarkName = "SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence, int sequencesPerPattern, int intervalsPerSequence)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -13,9 +13,9 @@
 */
 
  
-#include "audioFile.h"
+#include "audioFileLoader.h"
 
-AudioFile::AudioFile (AudioFilePlayer &audioFilePlayer_)
+AudioFileLoader::AudioFileLoader (AudioFilePlayer &audioFilePlayer_)
 : audioFilePlayer(audioFilePlayer_)
 {    
     
@@ -25,7 +25,7 @@ AudioFile::AudioFile (AudioFilePlayer &audioFilePlayer_)
     
     //formatManager = audioFilePlayer->getAudioFormatManager();
 
-    fileChooser = new FilenameComponent ("AudioFile",
+    fileChooser = new FilenameComponent ("AudioFileLoader",
                                          File::nonexistent,
                                          true, false, false,
                                          audioFilePlayer.getAudioFormatManager()->getWildcardForAllFormats(),
@@ -50,7 +50,7 @@ AudioFile::AudioFile (AudioFilePlayer &audioFilePlayer_)
     
         
 }
-AudioFile::~AudioFile()
+AudioFileLoader::~AudioFileLoader()
 {
     fileChooser->removeListener(this);
     
@@ -62,7 +62,7 @@ AudioFile::~AudioFile()
 
 //ComponentCallbacks============================================================
 
-void AudioFile::resized()
+void AudioFileLoader::resized()
 {
     int w = getWidth();
     int h = getHeight();
@@ -76,7 +76,7 @@ void AudioFile::resized()
 }
 
 
-void AudioFile::paint (Graphics& g)
+void AudioFileLoader::paint (Graphics& g)
 {
 
 
@@ -84,14 +84,14 @@ void AudioFile::paint (Graphics& g)
 
 //FilenameComponent Callback=====================================================
 
-void AudioFile::filenameComponentChanged (FilenameComponent* filenameComponent)
+void AudioFileLoader::filenameComponentChanged (FilenameComponent* filenameComponent)
 {
     audioFilePlayer.setFile(filenameComponent->getCurrentFile());
     
 }
 
 //Button Callbacks
-void AudioFile::buttonClicked (Button* button)
+void AudioFileLoader::buttonClicked (Button* button)
 {
     if (button == buttons[play])
     {
@@ -113,13 +113,13 @@ void AudioFile::buttonClicked (Button* button)
 }
 
 //MenuBarCallbacks==============================================================
-StringArray AudioFile::getMenuBarNames()
+StringArray AudioFileLoader::getMenuBarNames()
 {
 	const char* const names[] = { "File", 0 };
 	return StringArray (names);
 }
 
-PopupMenu AudioFile::getMenuForIndex (int topLevelMenuIndex, const String& menuName)
+PopupMenu AudioFileLoader::getMenuForIndex (int topLevelMenuIndex, const String& menuName)
 {
 	PopupMenu menu;
     if (topLevelMenuIndex == 0)
@@ -127,7 +127,7 @@ PopupMenu AudioFile::getMenuForIndex (int topLevelMenuIndex, const String& menuN
 	return menu;
 }
 
-void AudioFile::menuItemSelected (int menuItemID, int topLevelMenuIndex)
+void AudioFileLoader::menuItemSelected (int menuItemID, int topLevelMenuIndex)
 {
 //	if (topLevelMenuIndex == FileMenu)
 //    {

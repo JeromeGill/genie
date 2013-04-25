@@ -79,7 +79,7 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
     
     //Zoom and Scroll
     SlZoom.setRange (0.01, 1);
-    addAndMakeVisible(&SlZoom);
+    //addAndMakeVisible(&SlZoom);
     SlZoom.addListener(this);
           
     //Text Labels

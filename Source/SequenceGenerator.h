@@ -193,11 +193,28 @@ public:
     /** Remove a listener
      */
     void removeListener(Listener* listener);
+    //==============================================================================
+    /** Add a MidiNote to a midi sequence at ticks.
+     
+     A noteoff is automatically placed at ticks+duration
+     */
+    void writePatternToMidiFile(MidiFile& file, Pattern pattern, int BPM);
+    /** Write a generated pattern to midifile at a specified BPM
+     */
+    void addNoteToSequence(MidiMessageSequence& Sequence,
+                           double ticks,
+                           double duration,
+                           int noteNumber,
+                           int channel = 10,
+                           float velocity = 1);
+    
 private:
     /**The recursive part of the GenerateNecklace() function
      */
     Sequence DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly = false);
     ListenerList<Listener> listenerList;
+    
+     MidiMessageSequence* seq;
 };
 
 

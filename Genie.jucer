@@ -17,17 +17,16 @@
       <FILE id="SLBsWI" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
     </GROUP>
     <GROUP id="{78A5896F-F05D-A04F-1CBB-D48031D44577}" name="Source">
-      <GROUP id="{8098A738-2E94-C3C4-D31B-4A68FC06E057}" name="Sequence"/>
-      <GROUP id="{C9CD087E-24B1-358B-8F23-2F80CB20FD8E}" name="Midi">
-        <FILE id="J5DMEm" name="MidiFileGenerator.cpp" compile="1" resource="0"
-              file="Source/MidiFileGenerator.cpp"/>
-        <FILE id="emq5C3" name="MidiFileGenerator.h" compile="0" resource="0"
-              file="Source/MidiFileGenerator.h"/>
-        <FILE id="YofMFe" name="MidiManager.cpp" compile="1" resource="0" file="Source/MidiManager.cpp"/>
-        <FILE id="VsWDVs" name="MidiManager.h" compile="0" resource="0" file="Source/MidiManager.h"/>
-      </GROUP>
       <FILE id="ax865A" name="genieHeader.h" compile="0" resource="0" file="Source/genieHeader.h"/>
       <GROUP id="{DAF7305A-2289-7F5C-EE13-43252920DDE1}" name="Processing">
+        <FILE id="UZA45R" name="PluginProcessor.cpp" compile="1" resource="0"
+              file="Source/PluginProcessor.cpp"/>
+        <FILE id="oqxloY" name="PluginProcessor.h" compile="0" resource="0"
+              file="Source/PluginProcessor.h"/>
+        <GROUP id="{C9CD087E-24B1-358B-8F23-2F80CB20FD8E}" name="Midi">
+          <FILE id="YofMFe" name="MidiManager.cpp" compile="1" resource="0" file="Source/MidiManager.cpp"/>
+          <FILE id="VsWDVs" name="MidiManager.h" compile="0" resource="0" file="Source/MidiManager.h"/>
+        </GROUP>
         <GROUP id="{C5E6B3A7-EFA1-A707-503E-BA1D2BBEBFBA}" name="Polyphonic File Player">
           <FILE id="uJXQiP" name="PolyPlayerVoice.h" compile="0" resource="0"
                 file="Source/PolyPlayerVoice.h"/>
@@ -36,21 +35,17 @@
           <FILE id="qcVyl0" name="PolyAudioFilePlayer.h" compile="0" resource="0"
                 file="Source/PolyAudioFilePlayer.h"/>
         </GROUP>
-        <FILE id="UZA45R" name="PluginProcessor.cpp" compile="1" resource="0"
-              file="Source/PluginProcessor.cpp"/>
-        <FILE id="oqxloY" name="PluginProcessor.h" compile="0" resource="0"
-              file="Source/PluginProcessor.h"/>
       </GROUP>
       <GROUP id="{F0D8B97B-E026-B5C0-E168-47884A84F25A}" name="Gui">
+        <FILE id="u7TlY7" name="PluginEditor.cpp" compile="1" resource="0"
+              file="Source/PluginEditor.cpp"/>
+        <FILE id="JItHX0" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
         <GROUP id="{220AABB6-6A86-9D64-A102-D6FE11B8E21E}" name="SubsectionEditor">
           <FILE id="c0rLqf" name="SubsectionEditor.cpp" compile="1" resource="0"
                 file="Source/SubsectionEditor.cpp"/>
           <FILE id="Co94qy" name="SubsectionEditor.h" compile="0" resource="0"
                 file="Source/SubsectionEditor.h"/>
         </GROUP>
-        <FILE id="u7TlY7" name="PluginEditor.cpp" compile="1" resource="0"
-              file="Source/PluginEditor.cpp"/>
-        <FILE id="JItHX0" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
         <GROUP id="{3C1CC413-EE0A-4DE3-9FFE-9C7758772B6F}" name="AudioEditor">
           <FILE id="dwtugu" name="audioEditor.cpp" compile="1" resource="0" file="Source/audioEditor.cpp"/>
           <FILE id="zHm0Ok" name="audioEditor.h" compile="0" resource="0" file="Source/audioEditor.h"/>
@@ -59,29 +54,29 @@
                   file="Source/SplittableWaveDisplay.cpp"/>
             <FILE id="SQcwgV" name="SplittableWaveDisplay.h" compile="0" resource="0"
                   file="Source/SplittableWaveDisplay.h"/>
-            <FILE id="pXOV4d" name="audioFile.cpp" compile="1" resource="0" file="Source/audioFile.cpp"/>
-            <FILE id="Sorbxj" name="audioFile.h" compile="0" resource="0" file="Source/audioFile.h"/>
+            <FILE id="pXOV4d" name="audioFileLoader.cpp" compile="1" resource="0"
+                  file="Source/audioFileLoader.cpp"/>
+            <FILE id="Sorbxj" name="audioFileLoader.h" compile="0" resource="0"
+                  file="Source/audioFileLoader.h"/>
           </GROUP>
         </GROUP>
         <GROUP id="{2E10A5A4-F935-62A8-FEC3-07384F970F22}" name="SequenceEditor">
-          <FILE id="LiPuYn" name="MonomeDisplay.cpp" compile="1" resource="0"
-                file="Source/MonomeDisplay.cpp"/>
-          <FILE id="UYyySC" name="MonomeDisplay.h" compile="0" resource="0" file="Source/MonomeDisplay.h"/>
-          <FILE id="aTBvHc" name="SequenceGeneratorEditor.cpp" compile="1" resource="0"
-                file="Source/SequenceGeneratorEditor.cpp"/>
-          <FILE id="vjoHnW" name="SequenceGeneratorEditor.h" compile="0" resource="0"
-                file="Source/SequenceGeneratorEditor.h"/>
           <FILE id="Z33G3U" name="sequenceEditor.cpp" compile="1" resource="0"
                 file="Source/sequenceEditor.cpp"/>
           <FILE id="n4Nmu5" name="sequenceEditor.h" compile="0" resource="0"
                 file="Source/sequenceEditor.h"/>
+          <GROUP id="{3840A336-36DB-05DB-C271-50D166AB1FF4}" name="Components">
+            <FILE id="LiPuYn" name="MonomeDisplay.cpp" compile="1" resource="0"
+                  file="Source/MonomeDisplay.cpp"/>
+            <FILE id="UYyySC" name="MonomeDisplay.h" compile="0" resource="0" file="Source/MonomeDisplay.h"/>
+            <FILE id="aTBvHc" name="SequenceGeneratorEditor.cpp" compile="1" resource="0"
+                  file="Source/SequenceGeneratorEditor.cpp"/>
+            <FILE id="vjoHnW" name="SequenceGeneratorEditor.h" compile="0" resource="0"
+                  file="Source/SequenceGeneratorEditor.h"/>
+          </GROUP>
         </GROUP>
       </GROUP>
       <GROUP id="{948199C5-849D-DB83-6FF6-BDB0AE8CFA87}" name="Shared">
-        <FILE id="rshu7g" name="SequenceToMidiManager.cpp" compile="1" resource="0"
-              file="Source/SequenceToMidiManager.cpp"/>
-        <FILE id="aXxziI" name="SequenceToMidiManager.h" compile="0" resource="0"
-              file="Source/SequenceToMidiManager.h"/>
         <FILE id="PFIfoC" name="SubSection.h" compile="0" resource="0" file="Source/SubSection.h"/>
         <FILE id="fsjPeB" name="SequenceGenerator.cpp" compile="1" resource="0"
               file="Source/SequenceGenerator.cpp"/>

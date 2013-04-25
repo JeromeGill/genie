@@ -6,15 +6,15 @@
 //
 //
 
-#ifndef __audioFile__
-#define __audioFile__
+#ifndef __audioFileLoader__
+#define __audioFileLoader__
 
 #include <iostream>
 #include "genieHeader.h"
 
 
 /**=====================================================================================================================
- audioFile is a generic wav and aiff file load bar
+ audioFileLoader is a generic wav and aiff file load bar
  It contains an AudioFilePlayer object from the dRowAudio Module for JUCE to handle playback
  
  Functions
@@ -29,14 +29,14 @@
  Set BPM
 ======================================================================================================================*/
 
-class AudioFile  :  public  Component,
+class AudioFileLoader  :  public  Component,
                     public  MenuBarModel,
                     public  FilenameComponentListener,
                     public  Button::Listener
 {
 public:
-    AudioFile (AudioFilePlayer &audioFilePlayer_);
-    ~AudioFile();
+    AudioFileLoader (AudioFilePlayer &audioFilePlayer_);
+    ~AudioFileLoader();
     
     /**@Internal@*/
     void paint (Graphics& g);
@@ -78,7 +78,7 @@ public:
 private:
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioFile);
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioFileLoader);
     
     
     //FileLoader and browser
