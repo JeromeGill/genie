@@ -15,12 +15,24 @@
 #include "PolyAudioFilePlayer.h"
 #include "AudioSubsectionManager.h"
 
-/**MidiManager provides a MIDI interface for a PolyAudioFilePlayer object
- */
+//====================================================================================
+/**
 
+ \breif MidiManager provides a MIDI interaction between PolyAudioFilePlayer and AudioSubsectionManager
+ 
+   It utilises the Juce [MidiKeyboardState] method of MidiIO
+ 
+ [MidiKeyboardState]: http://rawmaterialsoftware.com/juce/api/classMidiKeyboardState.html
+*/
+//====================================================================================
 
 class MidiManager : public  MidiKeyboardStateListener
 {
+    
+    MidiKeyboardState& state;
+    PolyAudioFilePlayer& player;
+    AudioSubsectionManager& subsections;
+
 public:
     MidiManager(PolyAudioFilePlayer& polyAudioFilePlayer_,
                 AudioSubsectionManager& audioSubsectionManager_,
@@ -42,11 +54,7 @@ public:
     
     
 private:
-    MidiKeyboardState& state;
-    PolyAudioFilePlayer& player;
-    AudioSubsectionManager& subsections;
-    
-    int BPM;
+  
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MidiManager)
 };

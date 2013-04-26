@@ -11,7 +11,7 @@
 #include "SplittableWaveDisplay.h"
 
 
-SplittableWaveDisplay::SplittableWaveDisplay(AudioThumbnailImage& sourceToBeUsed,
+SplittableWaveDisplay::SplittableWaveDisplay(drow::AudioThumbnailImage& sourceToBeUsed,
                                              TimeSliceThread& threadToUse_,
                                              AudioSubsectionManager& subsectionManager_)
 :   waveDisplay(sourceToBeUsed, threadToUse_),
@@ -152,7 +152,7 @@ void SplittableWaveDisplay::subsectionChanged(int SubsectionIndex){
     //std::cout<<SubsectionIndex<<" Changed \n";
     repaint();
 }
-void SplittableWaveDisplay::fileChanged (AudioFilePlayer* player){
+void SplittableWaveDisplay::fileChanged (drow::AudioFilePlayer* player){
     int64 audioFileLength = player->getTotalLength();
     currentXScale = audioFileLength / getWidth();
     subsections.clear();

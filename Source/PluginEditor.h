@@ -17,22 +17,22 @@
 #include "SequenceEditor.h"
 #include "SubsectionEditor.h"
 
-
-/**==============================================================================
- 
- GenieAudioProcessorEditor is the visual parent component of Genie.
+//==============================================================================
+/**
+ \breif GenieAudioProcessorEditor is the visual parent component of Genie.
  
  It comprises of;
-    AudioEditor
-    SequenceEditor
-    SliceEditor
- 
-==============================================================================*/
+AudioEditor
+SequenceEditor
+SubsectionEditor
+*/
+//==============================================================================
+
 class GenieAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
     GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter,
-                               AudioFilePlayer& audioFilePlayer_,
+                               drow::AudioFilePlayer& audioFilePlayer_,
                                AudioSubsectionManager &audioSubsectionManager_,
                                PolyAudioFilePlayer &polyAudioFilePlayer_);
     ~GenieAudioProcessorEditor();

@@ -14,39 +14,20 @@
 #include "SplittableWaveDisplay.h"
 #include "SubsectionEditor.h"
 
-/**==============================================================================
+//==============================================================================
+/**
  
- audioEditor is an audio file display and slicer object
+ \brief AudioEditor is an Audio File Loader, display and slicer object
  
- It comprises of;
-    An audioFile generic file play back object, adapted from the dRowAudio class AudioFilePlayer
-    A  SplitableWaveDisplay object for rendering waveforms
-    A Slice Management Class, for storing each slice's midi data, start and end sample and duration in samples.
-
+ An AudioFileLoader loads an audio file into [drow::AudioFilePlayer]
+ An image is rendered with a [drow::AudioThumbnailImage] on a [TimeSliceThread]
+ This image is passed to a SplittableWaveDisplay and a SubsectionEditor (poor quality messy method that needs replacing - perhaps a listener system would be cleaner)
  
- This will load an audio file and display its waveform. Clicking on the waveform will reposition the transport source.
- 
- It allows the user to see and modify the position of the start and end point of a slice.
- They may also create new slices by splitting an existing slice by adding a marker or adjoin two slices into one by removing one.
- 
- It needs to be created when an audiofile is loaded up and cleared when an audiofile is closed.
- This is because it needs the length of an audio file in samples to initialise.
- 
- 
- Features;
-    Adjustable zoom
-    Shift Click to dynamically create Slices
-    Shift + Alt click to Delete Slices
-    Automatic endpoint reallocation when adjacent markers are created
-    Entire way that slices are highlighted needs addressing 
- 
- Todo;
-    Make overlay so you can click anywhere
-    Set marker start and end sample by dragging markers - probably needs making threadsafe
- 
- 
- ==============================================================================*/
-
+ [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
+ [drow::AudioThumbnailImage]: http://drowaudio.co.uk/docs/class_audio_thumbnail_image.html
+ [TimeSliceThread]: http://rawmaterialsoftware.com/juce/api/classTimeSliceThread.html
+*/
+//==============================================================================
 
 #define renderSampleRatio   128 //a lower number gives higher definition rendering of audio files
 #define thumbResolution     10 //a higher number gives a higher resolution of the rendered file. 
@@ -56,8 +37,7 @@ class AudioEditor : public Component,
 {
 public:
     AudioEditor(AudioSubsectionManager &audioSubsectionManager_,
-                AudioFilePlayer &audioFilePlayer_,
-                //AudioThumbnailImage& image,
+                drow::AudioFilePlayer &audioFilePlayer_,
                 SubsectionEditor& subsectionEditor);
     ~AudioEditor();
     
@@ -90,8 +70,8 @@ private:
     AudioThumbnail          audioThumbNail;
     AudioThumbnail          audioThumbNailHighDef;
     AudioThumbnailCache     audioThumbNailCache;
-    ScopedPointer<AudioThumbnailImage>    audioThumbnailImage;
-    ScopedPointer<AudioThumbnailImage>    audioThumbnailImageHighDef;
+    ScopedPointer<drow::AudioThumbnailImage>    audioThumbnailImage;
+    ScopedPointer<drow::AudioThumbnailImage>    audioThumbnailImageHighDef;
     ScopedPointer<SplittableWaveDisplay>  waveDisplay;
     
     

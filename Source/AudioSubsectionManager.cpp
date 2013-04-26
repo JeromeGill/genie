@@ -10,7 +10,7 @@
 
 #include "AudioSubsectionManager.h"
 
-AudioSubsectionManager::AudioSubsectionManager(AudioFilePlayer &filePlayer_)
+AudioSubsectionManager::AudioSubsectionManager(drow::AudioFilePlayer &filePlayer_)
 : filePlayer(&filePlayer_)
 {
     HitTypeStringArray.add("Unnamed");

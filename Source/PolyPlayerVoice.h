@@ -13,13 +13,18 @@
 
 #include "genieHeader.h"
 
-/**============================================================================== 
+//==============================================================================
+/**
+
+ \breif PolyPlayerVoice crops a section of an [AudioFormatReader].
  
- PolyPlayerVoice is a class designed to crop a section of an AudioFormatReader.
+ It returns an [AudioTransportSource] that may be used to playback the cropped section.
+ To help keep threads to a minimum a [TimeSliceThread] must be passed from higher up.
  
- It returns an AudioTransportSource that may be used to playback the cropped section.
- 
- ==============================================================================*/
+ [AudioFormatReader]: http://rawmaterialsoftware.com/juce/api/classAudioFormatReader.html
+ [TimeSliceThread]: http://rawmaterialsoftware.com/juce/api/classTimeSliceThread.html
+ */
+ //==============================================================================
 
 class PolyPlayerVoice
 {

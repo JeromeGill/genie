@@ -22,28 +22,36 @@
 #define MINNECKLACESIZE 3 //The minimum intervals in a necklace
 
 
- /**==============================================================================
-  SequenceGenerator generates a vector of vectors of Bools that represents a rhythmic sequence.
-  Each sequence consists of two or more "necklaces". Each necklace is a cyclical sequence of pulses.
+//==============================================================================
+/**
+  \breif SequenceGenerator is where the rythmic generation aspect of genie occurs
+ 
+ SequenceGenerator generates a vector of vectors of Bools that represents a rhythmic sequence.
+ Each sequence consists of two or more "necklaces". Each necklace is a cyclical sequence of pulses.
   A number of sequences are stacked on top of each other to form a pattern. 
   
   A pattern is generated from a PatternPreset structure. 
   
   Features;
-    Generate a vector of bools using euclid method
-    Concate a number of these vectors to form a sequence
-    Generate a pattern by layering sequences
-    Return the number of true values at each position of a sequence vector
-    PatternPreset Struct 
-  
+ Generate a vector of bools using euclid method
+ Concate a number of these vectors to form a sequence
+ Generate a pattern by layering sequences
+ Return the number of true values at each position of a sequence vector
+ PatternPreset Struct 
+ Randomly generate a pattern preset
+ Export a pattern as a midifile
+ Print a pattern preset
+ 
   ToDo;
-    Randomly generate a pattern preset
-    Store structs used to generate sequence vector on hard disk
-    Print a pattern preset
-    Protection against stupid numbers in PatternPreset struct
-    Export a pattern as a midifile
+    
+ Store structs used to generate sequence vector on hard disk
+ Resolve bug with higher complexitys of patterns crashing
+ Protection against stupid numbers in PatternPreset struct
+    
   
- ============================================================================== */
+*/
+//==============================================================================
+
 typedef std::vector<bool> Sequence;
 typedef std::vector<Sequence> Pattern;
 

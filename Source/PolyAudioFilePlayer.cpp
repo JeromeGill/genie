@@ -10,7 +10,7 @@
 
 #include "PolyAudioFilePlayer.h"
 
-PolyAudioFilePlayer::PolyAudioFilePlayer(AudioFilePlayer &audioFilePlayer_)
+PolyAudioFilePlayer::PolyAudioFilePlayer(drow::AudioFilePlayer &audioFilePlayer_)
 : audioFilePlayer(&audioFilePlayer_),
 thread("voices")
 
@@ -80,7 +80,7 @@ void PolyAudioFilePlayer::stopVoice(int voiceIndex){
 }
 //==============================================================================
 //Callbacks
-void PolyAudioFilePlayer::fileChanged(AudioFilePlayer *player){
+void PolyAudioFilePlayer::fileChanged(drow::AudioFilePlayer *player){
     masterReader = audioFilePlayer->getAudioFormatManager()->createReaderFor(audioFilePlayer->getFile());
     
 }

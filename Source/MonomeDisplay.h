@@ -14,9 +14,12 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "genieHeader.h"
 //==============================================================================
-/*
+/**
+ \breif MonomeDisplay is a grid of SequenceElement arranged like a [Monome]
+ 
+ [Monome]:http://monome.org/
 */
-
+//==============================================================================
 class SequenceElement : public Component {
     bool active;
     Colour activeColour;

@@ -27,7 +27,7 @@
 
 
 AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
-                          AudioFilePlayer &audioFilePlayer_,
+                          drow::AudioFilePlayer &audioFilePlayer_,
                           //AudioThumbnailImage& image,
                           SubsectionEditor& subsectionEditor)
 :
@@ -46,7 +46,7 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
 
     
     //The waveform bitmap rendering device
-    audioThumbnailImage = new AudioThumbnailImage(audioFilePlayer_,
+    audioThumbnailImage = new drow::AudioThumbnailImage(audioFilePlayer_,
                                                   audioThumbNailCache.getTimeSliceThread(),
                                                   audioThumbNail,
                                                   renderSampleRatio);

@@ -14,25 +14,27 @@
 #include "genieHeader.h"
 #include "PolyPlayerVoice.H"
 
-/**==============================================================================
+//==============================================================================
+/**
  
- PolyAudioFilePlayer is an object that plays subsections of an AudioFilePlayer polyphonically
+ \breif PolyAudioFilePlayer enables polyphonic playback of cropped sections of [drow::AudioFilePlayer]
  
- Features
-
+ It manages an array of PolyPlayerVoice via the Juce [AudioSource] method with a [MixerAudioSource]
  
- ToDo
+ [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
+ [AudioSource]: http://rawmaterialsoftware.com/juce/api/classAudioSource.html
+ [MixerAudioSource]: http://rawmaterialsoftware.com/juce/api/classMixerAudioSource.html
  
- remove reliance on DRowAudio Components
- 
- ==============================================================================*/
+ It currently takes POLYPHONY from genieheader - it should probably be internal
+*/
+//==============================================================================
 
 
 class PolyAudioFilePlayer : public AudioSource,
-                            public AudioFilePlayer::Listener
+                            public drow::AudioFilePlayer::Listener
 {
 public:
-    PolyAudioFilePlayer(AudioFilePlayer &audioFilePlayer_);
+    PolyAudioFilePlayer(drow::AudioFilePlayer &audioFilePlayer_);
     ~PolyAudioFilePlayer();
     
     //==============================================================================
@@ -44,7 +46,7 @@ public:
     
     //==============================================================================
     /** @internal */
-    void fileChanged(AudioFilePlayer *player);
+    void fileChanged(drow::AudioFilePlayer *player);
     
     //==============================================================================
     /** Implementation of the AudioSource method. */
@@ -59,7 +61,7 @@ public:
 private:
     MixerAudioSource mixer;
     
-    AudioFilePlayer*                    audioFilePlayer;
+    drow::AudioFilePlayer*              audioFilePlayer;
     ScopedPointer<AudioFormatReader>    masterReader;
     TimeSliceThread                     thread;
     

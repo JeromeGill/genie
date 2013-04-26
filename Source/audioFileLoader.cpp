@@ -15,7 +15,7 @@
  
 #include "audioFileLoader.h"
 
-AudioFileLoader::AudioFileLoader (AudioFilePlayer &audioFilePlayer_)
+AudioFileLoader::AudioFileLoader (drow::AudioFilePlayer &audioFilePlayer_)
 : audioFilePlayer(audioFilePlayer_)
 {    
     

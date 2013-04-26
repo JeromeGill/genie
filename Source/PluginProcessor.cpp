@@ -18,7 +18,7 @@ GenieAudioProcessor::GenieAudioProcessor()
     
     audioFormatManager = new AudioFormatManager();
     audioFormatManager->registerBasicFormats();
-    audioFilePlayer = new AudioFilePlayer();
+    audioFilePlayer = new drow::AudioFilePlayer();
     audioFilePlayer->setAudioFormatManager(audioFormatManager, false);
     
     polyPlayer = new PolyAudioFilePlayer(*audioFilePlayer);
@@ -138,21 +138,11 @@ void GenieAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    
-    
     std::cout<<"samplerate : " <<sampleRate<<"\n";
     std::cout<<getNumOutputChannels()<<" outs \n";
     
-    osc.initialiseOscillator (sampleRate, 220.0);                //Initialise Oscilator Object(s)
-    
    
     mixerAudioSource.prepareToPlay(samplesPerBlock, sampleRate);
-    
-    
-    
-   //stream.createReaderFor (audioFilePlayer.getInputStream(),true); //Audiofile player is reading from a file not a stream??
-    
-   
 }
 
 void GenieAudioProcessor::releaseResources()
@@ -165,19 +155,22 @@ void GenieAudioProcessor::releaseResources()
 void GenieAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
     
-    float LchannelData;
-    float RchannelData;
+
     
     const int numSamples = buffer.getNumSamples();
-    
-    //const float *pfInBuffer0;
-    //const float *pfInBuffer1;
+
     
     AudioSourceChannelInfo channelInfo(buffer);
     mixerAudioSource.getNextAudioBlock(channelInfo); 
     keyboardState.processNextMidiBuffer(midiMessages, 0, numSamples, true);
     
     
+    //Utilise the following method for any audio processing if needed
+//    float LchannelData;
+//    float RchannelData;
+//    
+//    const float *pfInBuffer0;
+//    const float *pfInBuffer1;
     
 //    float *channel0 = buffer.getArrayOfChannels()[0]; //A pointer to the buffer for channel one
 //    float *channel1 = buffer.getArrayOfChannels()[1]; //A pointer to the buffer for channel two

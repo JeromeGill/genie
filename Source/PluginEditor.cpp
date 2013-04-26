@@ -16,7 +16,7 @@
 //==============================================================================
 
 GenieAudioProcessorEditor::GenieAudioProcessorEditor (GenieAudioProcessor* ownerFilter,
-                                                      AudioFilePlayer& audioFilePlayer_,
+                                                      drow::AudioFilePlayer& audioFilePlayer_,
                                                       AudioSubsectionManager &audioSubsectionManager_,
                                                       PolyAudioFilePlayer &polyAudioFilePlayer_)
 :   AudioProcessorEditor (ownerFilter), 

@@ -15,6 +15,23 @@
 #include "PolyAudioFilePlayer.h"
 #include "genieLogo.h"
 
+//==============================================================================
+/**
+ 
+ \breif SubsectionEditor displays the most recently modified SubSection in a SubSectionManager.
+ 
+ It requires a [drow::AudioThumbnailImage] with the waveform loaded to be passed into it.
+ This means it needs do no rendering of it's own. 
+ This will be changed in future versions to allow a high def image of a subesction to be rendered.
+ 
+ Each subsection may be previewed with PolyAudioFilePlayer
+ 
+ [drow::AudioThumbnailImage: http://drowaudio.co.uk/docs/class_audio_thumbnail_image.html
+ 
+ Todo; Allow classification of subsections to place them on the GM drum map
+ */
+//==============================================================================
+
 class SubsectionEditor :    public Component,
                             public AudioSubsectionManager::Listener,
                             public Slider::Listener,
@@ -27,7 +44,7 @@ public:
     //,AudioThumbnailImage& sourceToBeUsed);
     ~SubsectionEditor();
     
-    void setImageSource(AudioThumbnailImage& image);
+    void setImageSource(drow::AudioThumbnailImage& image);
   
     //==============================================================================
     /**@Internal@*/
@@ -63,7 +80,7 @@ private:
     TextButton Preview;
     Label      SliceSelLabel;
     
-    AudioThumbnailImage* imageSource;
+    drow::AudioThumbnailImage* imageSource;
     AudioSubsectionManager &subsection;
     
     

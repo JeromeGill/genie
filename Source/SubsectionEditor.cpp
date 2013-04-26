@@ -43,7 +43,7 @@ SubsectionEditor::~SubsectionEditor(){
     subsection.removeListener(this);
 }
 
-void SubsectionEditor::setImageSource(AudioThumbnailImage &image){
+void SubsectionEditor::setImageSource(drow::AudioThumbnailImage &image){
     imageSource = &image;
 }
 //==============================================================================

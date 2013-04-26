@@ -12,26 +12,47 @@
 #define __PLUGINPROCESSOR_H_3FB3C59F__
 
 #include "genieHeader.h"
-#include "Oscillator.h"
 #include "AudioSubsectionManager.h"
 #include "PolyAudioFilePlayer.h"
 #include "MidiManager.h"
 
 
-/**==============================================================================
- GenieAudioProcessor is the heart of the plugin.
+//====================================================================================
+/**
+ \breif GenieAudioProcessor is the Juce-Genxerated heart of the plugin.
  
+                                                                                   
  It consists of;
-    GenieAudioProcessorEditor   - responsible for all the GUI components.
-    PolyAudioFilePlayer         - A file player that plays subsections of an audio file.
-    AudioFilePlayer             - A master audio file player
-    MixerAudioSource            - A juce class for combining AudioSource objects
-    
+ GenieAudioProcessorEditor- responsible for all the GUI components.
  
- 
- ==============================================================================*/
+ AudioSubsectionManager    - A filing class resonable for managing an array of @SubSection
+ PolyAudioFilePlayer       - A polyphonic playback device for @SubSections utilising the Juce audiosource system
+
+ [drow::AudioFilePlayer]   - A master audio file player
+ [juce::MixerAudioSource]  - A juce class for combining AudioSource objects
+ MidiManager               - A midi parser for AudioSubsectionManager
+
+ [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
+ [juce::MixerAudioSource]: http://rawmaterialsoftware.com/juce/api/classMixerAudioSource.html
+*/
+//====================================================================================
 class GenieAudioProcessor  :    public AudioProcessor
 {
+    //Members
+    ScopedPointer<AudioFormatManager> audioFormatManager;
+    ScopedPointer<drow::AudioFilePlayer> audioFilePlayer; 
+    
+    AudioSourceChannelInfo channelInfo; //Juce audiosource method
+    
+    ScopedPointer<AudioSubsectionManager> subsectionManager;
+    
+    ScopedPointer<PolyAudioFilePlayer> polyPlayer;
+    ScopedPointer<MidiManager> midiManager;
+    
+    MixerAudioSource mixerAudioSource;
+    MidiKeyboardState keyboardState;
+    
+    
 public:
     //==============================================================================
     GenieAudioProcessor();
@@ -80,23 +101,8 @@ public:
     void setStateInformation (const void* data, int sizeInBytes);
 
 private:
-    //==============================================================================
-    ScopedPointer<AudioFilePlayer> audioFilePlayer;
-    
-    ScopedPointer<PolyAudioFilePlayer> polyPlayer;
-    
-    MixerAudioSource mixerAudioSource;
-    
-    ScopedPointer<MidiManager> midiManager;
-    
-    ScopedPointer<AudioFormatManager> audioFormatManager;
-    ScopedPointer<AudioSubsectionManager> subsectionManager;
-    
-    MidiKeyboardState keyboardState;
-    AudioSourceChannelInfo channelInfo;
+
    
-    Oscillator osc;
-    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GenieAudioProcessor);
 };
 

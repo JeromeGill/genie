@@ -1,2 +1,3 @@
 Builds/MacOSX/Build/*
 *.DS_Store
+Doxygen/

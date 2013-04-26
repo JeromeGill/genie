@@ -17,11 +17,14 @@
  ==============================================================================*/
 
 #include "../JuceLibraryCode/JuceHeader.h"
-using namespace drow;
+//using namespace drow; //Removed for clarity for markers
 
 //Global size definitions in pixels
 #define Width 800
 #define Height 600
+
+//Number of Voices
+#define POLYPHONY 16
 
 //Component Border sizes
 #define Bw 2
@@ -31,10 +34,8 @@ using namespace drow;
 //Sample offset used for playback buffer
 #define SAMPLEOFFSET_ 512
 
-//Number of Voices
-#define POLYPHONY 16
 
-//Stride for output buffer (incase of potential interlacing decision later?)
+//Stride for output buffer
 #define STRIDE 1
 
 

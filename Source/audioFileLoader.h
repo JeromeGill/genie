@@ -13,21 +13,15 @@
 #include "genieHeader.h"
 
 
-/**=====================================================================================================================
- audioFileLoader is a generic wav and aiff file load bar
- It contains an AudioFilePlayer object from the dRowAudio Module for JUCE to handle playback
+//==============================================================================
+/*
+ \breif AudioFileLoader is a file browser and loader for a [drow::AudioFilePlayer]
  
- Functions
+ It also features preview buttons.
  
- Open File in finder
- Play
- Stop
- 
- To Do
-
- Loop toggle
- Set BPM
-======================================================================================================================*/
+ [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
+ */
+//==============================================================================
 
 class AudioFileLoader  :  public  Component,
                     public  MenuBarModel,
@@ -35,7 +29,7 @@ class AudioFileLoader  :  public  Component,
                     public  Button::Listener
 {
 public:
-    AudioFileLoader (AudioFilePlayer &audioFilePlayer_);
+    AudioFileLoader (drow::AudioFilePlayer &audioFilePlayer_);
     ~AudioFileLoader();
     
     /**@Internal@*/
@@ -84,7 +78,7 @@ private:
     //FileLoader and browser
     ScopedPointer<FilenameComponent> fileChooser;
     OwnedArray<TextButton> buttons;
-    AudioFilePlayer &audioFilePlayer;
+    drow::AudioFilePlayer &audioFilePlayer;
   
     
     

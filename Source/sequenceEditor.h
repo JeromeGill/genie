@@ -13,14 +13,14 @@
 #include "SequenceGeneratorEditor.h"
 
 
-/**==============================================================================
- SequenceEditor is where automatic sequence rearrangments can be generated
- 
- Features;
- 
- ToDo;
- Export sequence as midifile to host
-============================================================================== */
+//==============================================================================
+/**
+ \brief SequenceEditor displays a SequenceGeneratorEditor interface and results 
+
+ It displays two MonomeDisplay objects
+ One for a generative sequence and the second for the cumulative value of each position of that sequence.
+*/
+//==============================================================================
 class SequenceEditor :  public Component,
                         public Slider::Listener,
                         public SequenceGenerator::Listener

@@ -12,31 +12,29 @@
 #define __SPLITTABLEWAVEDISPLAY_H_995DED5__
 #include "genieHeader.h"
 #include "AudioSubsectionManager.h"
-/**==============================================================================
- 
- SplittableWaveDisplay allows selecting sub-sections of a PositionableWaveDisplay.
- 
+//==============================================================================
+/*
 
- Features;
-    Represent selected subsections visually
- 
- Todo;
- 
-    Crop and scale highlights when zoomed in
-    Return high-Def image for slice highlighting
-    
-    Manage Mouseclicks
-        Crash when dragging too far left
- 
- ==============================================================================*/
+ \breif SplittableWaveDisplay allows selecting sub-sections of a [drow::PositionableWaveDisplay].
 
+ @see AudioSubsectionManager
+ @see [drow::PositionableWaveDisplay]
+
+ Shift-Double click creates new subsection
+ Alt-Shift double click deletes one
+ Shift click changes previous slices duration
+ Alt shift drag moves nearest slice
+ 
+ [drow::PositionableWaveDisplay]: http://drowaudio.co.uk/docs/class_positionable_wave_display.html
+*/
+//==============================================================================
 
 class SplittableWaveDisplay :   public Component,
                                 public AudioSubsectionManager::Listener,
-                                public AudioFilePlayer::Listener
+                                public drow::AudioFilePlayer::Listener
 {
 public:
-    SplittableWaveDisplay(AudioThumbnailImage& sourceToBeUsed,
+    SplittableWaveDisplay(drow::AudioThumbnailImage& sourceToBeUsed,
                           TimeSliceThread& threadToUse_,
                           AudioSubsectionManager& subsectionManager_);
     ~SplittableWaveDisplay();
@@ -84,7 +82,7 @@ public:
     /**@Internal@*/
     void subsectionChanged(int SubsectionIndex);
     /**@Internal@*/
-    void fileChanged (AudioFilePlayer* player);
+    void fileChanged (drow::AudioFilePlayer* player);
     
     //====================================================================================
     /** Sample to Pixel conversion
@@ -109,9 +107,9 @@ public:
 private:
     int FlagforRepaint;
     int currentXScale;
-    PositionableWaveDisplay waveDisplay;
+    drow::PositionableWaveDisplay waveDisplay;
     AudioSubsectionManager& subsections;
-    AudioFilePlayer* filePlayer;
+    drow::AudioFilePlayer* filePlayer;
     
 
     Image highlightImage;

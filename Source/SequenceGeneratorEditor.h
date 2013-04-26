@@ -17,15 +17,13 @@
 
 
 
-/**==============================================================================
- SequenceGeneratorEditor provides an interface for @SequenceGenerator
+//==============================================================================
+/**
+ \breif SequenceGeneratorEditor provides an interface for SequenceGenerator
  
- Features;
- Inherits from @SequenceGenerator
- 
- ToDo;
- Export sequence as midifile to host
- ============================================================================== */
+*/
+//==============================================================================
+
 class SequenceGeneratorEditor : public Component,
                                 public ButtonListener,
                                 public Slider::Listener,

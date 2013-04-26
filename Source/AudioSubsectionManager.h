@@ -17,7 +17,6 @@
 #define DEBUGSSM 1 //set to a positive value to print debug messages
 
 
-
 class SubsectionComparator
 {
 public:
@@ -28,25 +27,23 @@ public:
 
 
 
+//==============================================================================
+/**
+ \breif AudioSubsectionManager manages an array of SubSection data structures.
 
-/**==============================================================================
- AudioSubsectionManager holds an OwnedArray of SubSection data structures.
+ It features;
+ Several useful search algorithms for selecting SubSections, getNearest, getPrevious.
+ Sort by start time
  
- Contains a JUCE style Listener Class
+ Juce [ListenerList] style feature for returning created and modified subection indexes
+ Sample to time conversion for a [drow:AudioFilePlayer]
  
- Features;
-    Create subsection
-    Delete Subsection
-    Set start + length of a particular subsection
-    Return subsection that contains a particular sample
-    Return the nearest subsection to a particular sample
+ [ListenerList]:http://rawmaterialsoftware.com/juce/api/classListenerList.html
+ [drow:AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
+
  
-    Sort subsections by startsample
-    Convert samples to timestamps
- 
- ToDo;
- 
- ============================================================================== */
+*/
+//==============================================================================
 
 class AudioSubsectionManager
 {
@@ -55,7 +52,7 @@ public:
     
     StringArray HitTypeStringArray;
     
-    AudioSubsectionManager(AudioFilePlayer &filePlayer_);
+    AudioSubsectionManager(drow::AudioFilePlayer &filePlayer_);
     ~AudioSubsectionManager();
 
     /**Returns a copy of a Subsection
@@ -173,7 +170,7 @@ private:
     
     SubsectionComparator subsectionComparator;
     OwnedArray<SubSection> subsection;
-    AudioFilePlayer* filePlayer;
+    drow::AudioFilePlayer* filePlayer;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioSubsectionManager)
     
