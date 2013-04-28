@@ -11,10 +11,12 @@
 
 #include "genieHeader.h"
 #include "SequenceGeneratorEditor.h"
+#include "genieLogo.h"
+
 
 
 //==============================================================================
-/**
+/**SequenceEditor
  \brief SequenceEditor displays a SequenceGeneratorEditor interface and results 
 
  It displays two MonomeDisplay objects
@@ -23,6 +25,7 @@
 //==============================================================================
 class SequenceEditor :  public Component,
                         public Slider::Listener,
+                        public ButtonListener,
                         public SequenceGenerator::Listener
 
 {
@@ -31,25 +34,34 @@ public:
     ~SequenceEditor();
     
     //==============================================================================
-    /**@Internal@*/
+    /** @internal */
     void paint (Graphics& g);
-    /**@Internal@*/
+    /** @internal */
     void resized();
     
     //==============================================================================
-    /**@Internal@*/
+    /** @internal */
     void displayPattern(Pattern pattern, MonomeDisplay& display);
     void displayPatternTotals(Pattern pattern, MonomeDisplay& display);
     
-    /**@Internal@*/
+    /** @internal */
     void sliderValueChanged(Slider* slider);
-    
+    /** @internal*/
+    void buttonClicked (Button* button);
+    /** @internal*/
     void patternGenerated(Pattern& p);
 private:
 
+    
     SequenceGeneratorEditor sequenceGenerator;
     MonomeDisplay sequenceDisplay;
     MonomeDisplay totalDisplay;
+    
+    
+    TextButton savePattern1;
+    TextButton savePattern2;
+    
+    const Image genieImage;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceEditor)
     

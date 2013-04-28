@@ -21,7 +21,7 @@ GenieAudioProcessor::GenieAudioProcessor()
     audioFilePlayer = new drow::AudioFilePlayer();
     audioFilePlayer->setAudioFormatManager(audioFormatManager, false);
     
-    polyPlayer = new PolyAudioFilePlayer(*audioFilePlayer);
+    polyPlayer = new PolyAudioFilePlayer();
    
     
     mixerAudioSource.addInputSource(audioFilePlayer, false);
@@ -30,10 +30,12 @@ GenieAudioProcessor::GenieAudioProcessor()
     subsectionManager = new AudioSubsectionManager(*audioFilePlayer);
     midiManager = new MidiManager(*polyPlayer, *subsectionManager, keyboardState);
 
+     audioFilePlayer->addListener(this);
 }
 
 GenieAudioProcessor::~GenieAudioProcessor()
 {
+     audioFilePlayer->removeListener(this);
     mixerAudioSource.removeAllInputs();
 }
 
@@ -238,4 +240,10 @@ void GenieAudioProcessor::setStateInformation (const void* data, int sizeInBytes
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new GenieAudioProcessor();
+}
+
+//==============================================================================
+void GenieAudioProcessor::fileChanged(drow::AudioFilePlayer *player){
+    polyPlayer->setAudioFormatReader(player->getAudioFormatManager()->createReaderFor(audioFilePlayer->getFile()));
+    
 }

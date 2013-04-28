@@ -18,8 +18,8 @@
 
 
 //====================================================================================
-/**
- \breif GenieAudioProcessor is the Juce-Genxerated heart of the plugin.
+/**GenieAudioProcessor
+ \brief GenieAudioProcessor is the Juce-Generated heart of the plugin.
  
                                                                                    
  It consists of;
@@ -32,17 +32,18 @@
  [juce::MixerAudioSource]  - A juce class for combining AudioSource objects
  MidiManager               - A midi parser for AudioSubsectionManager
 
- [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
- [juce::MixerAudioSource]: http://rawmaterialsoftware.com/juce/api/classMixerAudioSource.html
+ [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html (drow:AudioFilePlayer)
+ [juce::MixerAudioSource]: http://rawmaterialsoftware.com/juce/api/classMixerAudioSource.html (juce::MixerAudioSource)
 */
 //====================================================================================
-class GenieAudioProcessor  :    public AudioProcessor
+class GenieAudioProcessor  :    public AudioProcessor,
+                                public drow::AudioFilePlayer::Listener
 {
     //Members
     ScopedPointer<AudioFormatManager> audioFormatManager;
     ScopedPointer<drow::AudioFilePlayer> audioFilePlayer; 
     
-    AudioSourceChannelInfo channelInfo; //Juce audiosource method
+    AudioSourceChannelInfo channelInfo; //Juce AudioSource method
     
     ScopedPointer<AudioSubsectionManager> subsectionManager;
     
@@ -99,6 +100,11 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData);
     void setStateInformation (const void* data, int sizeInBytes);
+    
+    //==============================================================================
+    /** @internal */
+    
+    void fileChanged(drow::AudioFilePlayer *player);
 
 private:
 

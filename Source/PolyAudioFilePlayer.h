@@ -15,38 +15,38 @@
 #include "PolyPlayerVoice.H"
 
 //==============================================================================
-/**
+/**PolyAudioFilePlayer
  
- \breif PolyAudioFilePlayer enables polyphonic playback of cropped sections of [drow::AudioFilePlayer]
+ \brief PolyAudioFilePlayer enables polyphonic playback of cropped sections of [AudioFormatReader]
  
  It manages an array of PolyPlayerVoice via the Juce [AudioSource] method with a [MixerAudioSource]
  
- [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
- [AudioSource]: http://rawmaterialsoftware.com/juce/api/classAudioSource.html
- [MixerAudioSource]: http://rawmaterialsoftware.com/juce/api/classMixerAudioSource.html
+ [AudioSource]: http://rawmaterialsoftware.com/juce/api/classAudioSource.html (juce::AudioSource)
+ [MixerAudioSource]: http://rawmaterialsoftware.com/juce/api/classMixerAudioSource.html (juce::MixerAudioSource)
+ [AudioFormatReader]: http://www.rawmaterialsoftware.com/api/classAudioFormatReader.html (juce::AudioFormatReade)
  
+ ToDo;
  It currently takes POLYPHONY from genieheader - it should probably be internal
+
 */
 //==============================================================================
 
 
-class PolyAudioFilePlayer : public AudioSource,
-                            public drow::AudioFilePlayer::Listener
+class PolyAudioFilePlayer : public AudioSource
 {
 public:
-    PolyAudioFilePlayer(drow::AudioFilePlayer &audioFilePlayer_);
+    PolyAudioFilePlayer();
     ~PolyAudioFilePlayer();
+    
+    /**Set the AudioFormatReader to crop from*/
+    void setAudioFormatReader(AudioFormatReader *reader);
     
     //==============================================================================
     /**Plays a subsection of the audioFilePlayer and returns the voice it is playing on*/
     void playSubSection(int64 startSample, int64 length, float gain);
     /**Stops whatever voice is playing on a particular index*/
     void stopVoice(int voiceIndex);
-    
-    
-    //==============================================================================
-    /** @internal */
-    void fileChanged(drow::AudioFilePlayer *player);
+ 
     
     //==============================================================================
     /** Implementation of the AudioSource method. */
@@ -59,13 +59,11 @@ public:
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
     
 private:
-    MixerAudioSource mixer;
+    MixerAudioSource    mixer;         
+    AudioFormatReader*  masterReader;
+    TimeSliceThread     thread;
     
-    drow::AudioFilePlayer*              audioFilePlayer;
-    ScopedPointer<AudioFormatReader>    masterReader;
-    TimeSliceThread                     thread;
-    
-    OwnedArray<PolyPlayerVoice> Voices;
+    OwnedArray<PolyPlayerVoice> Voices; 
     
     double SampleRate;
     

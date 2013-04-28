@@ -28,8 +28,8 @@ public:
 
 
 //==============================================================================
-/**
- \breif AudioSubsectionManager manages an array of SubSection data structures.
+/**AudioSubsectionManager
+ \brief AudioSubsectionManager manages an array of SubSection data structures.
 
  It features;
  Several useful search algorithms for selecting SubSections, getNearest, getPrevious.
@@ -38,8 +38,8 @@ public:
  Juce [ListenerList] style feature for returning created and modified subection indexes
  Sample to time conversion for a [drow:AudioFilePlayer]
  
- [ListenerList]:http://rawmaterialsoftware.com/juce/api/classListenerList.html
- [drow:AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
+ [ListenerList]:http://rawmaterialsoftware.com/juce/api/classListenerList.html (Listener)
+ [drow:AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html (drow:AudioFilePlayer)
 
  
 */
@@ -73,30 +73,14 @@ public:
     /** Deletes a Subsection at a particular index
      */
     void removeSubsection (int SubsectionIndex);
-    /** Returns a subsection's start sample
-     */
-    int64 getStart(int SubsectionIndex);
-    /** Returns a subsection's duration
-     */
-    int64 getLength(int SubsectionIndex);
+    //====================================================================================
     /** Amends the start point of a Subsection at index provided
      */
     void SetSubsectionStart (int64 startSample, int SubsectionIndex);
     /** Sets a Subsections duration
      */
     void SetSubsectionDuration (int64 lengthInSamples, int SubsectionIndex);
-    
-    /** Returns the index of nearest Subsection to a provided sample
-     */
-    int getNearestSubsection (int64 Sample);
-    /** Returns the index of the Subsection to the left of the sample clicked on
-     */
-    int getPreviousSubsection (int64 Sample);
-    /** Returns the index of subsection that contains Sample
-     
-     Returns -1 if no subsection contains sample provided
-     */
-    int getSubsection (int64 Sample);
+    //====================================================================================
     /** Names a Subsection
      */
     void nameSubsection (int SubsectionIndex, String Name);
@@ -113,6 +97,19 @@ public:
      */
     HitTypeValue getSubsectionType(int SubsectionIndex);
     
+    //====================================================================================
+    /** Returns the index of nearest Subsection to a provided sample
+     */
+    int getNearestSubsection (int64 Sample);
+    /** Returns the index of the Subsection to the left of the sample clicked on
+     */
+    int getPreviousSubsection (int64 Sample);
+    /** Returns the index of subsection that contains Sample
+     
+     Returns -1 if no subsection contains sample provided
+     */
+    int getSubsection (int64 Sample);
+ 
     //====================================================================================
     /** Returns size of subsection array
      */
@@ -159,9 +156,6 @@ public:
      */
     void removeListener(Listener* listener);
     
-    //====================================================================================
-    /**@Internal@*/
-    
 private:
   
     bool Overlap;
@@ -175,8 +169,5 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioSubsectionManager)
     
 };
-
-
-
 
 #endif  // __AudioSubsectionManager_H_8C3A6156__

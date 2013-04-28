@@ -22,40 +22,12 @@
 #define MINNECKLACESIZE 3 //The minimum intervals in a necklace
 
 
-//==============================================================================
-/**
-  \breif SequenceGenerator is where the rythmic generation aspect of genie occurs
- 
- SequenceGenerator generates a vector of vectors of Bools that represents a rhythmic sequence.
- Each sequence consists of two or more "necklaces". Each necklace is a cyclical sequence of pulses.
-  A number of sequences are stacked on top of each other to form a pattern. 
-  
-  A pattern is generated from a PatternPreset structure. 
-  
-  Features;
- Generate a vector of bools using euclid method
- Concate a number of these vectors to form a sequence
- Generate a pattern by layering sequences
- Return the number of true values at each position of a sequence vector
- PatternPreset Struct 
- Randomly generate a pattern preset
- Export a pattern as a midifile
- Print a pattern preset
- 
-  ToDo;
-    
- Store structs used to generate sequence vector on hard disk
- Resolve bug with higher complexitys of patterns crashing
- Protection against stupid numbers in PatternPreset struct
-    
-  
-*/
-//==============================================================================
 
 typedef std::vector<bool> Sequence;
 typedef std::vector<Sequence> Pattern;
 
-/**PatternPreset is used to store all the constituent values that generate a complete pattern
+/**
+ \brief PatternPreset is used to store all constituent NecklacePresets that generate a complete pattern
  
  Values cannot be modified after initialisation.
  
@@ -68,10 +40,12 @@ typedef std::vector<Sequence> Pattern;
  p - the number of pulses to be distributed over the available intervals
  breakEarly - which rotation the necklace is
  
- see @RandomPattern() for a detailed example of how to initialise one of these.
+ see RandomPattern() for a detailed example of how to initialise one of these.
  */
 struct PatternPreset {
-    
+    /**
+     \brief NecklacePreset contains the number of pulses and intervals involved in a single euclidean necklace
+     */
     struct NecklacePreset{
         NecklacePreset(int intervals = 0, int pulses = 0, bool BreakEarly = false)
         :n(intervals), p(pulses), b(BreakEarly)
@@ -114,6 +88,32 @@ private:
 };
 
 
+//==============================================================================
+/**SequenceGenerator
+ \brief SequenceGenerator is where the rythmic generation aspect of genie occurs
+ 
+ SequenceGenerator generates a vector of vectors of Bools that represents a rhythmic sequence.
+ Each sequence consists of two or more "necklaces". Each necklace is a cyclical sequence of pulses.
+ A number of sequences are stacked on top of each other to form a pattern.
+ 
+ A pattern is generated from a PatternPreset structure.
+ 
+ Features;
+ Generate a vector of bools using euclid method
+ Concate a number of these vectors to form a sequence
+ Generate a pattern by layering sequences
+ Return the number of true values at each position of a sequence vector
+ PatternPreset Struct
+ Randomly generate a pattern preset
+ Export a pattern as a midifile
+ Print a pattern preset
+ 
+ ToDo;
+ 
+ Store structs used to generate sequence vector on hard disk
+ Resolve bug with higher complexitys of patterns crashing
+ Protection against stupid numbers in PatternPreset struct
+ *///==============================================================================
 class SequenceGenerator {
     
 public:
@@ -202,12 +202,19 @@ public:
      */
     void removeListener(Listener* listener);
     //==============================================================================
+    /** Write a generated pattern to midifile at a specified BPM
+     */
+    void writePatternToMidiFile(Pattern pattern, int BPM, bool isCumulativePattern);
+    /** Write a most recently generated pattern to midifile at a specified BPM
+     */
+    void writeLastPatternToMidiFile(int BPM, bool isCumulativePattern);
+  
+    
     /** Add a MidiNote to a midi sequence at ticks.
      
      A noteoff is automatically placed at ticks+duration
-     */
-    void writePatternToMidiFile(MidiFile& file, Pattern pattern, int BPM);
-    /** Write a generated pattern to midifile at a specified BPM
+     
+     use isCumulativePattern to determine slice slection or standard rhythm generation
      */
     void addNoteToSequence(MidiMessageSequence& Sequence,
                            double ticks,
@@ -216,13 +223,17 @@ public:
                            int channel = 10,
                            float velocity = 1);
     
+    Pattern *pattern; /*!< The most recently generated pattern */
+
 private:
     /**The recursive part of the GenerateNecklace() function
      */
     Sequence DistributePulses(int Intervals, int Pulses, Pattern Necklace, bool BreakEarly = false);
+    
+    
+    int noteNumberFromPatternPosition(Pattern p, int i);
     ListenerList<Listener> listenerList;
     
-     MidiMessageSequence* seq;
 };
 
 

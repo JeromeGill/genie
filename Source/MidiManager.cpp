@@ -44,8 +44,8 @@ void MidiManager::handleNoteOff (MidiKeyboardState* source,
 void MidiManager::playSubsection(int subsectionIndex, float gain){
     std::cout<<"SM: Playing slice"<<subsectionIndex<<"\n";
     if (subsections.size() > subsectionIndex) {        
-        player.playSubSection(subsections.getStart(subsectionIndex),
-                              subsections.getLength(subsectionIndex),
+        player.playSubSection(subsections[subsectionIndex].StartSample,
+                              subsections[subsectionIndex].LengthInSamples,
                               gain);
         
     }

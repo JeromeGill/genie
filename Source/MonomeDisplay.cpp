@@ -56,12 +56,13 @@ void MonomeDisplay::resized()
                 btn[i*columns+ ii]->setBounds(w/columns * ii,
                                               h/rows * i,
                                               w/columns,
-                                              h/    rows);
+                                              h/rows);
             }
             
         }
-        repaint();
+  
     }
+    repaint();
 }
 
 
@@ -72,44 +73,47 @@ void MonomeDisplay::setActive(size_t column, size_t row, bool setActive, Colour 
 }
 
 void MonomeDisplay::addRow(){
-    
+    clear();
     //std::cout<<"Monome Add Row: "<<columns<<" "<<rows;
     for (int i = 0; i < columns; i++) {
-        
-        btn.add(new SequenceElement);
-        addAndMakeVisible(btn.getLast());
+        SequenceElement *a = new SequenceElement;
+        btn.add(a);
         
     }
     rows++;
-    resized();
+    refresh();
 }
 
 void MonomeDisplay::addColumn()
 {
+    clear();
     std::cout<<"Monome Add Column: "<<columns<<" "<<rows;
     for (int i = 0; i < rows; i++) {
         SequenceElement *a = new SequenceElement;
-        addAndMakeVisible(a);
         btn.insert(i*columns + columns, a);
         std::cout<<"o";
     }
     columns++;
-    resized();
+
     std::cout<<"\n";
+    refresh();
 }
 
 void MonomeDisplay::removeRow(){
+    clear();
+    
     btn.removeRange(btn.size()-1, columns);
     rows--;
-    resized();
+    refresh();
 }
 
 void MonomeDisplay::removeColumn(){
+    clear();
     for (int i = 0; i < rows; i++) {
         btn.remove((i*columns + i));
     }
     columns--;
-    resized();
+    refresh();
 }
 
 void MonomeDisplay::setColumns(int numberOfColumns){
@@ -146,7 +150,19 @@ void MonomeDisplay::setRows(int numberOfRows){
     }
 }
 
+void MonomeDisplay::clear(){
+    for (int i = 0; i < btn.size(); i++) {
+        btn[i]->setVisible(false);
+        removeChildComponent(btn[i]);
+    }
+}
 
+void MonomeDisplay::refresh(){
+    for (int i = 0; i < btn.size(); i++) {
+        addAndMakeVisible(btn[i]);
+    }
+    resized();
+}
 
 void MonomeDisplay::emptyGrid(){
     btn.clear();

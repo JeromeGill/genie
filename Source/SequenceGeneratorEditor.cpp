@@ -19,10 +19,6 @@ SequenceGeneratorEditor::SequenceGeneratorEditor()
     generatePattern.setButtonText("Generate Pattern");
     addAndMakeVisible(&generatePattern);
 
-    savePattern.addListener(this);
-    savePattern.setButtonText("Save Pattern");
-    addAndMakeVisible(&savePattern);
-
     labels.add(new Label);//("SeqGenLabel", "Sequence Controls"));
     labels.add(new Label);//("SeqComLabel", "Complexity"));
     labels.add(new Label);//("SeqLenLabel", "Length"));
@@ -75,7 +71,7 @@ SequenceGeneratorEditor::~SequenceGeneratorEditor()
 }
 
 //==============================================================================
-/**@Internal@*/
+/** @internal */
 void SequenceGeneratorEditor::paint (Graphics& g)
 {
     int w = getWidth();
@@ -87,15 +83,14 @@ void SequenceGeneratorEditor::paint (Graphics& g)
     g.fillRect(fourBw, h/8 - twoBw, w - (2*fourBw), h/8 *7 - twoBw);
       
 }
-/**@Internal@*/
+/** @internal */
 void SequenceGeneratorEditor::resized()
 {
     int w = getWidth();
     int h = getHeight();
     
 
-    generatePattern.setBounds(fourBw, h/5 * 4 - twoBw, w - (2*fourBw), h/10 - twoBw);
-    savePattern.setBounds(fourBw, h/10 * 9 - twoBw, w - (2*fourBw), h/10    - twoBw);
+    generatePattern.setBounds(fourBw, h/5 * 4 - twoBw, w - (2*fourBw), h/5 - twoBw);
     
     for (int i = 0; i < slider.size(); i++) {
        slider[i]->setBounds(twoBw, h/5 * (i + 1),  w/2 - fourBw, h/5);
@@ -108,38 +103,21 @@ void SequenceGeneratorEditor::resized()
     
 }
 //==============================================================================
-/**@Internal@*/
+/** @internal */
 
 
 void SequenceGeneratorEditor::buttonClicked (Button* button){
     if (button == &generatePattern) {
-        p = new Pattern( GeneratePattern(GeneratePatternPreset((int)slider[0]->getValue(),
-                                                          (int)slider[2]->getValue(),
-                                                          (int)slider[1]->getValue())));
-        PrintPattern(*p);
-        
-        pattern.add(p);
-        
+     
+        PrintPattern(GeneratePattern(GeneratePatternPreset((int)slider[0]->getValue(),
+                                                              (int)slider[2]->getValue(),
+                                                              (int)slider[1]->getValue())));
 
-        
     }
-       else if (button == &savePattern) {
-           
-           FileChooser chooser("Select Generated Sequence Destination", File::nonexistent,
-                               "mid",
-                               true);
-           chooser.browseForFileToSave(true);
-           
-           File midiFile = chooser.getResult();
-           
-           FileOutputStream outStream (midiFile);
-           MidiFile output;
-           writePatternToMidiFile(output, *pattern.getLast(), 120);
-           output.writeTo(outStream);
-       }
+
 }
 
-/**@Internal@*/
+/** @internal */
 void SequenceGeneratorEditor::sliderValueChanged (Slider* slider){
 //    if(slider->getName() == "SequenceLength"){
 //        display.setColumns((int) slider->getValue() * 8);

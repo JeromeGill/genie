@@ -6,23 +6,7 @@
 //
 //
 
-/**
 
- //=======================================================================================================================
- 
- audioEditor is an audio file display and slicer object
- 
- It comprises of;
- 
-    An audioFile generic file play back object, adapted from the dRowAudio class AudioFilePlayer
-    
-    An audioDisplay object for rendering waveforms, adapted from the dRowAudio class AudioThumbnail Image
- 
-    A Slice Management Class, for storing each slice's midi data, start and end sample and duration in samples.
- 
- //=======================================================================================================================
- 
-*/
 #include "audioEditor.h"
 
 

@@ -18,8 +18,8 @@
 #include "SubsectionEditor.h"
 
 //==============================================================================
-/**
- \breif GenieAudioProcessorEditor is the visual parent component of Genie.
+/**GenieAudioProcessorEditor
+ \brief GenieAudioProcessorEditor is the visual parent component of Genie.
  
  It comprises of;
 AudioEditor

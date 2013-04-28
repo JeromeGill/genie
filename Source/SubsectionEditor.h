@@ -13,12 +13,10 @@
 #include "genieHeader.h"
 #include "AudioSubsectionManager.h"
 #include "PolyAudioFilePlayer.h"
-#include "genieLogo.h"
 
 //==============================================================================
-/**
- 
- \breif SubsectionEditor displays the most recently modified SubSection in a SubSectionManager.
+/**SubsectionEditor
+ \brief SubsectionEditor displays the most recently modified SubSection in a SubSectionManager.
  
  It requires a [drow::AudioThumbnailImage] with the waveform loaded to be passed into it.
  This means it needs do no rendering of it's own. 
@@ -26,11 +24,10 @@
  
  Each subsection may be previewed with PolyAudioFilePlayer
  
- [drow::AudioThumbnailImage: http://drowaudio.co.uk/docs/class_audio_thumbnail_image.html
+ [drow::AudioThumbnailImage: http://drowaudio.co.uk/docs/class_audio_thumbnail_image.html (drow:AudioThumbnailImage)
  
  Todo; Allow classification of subsections to place them on the GM drum map
- */
-//==============================================================================
+*///==============================================================================
 
 class SubsectionEditor :    public Component,
                             public AudioSubsectionManager::Listener,
@@ -47,19 +44,19 @@ public:
     void setImageSource(drow::AudioThumbnailImage& image);
   
     //==============================================================================
-    /**@Internal@*/
+    /** @internal */
     void subsectionCreated(int SubsectionIndex);
-    /**@Internal@*/
+    /** @internal */
     void subsectionDeleted(int SubsectionIndex);
-    //**@Internal@*/
+    //** @internal */
     void subsectionChanged(int SubsectionIndex);
-    //**@Internal@*/
+    //** @internal */
     void subsectionsCleared();
     
     //==============================================================================
-    /**@Internal@*/
+    /** @internal */
     void paint(Graphics &g);
-    /**@Internal@*/
+    /** @internal */
     void resized();
     /** @Internal@ */
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
@@ -86,7 +83,7 @@ private:
     
     PolyAudioFilePlayer& polyAudioFilePlayer;
     
-    const Image genieImage;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SubsectionEditor)
 };
 

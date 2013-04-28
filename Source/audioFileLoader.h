@@ -14,14 +14,13 @@
 
 
 //==============================================================================
-/*
- \breif AudioFileLoader is a file browser and loader for a [drow::AudioFilePlayer]
+/**AudioFileLoader
+ \brief AudioFileLoader is a file browser and loader for a [drow::AudioFilePlayer]
  
  It also features preview buttons.
  
- [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
- */
-//==============================================================================
+ [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html (drow:AudioFilePlayer)
+ *///==============================================================================
 
 class AudioFileLoader  :  public  Component,
                     public  MenuBarModel,
@@ -32,16 +31,16 @@ public:
     AudioFileLoader (drow::AudioFilePlayer &audioFilePlayer_);
     ~AudioFileLoader();
     
-    /**@Internal@*/
+    /** @internal */
     void paint (Graphics& g);
-    /**@Internal@*/
+    /** @internal */
     void resized ();
     
 
-    /**Internal@*/
+    /** @internal */
     void filenameComponentChanged (FilenameComponent* filenameComponent);
     
-    /**Internal@ */
+    /** @internal */
     void buttonClicked (Button* button);
     
     enum Buttons

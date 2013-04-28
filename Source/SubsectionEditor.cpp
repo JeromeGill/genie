@@ -16,9 +16,7 @@ SubsectionEditor::SubsectionEditor(AudioSubsectionManager &audioSubsectionManage
 :
 //imageSource(&sourceToBeUsed),
 subsection(audioSubsectionManager),
-polyAudioFilePlayer(polyAudioFilePlayer_),
-genieImage(ImageCache::getFromMemory (genieLogo::genielogo2_png,
-                                        genieLogo::genielogo2_pngSize))
+polyAudioFilePlayer(polyAudioFilePlayer_)
 {
 
     hitTypeSelector.addItemList(subsection.HitTypeStringArray, 1);
@@ -47,7 +45,7 @@ void SubsectionEditor::setImageSource(drow::AudioThumbnailImage &image){
     imageSource = &image;
 }
 //==============================================================================
-/**@Internal@*/
+/** @internal */
 void SubsectionEditor::subsectionCreated(int SubsectionIndex){
     
     subsectionSelector.setVisible(true);
@@ -58,7 +56,7 @@ void SubsectionEditor::subsectionCreated(int SubsectionIndex){
    
     
 }
-/**@Internal@*/
+/** @internal */
 void SubsectionEditor::subsectionDeleted(int SubsectionIndex){
     
     if (subsection.size()) {
@@ -74,7 +72,7 @@ void SubsectionEditor::subsectionDeleted(int SubsectionIndex){
     
     repaint();
 }
-//**@Internal@*/
+//** @internal */
 void SubsectionEditor::subsectionChanged(int SubsectionIndex){
 
     activeSubsection = SubsectionIndex;
@@ -82,14 +80,14 @@ void SubsectionEditor::subsectionChanged(int SubsectionIndex){
     repaint();
 
 }
-//**@Internal@*/
+//** @internal */
 void SubsectionEditor::subsectionsCleared(){
 
     repaint();
     
 }
 
-//**@Internal@*/
+//** @internal */
 void SubsectionEditor::comboBoxChanged (ComboBox* comboBox)
 {
   
@@ -115,7 +113,7 @@ void SubsectionEditor::buttonClicked(Button *button){
 }
 
 //==============================================================================
-/**@Internal@*/
+/** @internal */
 void SubsectionEditor::paint(Graphics &g){
     
     int w = getWidth();
@@ -124,14 +122,14 @@ void SubsectionEditor::paint(Graphics &g){
     
     g.setColour(Colours::white);
     g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
-    g.drawImageAt(genieImage.rescaled (w / 3 - twoBw, h - fourBw), twoBw,  twoBw);
+
 
     
     //If there is an active subsection, draw it, else draw the genie logo
     if (activeSubsection >= 0){
         
-        double start    = subsection.SampleToTime(subsection.getStart(activeSubsection));
-        double duration = subsection.SampleToTime(subsection.getLength(activeSubsection));
+        double start    = subsection.SampleToTime(subsection[activeSubsection].StartSample);
+        double duration = subsection.SampleToTime(subsection[activeSubsection].LengthInSamples);
 
         
         if (imageSource->getImage().isValid() && duration)
@@ -139,7 +137,7 @@ void SubsectionEditor::paint(Graphics &g){
         
         
         if (subsectionWaveform.isValid()) {
-            g.setOpacity(0.9);
+    
             g.drawImageAt(subsectionWaveform.rescaled(w - fourBw,
                                                       h - fourBw),
                           twoBw,
@@ -149,7 +147,7 @@ void SubsectionEditor::paint(Graphics &g){
     }
 
 }
-/**@Internal@*/
+/** @internal */
 void SubsectionEditor::resized(){
     int w = getWidth();
     int h = getHeight();

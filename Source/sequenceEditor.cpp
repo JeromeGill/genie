@@ -12,13 +12,26 @@
 //==============================================================================
 SequenceEditor::SequenceEditor()
 : sequenceDisplay(8,1),
-totalDisplay(8,1)
+totalDisplay(8,1),
+genieImage(ImageCache::getFromMemory (genieLogo::genielogo2_png,
+                                      genieLogo::genielogo2_pngSize))
 {
 
     sequenceGenerator.addListener(this);
     addAndMakeVisible(&sequenceGenerator);
     addAndMakeVisible(&sequenceDisplay);
     addAndMakeVisible(&totalDisplay);
+    
+    savePattern1.addListener(this);
+    savePattern1.setButtonText("Save Pattern 1");
+    addAndMakeVisible(&savePattern1);
+    
+    savePattern2.addListener(this);
+    savePattern2.setButtonText("Save Pattern 2");
+    addAndMakeVisible(&savePattern2);
+    
+     sequenceDisplay.setAlpha(0.7);
+     totalDisplay.setAlpha(0.7);
     
     sequenceGenerator.addListener(this);
     sequenceGenerator.addSliderListeners(this);
@@ -30,7 +43,7 @@ SequenceEditor::~SequenceEditor()
 }
 
 //==============================================================================
-/**@Internal@*/
+/** @internal */
 void SequenceEditor::paint (Graphics& g)
 {
     int w = getWidth();
@@ -39,9 +52,10 @@ void SequenceEditor::paint (Graphics& g)
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
     g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
+    g.drawImageAt(genieImage.rescaled (w / 2 - twoBw, h - fourBw), w/2,  twoBw);
     
 }
-/**@Internal@*/
+/** @internal */
 void SequenceEditor::resized()
 {
     int w = getWidth();
@@ -49,6 +63,8 @@ void SequenceEditor::resized()
     
     sequenceGenerator.setBounds(twoBw, twoBw, w / 2 - fourBw, h /2  - fourBw);
     sequenceDisplay.setBounds(twoBw, h/2 - twoBw, w - fourBw, h/4 - twoBw);
+    savePattern1.setBounds(twoBw, h/4*3, w/2 - twoBw, h/8);
+    savePattern2.setBounds(w/2, h/4*3, w/2 - twoBw, h/8);
     totalDisplay.setBounds(twoBw, h/8 * 7, w - fourBw, h/8 - twoBw);
 
 }
@@ -104,6 +120,18 @@ void SequenceEditor::sliderValueChanged(Slider* slider){
     }
 
 }
+
+void SequenceEditor::buttonClicked (Button* button){
+    if (button == &savePattern1){
+        sequenceGenerator.writeLastPatternToMidiFile(120, false);
+    }
+    else if (button == &savePattern2) {
+
+        sequenceGenerator.writeLastPatternToMidiFile(120, true);
+
+    }
+}
+
 
 void SequenceEditor::patternGenerated(Pattern& p){
     displayPattern(p, sequenceDisplay);

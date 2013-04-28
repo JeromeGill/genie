@@ -1,12 +1,12 @@
-/*
-  ==============================================================================
-
-    MonomeDisplay.h
-    Created: 19 Apr 2013 10:01:43am
-    Author:  Jerome
-
-  ==============================================================================
-*/
+//
+//  ==============================================================================
+//
+//    MonomeDisplay.h
+//    Created: 19 Apr 2013 10:01:43am
+//    Author:  Jerome
+//
+//  ==============================================================================
+//
 
 #ifndef __MONOMEDISPLAY_H_83AF7FB__
 #define __MONOMEDISPLAY_H_83AF7FB__
@@ -14,10 +14,10 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "genieHeader.h"
 //==============================================================================
-/**
- \breif MonomeDisplay is a grid of SequenceElement arranged like a [Monome]
+/**MonomeDisplay
+ \brief MonomeDisplay is a grid of SequenceElement arranged like a [Monome]
  
- [Monome]:http://monome.org/
+ [Monome]:http://monome.org/ (Monome)
 */
 //==============================================================================
 class SequenceElement : public Component {
@@ -85,10 +85,16 @@ public:
     void emptyGrid();
     void resetGrid();
     
+
+    
     void paint (Graphics&);
     void resized();
     
 private:
+    
+    void clear();
+    void refresh();
+    
     OwnedArray<SequenceElement> btn;
     int columns,rows;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MonomeDisplay)

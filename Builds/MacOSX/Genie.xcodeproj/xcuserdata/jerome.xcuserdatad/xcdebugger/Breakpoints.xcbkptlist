@@ -115,11 +115,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/PluginProcessor.cpp"
-         timestampString = "379788875.585619"
+         timestampString = "388697066.910463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "31"
-         endingLineNumber = "31"
+         startingLineNumber = "29"
+         endingLineNumber = "29"
          landmarkName = "GenieAudioProcessor::GenieAudioProcessor()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -128,11 +128,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/AudioSubsectionManager.cpp"
-         timestampString = "387993439.446623"
+         timestampString = "388779184.119352"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "275"
-         endingLineNumber = "275"
+         startingLineNumber = "251"
+         endingLineNumber = "251"
          landmarkName = "AudioSubsectionManager::getSubsection (int64 Sample)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -154,11 +154,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388349530.874797"
+         timestampString = "388869174.79956"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "215"
-         endingLineNumber = "215"
+         startingLineNumber = "220"
+         endingLineNumber = "220"
          landmarkName = "SequenceGenerator::GetPulses(Pattern pattern, int position)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -205,19 +205,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Source/MonomeDisplay.h"
-         timestampString = "388055720.205674"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "20"
-         endingLineNumber = "20"
-         landmarkName = "class SequenceElement"
-         landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceToMidiManager.cpp"
          timestampString = "388139099.912395"
          startingColumnNumber = "9223372036854775807"
@@ -232,12 +219,77 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388349530.874797"
+         timestampString = "388869174.79956"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
+         startingLineNumber = "118"
+         endingLineNumber = "118"
          landmarkName = "SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence, int sequencesPerPattern, int intervalsPerSequence)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/PolyPlayerVoice.h"
+         timestampString = "388792587.212818"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "class PolyPlayerVoice"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SequenceGenerator.cpp"
+         timestampString = "388868244.597921"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
+         landmarkName = "SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence, int sequencesPerPattern, int intervalsPerSequence)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SequenceGenerator.cpp"
+         timestampString = "388868731.854319"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "36"
+         endingLineNumber = "36"
+         landmarkName = "SequenceGenerator::GeneratePattern(PatternPreset P)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SequenceGenerator.cpp"
+         timestampString = "388868780.128219"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
+         landmarkName = "SequenceGenerator::GeneratePattern(PatternPreset P)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SequenceGenerator.cpp"
+         timestampString = "388868789.282166"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "42"
+         endingLineNumber = "42"
+         landmarkName = "SequenceGenerator::GeneratePattern(PatternPreset P)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

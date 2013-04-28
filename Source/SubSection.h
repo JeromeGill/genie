@@ -37,8 +37,8 @@ enum HitTypeValue {
 
 struct SubSection{
     
-    int64 StartSample;
-    int64 LengthInSamples;
+    int64 StartSample = 0;
+    int64 LengthInSamples = 0;
     
     String name = "Slice";
     HitTypeValue TypeValue = Unnamed;

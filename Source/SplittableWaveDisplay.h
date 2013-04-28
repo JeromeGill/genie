@@ -13,9 +13,8 @@
 #include "genieHeader.h"
 #include "AudioSubsectionManager.h"
 //==============================================================================
-/*
-
- \breif SplittableWaveDisplay allows selecting sub-sections of a [drow::PositionableWaveDisplay].
+/**SplittableWaveDisplay
+ \brief SplittableWaveDisplay allows selecting sub-sections of a [drow::PositionableWaveDisplay].
 
  @see AudioSubsectionManager
  @see [drow::PositionableWaveDisplay]
@@ -25,9 +24,11 @@
  Shift click changes previous slices duration
  Alt shift drag moves nearest slice
  
- [drow::PositionableWaveDisplay]: http://drowaudio.co.uk/docs/class_positionable_wave_display.html
-*/
-//==============================================================================
+ Todo;
+ Zoom + Offset
+ 
+ [drow::PositionableWaveDisplay]: http://drowaudio.co.uk/docs/class_positionable_wave_display.html (drow:PositionableWaveDisplay)
+*///==============================================================================
 
 class SplittableWaveDisplay :   public Component,
                                 public AudioSubsectionManager::Listener,
@@ -38,13 +39,7 @@ public:
                           TimeSliceThread& threadToUse_,
                           AudioSubsectionManager& subsectionManager_);
     ~SplittableWaveDisplay();
-    //====================================================================================
-    /** Internal */
-    void resized();
-    /** Internal */
-    void paint(Graphics &g);
-    /** Internal */
-    void paintOverChildren(Graphics &g);
+ 
     
     //====================================================================================
 	/** Sets whether or not the transport cursor should be displayed;
@@ -74,16 +69,7 @@ public:
      */
     void setVerticalZoomRatio (double newVerticalZoomRatio);
     
-    //====================================================================================
-    /**@Internal@*/
-    void subsectionCreated(int SubsectionIndex);
-    /**@Internal@*/
-    void subsectionDeleted(int SubsectionIndex);
-    /**@Internal@*/
-    void subsectionChanged(int SubsectionIndex);
-    /**@Internal@*/
-    void fileChanged (drow::AudioFilePlayer* player);
-    
+  
     //====================================================================================
     /** Sample to Pixel conversion
      */
@@ -93,19 +79,35 @@ public:
     int64 PixelToSample(double PixelClickedOn);
     
     //====================================================================================
-    /**@Internal@*/
+    /** @internal */
+    void subsectionCreated(int SubsectionIndex);
+    /** @internal */
+    void subsectionDeleted(int SubsectionIndex);
+    /** @internal */
+    void subsectionChanged(int SubsectionIndex);
+    /** @internal */
+    void fileChanged (drow::AudioFilePlayer* player);
+    //====================================================================================
+    /** @internal */
+    void resized();
+    /** @internal */
+    void paint(Graphics &g);
+    /** @internal */
+    void paintOverChildren(Graphics &g);
+    //====================================================================================
+    /** @internal */
     void mouseDown (const MouseEvent& event);
-    /**@Internal@*/
+    /** @internal */
     void mouseDoubleClick (const MouseEvent& event);
-    /**@Internal@*/
+    /** @internal */
     void mouseDrag (const MouseEvent& event);
-    /**@Internal@*/
+    /** @internal */
     void mouseUp (const MouseEvent& event);
     
      //====================================================================================
     
 private:
-    int FlagforRepaint;
+  
     int currentXScale;
     drow::PositionableWaveDisplay waveDisplay;
     AudioSubsectionManager& subsections;

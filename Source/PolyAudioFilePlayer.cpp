@@ -10,9 +10,8 @@
 
 #include "PolyAudioFilePlayer.h"
 
-PolyAudioFilePlayer::PolyAudioFilePlayer(drow::AudioFilePlayer &audioFilePlayer_)
-: audioFilePlayer(&audioFilePlayer_),
-thread("voices")
+PolyAudioFilePlayer::PolyAudioFilePlayer()
+:thread("voices")
 
 {
 
@@ -21,23 +20,28 @@ thread("voices")
     //Initialise Voices
      for (int i = 0; i < POLYPHONY;) {
          Voices.add(new PolyPlayerVoice(thread));
-         mixer.addInputSource(Voices.getLast()->getAudioSource(), false);
+         mixer.addInputSource(&Voices.getLast()->audioTransportSource, false);
          i++;
      }
-    
-     audioFilePlayer->addListener(this);
+   
 }
 
 PolyAudioFilePlayer::~PolyAudioFilePlayer()
 {
-    audioFilePlayer->removeListener(this);
+   
     mixer.removeAllInputs();
     
 }
-
-
+//==============================================================================
+/**Set the AudioFormatReader to crop from*/
+void PolyAudioFilePlayer::setAudioFormatReader(AudioFormatReader *reader){
+    masterReader = reader;
+}
+//==============================================================================
 void PolyAudioFilePlayer::playSubSection(int64 startSample, int64 length, float gain){
     
+    if (masterReader!= nullptr) {
+        
     int i;
     //Normalise eroneous gain values
     if (gain > 1) {
@@ -52,12 +56,12 @@ void PolyAudioFilePlayer::playSubSection(int64 startSample, int64 length, float 
     //Flag true if voice is available
     bool voiceAvailableflag = false;
     
-    for (i = 0; i < POLYPHONY;) {
-        if (!Voices[i]->getAudioSource()->isPlaying()) {
+    for (i = 0; i < POLYPHONY;) { //Scan voices for an available voice
+        if (!Voices[i]->audioTransportSource.isPlaying()){//If a voice is available, use it and break loop
             std::cout<<"PP: playing Voice "<<i<<"\n";
             Voices[i]->initialise(masterReader, startSample, length);
-            Voices[i]->getAudioSource()->setGain(gain);
-            Voices[i]->getAudioSource()->start();
+            Voices[i]->audioTransportSource.setGain(gain);
+            Voices[i]->audioTransportSource.start();
             voiceAvailableflag = true;
             break;
         }
@@ -67,23 +71,19 @@ void PolyAudioFilePlayer::playSubSection(int64 startSample, int64 length, float 
  
 
     if (!voiceAvailableflag) std::cout<<"PP: No available voice\n";
+    }
 
 
 }
 void PolyAudioFilePlayer::stopVoice(int voiceIndex){
-    AudioTransportSource* source = Voices[voiceIndex]->getAudioSource();
+    AudioTransportSource* source = &Voices[voiceIndex]->audioTransportSource;
     if (source->isPlaying()){
     source->setGain (0);
     std::cout<<"Stoping Voice "<<voiceIndex<<"\n";
     }
     
 }
-//==============================================================================
-//Callbacks
-void PolyAudioFilePlayer::fileChanged(drow::AudioFilePlayer *player){
-    masterReader = audioFilePlayer->getAudioFormatManager()->createReaderFor(audioFilePlayer->getFile());
-    
-}
+
 /** Implementation of the AudioSource method. */
 void PolyAudioFilePlayer::prepareToPlay (int samplesPerBlockExpected, double sampleRate){
     //    thread.startThread();

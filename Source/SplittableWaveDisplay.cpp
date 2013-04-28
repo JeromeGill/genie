@@ -59,8 +59,8 @@ void SplittableWaveDisplay::paintOverChildren(Graphics &g){
         
          //std::cout<<i<<" Drawing subsection"<<subsections.getLength(i)<<"\n";
         
-        int pixel = SampleToPixel(subsections.getStart(i));
-        int width = SampleToPixel(subsections.getLength(i));
+        int pixel = SampleToPixel(subsections[i].StartSample);
+        int width = SampleToPixel(subsections[i].LengthInSamples);
         
         
         if(width > 0){
@@ -165,45 +165,38 @@ void SplittableWaveDisplay::mouseDown(const MouseEvent &e){
     }
     
     if(e.mods.isShiftDown()){
-//        int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
-//        
-//        if(i >= 0){
-//            int64 duration = PixelToSample(e.x) - subsections.getStart(i);
-//            if (!duration) duration = 0;
-//            subsections.SetSubsectionDuration(duration, i);
-//            std::cout<<i<<" : setting length by click "<<subsections.getLength(i)<<"\n";
-//        }
-        
         if (!e.mods.isAltDown()){
-            
-           
             }
         
     }
-    else waveDisplay.mouseDown(e);
+    else{}
+        waveDisplay.mouseDown(e);
 }
 void SplittableWaveDisplay::mouseUp (const MouseEvent &e){
     int currentMouseX = e.x;
-    if (e.mods.isShiftDown()){
-        // subsection.getLast()->LengthInSamples = PixelToSample(e.getDistanceFromDragStart());
-    }
-    else waveDisplay.mouseUp(e);
+//    if (e.mods.isShiftDown()){
+//        subsection.getLast()->LengthInSamples = PixelToSample(e.getDistanceFromDragStart());
+//    }
+//    else
+        waveDisplay.mouseUp(e);
 }
 void SplittableWaveDisplay::mouseDrag(const MouseEvent &e){
+    
     
    
     if (e.mods.isShiftDown()){
         
         if (!e.mods.isAltDown()) {
         
-            int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
-            if(i >= 0){
-            }
-            else{
-                i = subsections.getNearestSubsection(PixelToSample(e.getMouseDownX()));
-            }
+            //Shift-Drag Set previous subsection's duration
             
-            int64 duration = PixelToSample(e.x) - subsections.getStart(i);
+            int i = subsections.getPreviousSubsection(PixelToSample(e.getMouseDownX()));
+            
+            if(i >= 0){} //Empty case prevents a call to getNearest if getPreviousSubsecion call was successful
+            else {i = subsections.getNearestSubsection(PixelToSample(e.getMouseDownX()));}
+            
+            
+            int64 duration = PixelToSample(e.x) - subsections[i].StartSample;
             if (!duration) duration = 0;
             subsections.SetSubsectionDuration(duration, i);
         }
@@ -213,10 +206,13 @@ void SplittableWaveDisplay::mouseDrag(const MouseEvent &e){
             if (i >= 0) subsections.SetSubsectionStart(start, i);
         }
     }
-    else waveDisplay.mouseDrag(e);
+    
+    else{ waveDisplay.mouseDrag(e); }
 }
 
 void SplittableWaveDisplay::mouseDoubleClick(const MouseEvent &e){
+    //if (!e.mouseWasClicked()) mouseDrag(e);
+    
     if (e.mods.isShiftDown()){
         if (e.mods.isAltDown()){
             int i = subsections.getNearestSubsection(PixelToSample(e.getMouseDownX()));
@@ -227,5 +223,5 @@ void SplittableWaveDisplay::mouseDoubleClick(const MouseEvent &e){
         
         }
     }
-    if (!e.mouseWasClicked()) mouseDrag(e);
+    else{waveDisplay.mouseDoubleClick(e);}
 }

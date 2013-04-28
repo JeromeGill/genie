@@ -162,31 +162,7 @@ void AudioSubsectionManager::removeSubsection (int SubsectionIndex){
         std::cout<<"SubsectionManager : removeSubsection received invalid index.\n";
     }
 }
-/** Returns a subsection's start sample
- */
-int64 AudioSubsectionManager::getStart(int SubsectionIndex){
-    if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
-        return subsection[SubsectionIndex]->StartSample;
-    }
-    else if(DEBUGSSM){
-        std::cout<<"SubsectionManager : getStart received invalid index. Returning 0 \n";
-        return 0;
-    }
-    else return 0;
-}
-/** Returns a subsection's duration
- */
-int64 AudioSubsectionManager::getLength(int SubsectionIndex){
-    
-    if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
-        return subsection[SubsectionIndex]->LengthInSamples;
-    }
-    else if(DEBUGSSM){
-        std::cout<<"SubsectionManager : getStart received invalid index. Returning 0 \n";
-        return 0;
-    }
-    else return 0;
-}
+
 /** Sets Start point of a particular Subsection
  */
 void AudioSubsectionManager::SetSubsectionStart (int64 startSample, int SubsectionIndex){
@@ -235,7 +211,7 @@ int AudioSubsectionManager::getNearestSubsection (int64 Sample){
     
     if (subsection.size() > 1){
         
-        for(i = 1; i < subsection.size() -1 && subsection[i]->StartSample < Sample; i++){}
+        for(i = 1; i < subsection.size() -1 && subsection[i]->StartSample < Sample; i++){} //Scan subsection array until a subsection with a greater
         
         if(fabs((double) subsection[i]->StartSample - Sample) <
            fabs((double) subsection[i-1]->StartSample - Sample))

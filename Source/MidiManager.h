@@ -13,16 +13,17 @@
 
 #include "genieHeader.h"
 #include "PolyAudioFilePlayer.h"
+#include "SubSection.h"
 #include "AudioSubsectionManager.h"
 
 //====================================================================================
-/**
+/**MidiManager
 
- \breif MidiManager provides a MIDI interaction between PolyAudioFilePlayer and AudioSubsectionManager
+ \brief MidiManager provides a MIDI interaction between PolyAudioFilePlayer and AudioSubsectionManager
  
    It utilises the Juce [MidiKeyboardState] method of MidiIO
  
- [MidiKeyboardState]: http://rawmaterialsoftware.com/juce/api/classMidiKeyboardState.html
+ [MidiKeyboardState]: http://rawmaterialsoftware.com/juce/api/classMidiKeyboardState.html (juce::MidiKeyboardState)
 */
 //====================================================================================
 
@@ -47,9 +48,9 @@ public:
      */
     void stopSubsection(int subsectionIndex);
     //====================================================================================
-    /**@Internal@*/
+    /** @internal */
     void handleNoteOn (MidiKeyboardState* source, int midiChannel, int midiNoteNumber, float velocity);
-    /**@Internal@*/
+    /** @internal */
     void handleNoteOff (MidiKeyboardState* source, int midiChannel, int midiNoteNumber);
     
     

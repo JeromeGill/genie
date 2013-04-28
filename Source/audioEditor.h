@@ -14,24 +14,21 @@
 #include "SplittableWaveDisplay.h"
 #include "SubsectionEditor.h"
 
+#define renderSampleRatio   128 //a lower number gives higher definition rendering of audio files
+#define thumbResolution     10 //a higher number gives a higher resolution of the rendered file.
+
 //==============================================================================
-/**
- 
+/**AudioEditor
  \brief AudioEditor is an Audio File Loader, display and slicer object
  
  An AudioFileLoader loads an audio file into [drow::AudioFilePlayer]
  An image is rendered with a [drow::AudioThumbnailImage] on a [TimeSliceThread]
  This image is passed to a SplittableWaveDisplay and a SubsectionEditor (poor quality messy method that needs replacing - perhaps a listener system would be cleaner)
  
- [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html
- [drow::AudioThumbnailImage]: http://drowaudio.co.uk/docs/class_audio_thumbnail_image.html
- [TimeSliceThread]: http://rawmaterialsoftware.com/juce/api/classTimeSliceThread.html
-*/
-//==============================================================================
-
-#define renderSampleRatio   128 //a lower number gives higher definition rendering of audio files
-#define thumbResolution     10 //a higher number gives a higher resolution of the rendered file. 
-
+ [drow::AudioFilePlayer]: http://drowaudio.co.uk/docs/class_audio_file_player.html (drow:AudioFilePlayer)
+ [drow::AudioThumbnailImage]: http://drowaudio.co.uk/docs/class_audio_thumbnail_image.html (drow:AudioThumbnailImage)
+ [TimeSliceThread]: http://rawmaterialsoftware.com/juce/api/classTimeSliceThread.html (Juce::TimeSliceThread)
+*///==============================================================================
 class AudioEditor : public Component,
                     public Slider::Listener
 {
@@ -46,13 +43,13 @@ public:
     /**Set the Zoom Ratio for the Splitable Wave Display*/
     void setZoomRatio(double newZoomRatio);
     
-    /** @Internal@ */
+    /** @Internal */
     void sliderValueChanged (Slider* slider);
 
     /**Component*/
-    /** @Internal@ */
+    /** @Internal */
     void resized();
-    /** @Internal@ */
+    /** @Internal */
     void paint(Graphics& g);
 
 private:
