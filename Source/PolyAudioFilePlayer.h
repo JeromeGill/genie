@@ -63,7 +63,7 @@ private:
     AudioFormatReader*  masterReader;
     TimeSliceThread     thread;
     
-    OwnedArray<PolyPlayerVoice> Voices; 
+    OwnedArray<PolyPlayerVoice> Voices;     
     
     double SampleRate;
     

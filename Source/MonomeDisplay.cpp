@@ -18,10 +18,12 @@ rows(0)
 {
     for (int i = 0; i < initialColumns; i++) {
         addColumn();
+
     }
     for (int i = 0; i < initialRows; i++) {
         addRow();
     }
+    refresh();
 }
         
 
@@ -33,15 +35,7 @@ void MonomeDisplay::paint (Graphics& g)
 {
 
 
-    g.fillAll (Colours::white);   // clear the background
-
-    g.setColour (Colours::grey);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-
-    g.setColour (Colours::lightblue);
-    g.setFont (14.0f);
-    g.drawText ("MonomeDisplay", getLocalBounds(),
-                Justification::centred, true);   // draw some placeholder text
+   // draw some placeholder text
 }
 
 void MonomeDisplay::resized()
@@ -62,7 +56,7 @@ void MonomeDisplay::resized()
         }
   
     }
-    repaint();
+
 }
 
 
@@ -73,7 +67,7 @@ void MonomeDisplay::setActive(size_t column, size_t row, bool setActive, Colour 
 }
 
 void MonomeDisplay::addRow(){
-    clear();
+
     //std::cout<<"Monome Add Row: "<<columns<<" "<<rows;
     for (int i = 0; i < columns; i++) {
         SequenceElement *a = new SequenceElement;
@@ -81,12 +75,12 @@ void MonomeDisplay::addRow(){
         
     }
     rows++;
-    refresh();
+ 
 }
 
 void MonomeDisplay::addColumn()
 {
-    clear();
+  
     std::cout<<"Monome Add Column: "<<columns<<" "<<rows;
     for (int i = 0; i < rows; i++) {
         SequenceElement *a = new SequenceElement;
@@ -96,29 +90,31 @@ void MonomeDisplay::addColumn()
     columns++;
 
     std::cout<<"\n";
-    refresh();
+
 }
 
 void MonomeDisplay::removeRow(){
-    clear();
+  
     
-    btn.removeRange(btn.size()-1, columns);
+    for (int i = 1; i <= columns; i++) {
+        btn.remove((btn.size() - i));
+    }
     rows--;
     refresh();
 }
 
 void MonomeDisplay::removeColumn(){
-    clear();
+   
     for (int i = 0; i < rows; i++) {
         btn.remove((i*columns + i));
     }
     columns--;
-    refresh();
+ 
 }
 
 void MonomeDisplay::setColumns(int numberOfColumns){
-    if (numberOfColumns < 33 && numberOfColumns > 0) {
-        
+    if (numberOfColumns < 100 && numberOfColumns > 0) {
+         clear();
         
         if (columns < numberOfColumns) {
             for (int i = columns; i <= numberOfColumns; i++) {
@@ -130,13 +126,14 @@ void MonomeDisplay::setColumns(int numberOfColumns){
                 removeColumn();
             }
         }
-        
+           refresh();
     }
     
 }
 
 void MonomeDisplay::setRows(int numberOfRows){
-    if (numberOfRows < 33 && numberOfRows> 0) {
+    if (numberOfRows < 100 && numberOfRows> 0) {
+          clear();
         if (rows < numberOfRows) {
             for (int i = 0; i <= numberOfRows - rows; i++) {
                 addRow();
@@ -147,13 +144,13 @@ void MonomeDisplay::setRows(int numberOfRows){
                 removeRow();
             }
         }
+        refresh();
     }
 }
 
 void MonomeDisplay::clear(){
     for (int i = 0; i < btn.size(); i++) {
         btn[i]->setVisible(false);
-        removeChildComponent(btn[i]);
     }
 }
 

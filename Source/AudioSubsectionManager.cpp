@@ -88,18 +88,6 @@ void AudioSubsectionManager::nameSubsection(int SubsectionIndex, String Name){
     }
 }
 
-/** Returns a Subsection's name
- */
-String AudioSubsectionManager::getName(int SubsectionIndex){
-    String Name = "Null";
-    if(SubsectionIndex >= 0 && SubsectionIndex < subsection.size()){
-        Name = subsection[SubsectionIndex]->name;
-    }
-    else if(DEBUGSSM){
-        std::cout<<"SubsectionManager : Name received invalid index. Returning 'Null' \n";
-    }
-    return Name;
-}
 /** Returns a Subsection's type as a Juce String
  
  May return "Unnamed" if a type has not yet been set.
@@ -209,20 +197,16 @@ int AudioSubsectionManager::getNearestSubsection (int64 Sample){
     
     if(DEBUGSSM)std::cout<<"SubsectionManager : getNearestSubsection = ";
     
-    if (subsection.size() > 1){
+    if (subsection.size() > 1){ //If SubSection only has a single member, you can bet that will be the nearest clicked on!
+
+        i = getPreviousSubsection(Sample) + 1;
         
-        for(i = 1; i < subsection.size() -1 && subsection[i]->StartSample < Sample; i++){} //Scan subsection array until a subsection with a greater
+        if(fabs((double) subsection[i]->StartSample - Sample) >
+           fabs((double) subsection[i -1]->StartSample - Sample))
+            i--;
         
-        if(fabs((double) subsection[i]->StartSample - Sample) <
-           fabs((double) subsection[i-1]->StartSample - Sample))
-            return i;
-        
-        else{
-            if (i)  i--;
-            else i = 0;
-        }
     }
-    else i =0;
+    else i = 0;
     
     if(DEBUGSSM)std::cout<<i<<"\n";
     return i;
@@ -230,12 +214,10 @@ int AudioSubsectionManager::getNearestSubsection (int64 Sample){
 /** Returns the index of the Subsection to the left of the sample clicked on
  */
 int AudioSubsectionManager::getPreviousSubsection (int64 Sample){
-    int i;
+    int i = 0;
     if(subsection.size())
-        for(i = 0; i < subsection.size() && subsection[i]->StartSample < Sample; i++){
-            
-        }
-    return i -1;
+        for(i = 0; i < subsection.size() && subsection[i]->StartSample < Sample; i++){}//find subsection with a greater starttime
+    return i -1; //Return the index of the subsection before it
 }
 /** Returns the index of subsection that contains sample
  
@@ -281,7 +263,7 @@ void AudioSubsectionManager::clear(){
  */
 void AudioSubsectionManager::sortSubsections(){
     if(subsection.size() > 2)
-        subsection.sort(subsectionComparator);
+        subsection.sort(subsectionComparator); //Juce OwnedArray sort method.
     for(int i = 0; i < subsection.size() -1; i ++){
         if (subsection[i]->StartSample == subsection[i+1]->StartSample)
             subsection.remove(i);

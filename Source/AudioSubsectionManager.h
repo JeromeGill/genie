@@ -14,7 +14,7 @@
 #include "SubSection.h"
 
 
-#define DEBUGSSM 1 //set to a positive value to print debug messages
+#define DEBUGSSM 0 //set to a positive value to print debug messages
 
 
 class SubsectionComparator
@@ -84,9 +84,6 @@ public:
     /** Names a Subsection
      */
     void nameSubsection (int SubsectionIndex, String Name);
-    /** Returns a Subsection's name
-     */
-    String getName(int SubsectionIndex);
     /** Sets a Subsection's type
      */
     void setSubsectionType(int SubsectionIndex, int type);

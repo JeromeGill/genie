@@ -128,11 +128,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/AudioSubsectionManager.cpp"
-         timestampString = "388779184.119352"
+         timestampString = "388881669.660828"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "251"
-         endingLineNumber = "251"
+         startingLineNumber = "233"
+         endingLineNumber = "233"
          landmarkName = "AudioSubsectionManager::getSubsection (int64 Sample)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -167,11 +167,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/AudioSubsectionManager.cpp"
-         timestampString = "387974713.116376"
+         timestampString = "388881669.660828"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "109"
-         endingLineNumber = "109"
+         startingLineNumber = "97"
+         endingLineNumber = "97"
          landmarkName = "AudioSubsectionManager::getTypeAsString(int SubsectionIndex)"
          landmarkType = "5">
       </FileBreakpoint>

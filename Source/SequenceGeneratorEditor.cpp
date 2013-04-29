@@ -56,7 +56,7 @@ SequenceGeneratorEditor::SequenceGeneratorEditor()
 
     slider[2]->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
     slider[2]->addListener(this);
-    slider[2]->setRange(1, 4, 1);
+    slider[2]->setRange(1, 6, 1);
 
     
     for (int i = 0; i < slider.size(); i++)

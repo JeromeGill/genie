@@ -15,9 +15,9 @@
 #include <vector>
 #include "genieHeader.h"
 
-#define MAXNECKLACESIZE 30 //The maximum available intervals in a necklace
+#define MAXNECKLACESIZE 36 //The maximum available intervals in a necklace
 #define MAXNECKLACES    5  //The maxmimum available necklaces in a sequence
-#define MAXDEPTH        5  //The maximum sequences in a pattern
+#define MAXDEPTH        6  //The maximum sequences in a pattern
 
 #define MINNECKLACESIZE 3 //The minimum intervals in a necklace
 
