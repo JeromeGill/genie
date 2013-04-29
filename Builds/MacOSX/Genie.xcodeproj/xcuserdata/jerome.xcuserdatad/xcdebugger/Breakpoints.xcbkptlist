@@ -154,11 +154,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388869174.79956"
+         timestampString = "388928116.724736"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "220"
-         endingLineNumber = "220"
+         startingLineNumber = "212"
+         endingLineNumber = "212"
          landmarkName = "SequenceGenerator::GetPulses(Pattern pattern, int position)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -219,11 +219,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388869174.79956"
+         timestampString = "388928116.724736"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "118"
-         endingLineNumber = "118"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
          landmarkName = "SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence, int sequencesPerPattern, int intervalsPerSequence)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -245,11 +245,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388868244.597921"
+         timestampString = "388928116.724736"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "105"
-         endingLineNumber = "105"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
          landmarkName = "SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence, int sequencesPerPattern, int intervalsPerSequence)"
          landmarkType = "5">
       </FileBreakpoint>

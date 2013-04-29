@@ -41,8 +41,8 @@ void MonomeDisplay::paint (Graphics& g)
 void MonomeDisplay::resized()
 {
     if (rows && columns) {
-    int w = getWidth();
-    int h = getHeight();
+    float w = getWidth();
+    float h = getHeight();
     
    
         for (int i = 0; i < rows; i++){
@@ -109,15 +109,15 @@ void MonomeDisplay::removeColumn(){
         btn.remove((i*columns + i));
     }
     columns--;
- 
+    refresh();
 }
 
 void MonomeDisplay::setColumns(int numberOfColumns){
-    if (numberOfColumns < 100 && numberOfColumns > 0) {
+    if (numberOfColumns < MONOMEMAXSIZE && numberOfColumns > 0) {
          clear();
         
         if (columns < numberOfColumns) {
-            for (int i = columns; i <= numberOfColumns; i++) {
+            for (int i = columns; i < numberOfColumns; i++) {
                 addColumn();
             }
         }
@@ -132,7 +132,7 @@ void MonomeDisplay::setColumns(int numberOfColumns){
 }
 
 void MonomeDisplay::setRows(int numberOfRows){
-    if (numberOfRows < 100 && numberOfRows> 0) {
+    if (numberOfRows < MONOMEMAXSIZE && numberOfRows> 0) {
           clear();
         if (rows < numberOfRows) {
             for (int i = 0; i <= numberOfRows - rows; i++) {

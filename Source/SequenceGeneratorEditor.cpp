@@ -46,21 +46,20 @@ SequenceGeneratorEditor::SequenceGeneratorEditor()
     slider.add(new Slider("SequenceLength"));
     slider.add(new Slider("SequenceDepth"));
 
-    slider[0]->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
-    slider[0]->addListener(this);
-    slider[0]->setRange(1, 5, 1);
+ 
 
-    slider[1]->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
-    slider[1]->addListener(this);
-    slider[1]->setRange(1, 4, 1);
-
-    slider[2]->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
-    slider[2]->addListener(this);
-    slider[2]->setRange(1, 6, 1);
-
-    
-    for (int i = 0; i < slider.size(); i++)
+    for (int i = 0; i < slider.size(); i++) {
+        slider[i]->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
+        slider[i]->addListener(this);
+        slider[i]->setColour(0x1001311, Colours::white);              
         addAndMakeVisible(slider[i]);
+    }
+    slider[0]->setRange(1, 5, 1);
+    slider[1]->setRange(1, 16, 1);
+    slider[2]->setRange(1, 6, 1);
+    
+
+        
     
 }
 
@@ -80,8 +79,10 @@ void SequenceGeneratorEditor::paint (Graphics& g)
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
     g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
-    g.fillRect(fourBw, h/8 - twoBw, w - (2*fourBw), h/8 *7 - twoBw);
-      
+//    g.setColour(Colours::green);
+//    g.setOpacity(0.7);
+//    g.fillRect(fourBw, h/8 - twoBw, w - (2*fourBw), h/8 *7 - twoBw);
+    
 }
 /** @internal */
 void SequenceGeneratorEditor::resized()

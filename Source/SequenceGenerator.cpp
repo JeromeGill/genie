@@ -80,7 +80,7 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
 
     for (int i = 0; i < P.d(); i++) { //Cycle through each sequence in a pattern
         
-        int remainderIntervals = intervalsPerSequence * 8; //For each sequence determine how many intervals need distributing between each necklace
+        int remainderIntervals = intervalsPerSequence * 4; //For each sequence determine how many intervals need distributing between each necklace
         
         std::cout<<remainderIntervals<<"/"<<necklacesPerSequence<<"\n";
         
@@ -90,25 +90,17 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
                 ii = 0;
             }
             
-            int n = (rand() % (intervalsPerSequence * 4 - MINNECKLACESIZE)) + MINNECKLACESIZE; //Generate a random number between the minimum necklace size and half the total intervals in a sequence
+            int n = (rand() % (intervalsPerSequence * 2 - MINNECKLACESIZE)) + MINNECKLACESIZE; //Generate a random number between the minimum necklace size and half the total intervals in a sequence
             
-//            std::cout<<ii<<"("<<remainderIntervals<<" - "<<n<<") ";
-            //Subtract that number from the remainding intervals
-            
+        
             if  (remainderIntervals - n < 0) { //If the remainding intervals are less than zero add the difference back on to n
-                
-                //std::cout<<"("<<remainderIntervals<<" + "<<n + remainderIntervals<<") ";
                 n = remainderIntervals;
             }
             
             
             P.np(ii, i).n += n; //Add n to the number of intervals in the necklace
-            P.np(ii, i).p = rand() % (P.np(ii, i).n-1) + 1; //Generate a random number of pulses between 1 and the number of intervals in the necklace
-//            
-//            std::cout<<ii<<"("<<P.np(ii, i).n;
-//            
-//            std::cout<<":"<<p<<") ";
-            P.np(ii, i).b = true;
+            P.np(ii, i).p = (rand() % (P.np(ii, i).n)) + 1; //Generate a random number of pulses between 1 and the number of intervals in the necklace
+            P.np(ii, i).b = (bool)rand() % 2;
             remainderIntervals -= n; 
         }
     }

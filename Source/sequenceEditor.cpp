@@ -11,8 +11,8 @@
 
 //==============================================================================
 SequenceEditor::SequenceEditor()
-: sequenceDisplay(8,1),
-totalDisplay(8,1),
+: sequenceDisplay(4,1),
+totalDisplay(4,1),
 genieImage(ImageCache::getFromMemory (genieLogo::genielogo2_png,
                                       genieLogo::genielogo2_pngSize))
 {
@@ -52,6 +52,9 @@ void SequenceEditor::paint (Graphics& g)
     g.fillAll (Colours::black);
     g.setColour(Colours::white);
     g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
+    g.drawRect(twoBw + Bw, h/2, w - fourBw-twoBw, h/4,Bw);//SequenceDisplay outline
+    g.drawRect(twoBw + Bw, h/8 * 7, w - fourBw-twoBw, h/8 - twoBw, Bw); //totalDisplay outline
+    
     g.drawImageAt(genieImage.rescaled (w / 2 - twoBw, h - fourBw), w/2,  twoBw);
     
 }
@@ -62,10 +65,11 @@ void SequenceEditor::resized()
     int h = getHeight();
     
     sequenceGenerator.setBounds(twoBw, twoBw, w / 2 - fourBw, h /2  - fourBw);
-    sequenceDisplay.setBounds(twoBw, h/2 - twoBw, w - fourBw, h/4 - twoBw);
+    sequenceDisplay.setBounds(fourBw, h/2 + Bw, w - fourBw-fourBw, h/4 - twoBw);
+    
     savePattern1.setBounds(twoBw, h/4*3, w/2 - twoBw, h/8);
     savePattern2.setBounds(w/2, h/4*3, w/2 - twoBw, h/8);
-    totalDisplay.setBounds(twoBw, h/8 * 7, w - fourBw, h/8 - twoBw);
+    totalDisplay.setBounds(fourBw, h/8 * 7+Bw, w - fourBw-fourBw, h/8 - fourBw);
 
 }
 
@@ -112,8 +116,8 @@ void SequenceEditor::displayPatternTotals(Pattern pattern, MonomeDisplay& displa
 
 void SequenceEditor::sliderValueChanged(Slider* slider){
     if(slider->getName() == "SequenceLength"){
-        sequenceDisplay.setColumns((int) slider->getValue() * 8);
-        totalDisplay.setColumns((int) slider->getValue() * 8);
+        sequenceDisplay.setColumns((int) slider->getValue() * 4);
+        totalDisplay.setColumns((int) slider->getValue() * 4 );
     }
     if(slider->getName() == "SequenceDepth"){
         sequenceDisplay.setRows((int) slider->getValue());

@@ -11,8 +11,10 @@
 #ifndef __MONOMEDISPLAY_H_83AF7FB__
 #define __MONOMEDISPLAY_H_83AF7FB__
 
+#define MONOMEMAXSIZE 129
+#define BORDERPERCENTAGE 1
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "genieHeader.h"
+
 //==============================================================================
 /**MonomeDisplay
  \brief MonomeDisplay is a grid of SequenceElement arranged like a [Monome]
@@ -47,19 +49,29 @@ public:
     }
     
     void paint(Graphics &g){
-        int w = getWidth();
-        int h = getHeight();
+        float w = (float)getWidth();
+        float h = (float)getHeight();
         
-        g.fillAll (Colours::black);
-        if (active){
-            g.setColour(activeColour);
-            g.fillRect(twoBw, twoBw, w-fourBw, h-fourBw);
-         }
+        float bw = 100 / BORDERPERCENTAGE;
+        //  g.fillAll (Colours::black);
+        
+//        g.setColour(Colours::blueviolet);
+//        g.drawRect(w, h, w, h, sqrt(w*h) *bw);
+        
       
         
-        g.setColour(Colours::white);
-        g.drawRect(Bw, Bw, w-twoBw, h-twoBw,Bw);
+        if (active){
+            g.setColour(activeColour);
+        }
+        else{
+            g.setColour(Colours::black);
+            g.setOpacity(0);
+        }
+            g.fillRect(w/bw, h/bw, w-w/bw *2, h-h/bw *2);
+        
+      
     }
+    
     
     void resized(){
         repaint();
