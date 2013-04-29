@@ -197,16 +197,20 @@ int AudioSubsectionManager::getNearestSubsection (int64 Sample){
     
     if(DEBUGSSM)std::cout<<"SubsectionManager : getNearestSubsection = ";
     
-    if (subsection.size() > 1){ //If SubSection only has a single member, you can bet that will be the nearest clicked on!
-
-        i = getPreviousSubsection(Sample) + 1;
+    if (subsection.size() > 1){
         
-        if(fabs((double) subsection[i]->StartSample - Sample) >
-           fabs((double) subsection[i -1]->StartSample - Sample))
-            i--;
+        for(i = 1; i < subsection.size() -1 && subsection[i]->StartSample < Sample; i++){} //Scan subsection array until a subsection with a greater
         
+        if(fabs((double) subsection[i]->StartSample - Sample) <
+           fabs((double) subsection[i-1]->StartSample - Sample))
+            return i;
+        
+        else{
+            if (i)  i--;
+            else i = 0;
+        }
     }
-    else i = 0;
+    else i =0;
     
     if(DEBUGSSM)std::cout<<i<<"\n";
     return i;
