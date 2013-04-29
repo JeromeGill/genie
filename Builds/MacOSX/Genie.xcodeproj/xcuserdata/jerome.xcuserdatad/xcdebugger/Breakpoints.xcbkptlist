@@ -154,11 +154,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388928116.724736"
+         timestampString = "388954287.135667"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "212"
-         endingLineNumber = "212"
+         startingLineNumber = "221"
+         endingLineNumber = "221"
          landmarkName = "SequenceGenerator::GetPulses(Pattern pattern, int position)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -219,11 +219,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388928116.724736"
+         timestampString = "388954287.135667"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
+         startingLineNumber = "119"
+         endingLineNumber = "119"
          landmarkName = "SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence, int sequencesPerPattern, int intervalsPerSequence)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -245,11 +245,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Source/SequenceGenerator.cpp"
-         timestampString = "388928116.724736"
+         timestampString = "388954287.135667"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "101"
-         endingLineNumber = "101"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
          landmarkName = "SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence, int sequencesPerPattern, int intervalsPerSequence)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -290,6 +290,19 @@
          startingLineNumber = "42"
          endingLineNumber = "42"
          landmarkName = "SequenceGenerator::GeneratePattern(PatternPreset P)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Source/SplittableWaveDisplay.cpp"
+         timestampString = "388940053.716465"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "191"
+         endingLineNumber = "191"
+         landmarkName = "SplittableWaveDisplay::mouseDrag(const MouseEvent &amp;e)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

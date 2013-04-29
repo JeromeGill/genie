@@ -75,9 +75,18 @@ PatternPreset SequenceGenerator::GetRandomPatternPreset(){
 PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
                                                        int sequencesPerPattern,
                                                        int intervalsPerSequence){
-    PatternPreset P(necklacesPerSequence,sequencesPerPattern);
-    
 
+    
+    while (necklacesPerSequence * MINNECKLACESIZE > intervalsPerSequence * 4){//Prevent necklaces being forced to be smaller than the minimum size
+
+        std::cout<<"Reducing neclaces per sequence\n";
+        
+        necklacesPerSequence--;
+    }
+
+    
+    PatternPreset P(necklacesPerSequence,sequencesPerPattern);
+       
     for (int i = 0; i < P.d(); i++) { //Cycle through each sequence in a pattern
         
         int remainderIntervals = intervalsPerSequence * 4; //For each sequence determine how many intervals need distributing between each necklace
@@ -90,7 +99,7 @@ PatternPreset SequenceGenerator::GeneratePatternPreset(int necklacesPerSequence,
                 ii = 0;
             }
             
-            int n = (rand() % (intervalsPerSequence * 2 - MINNECKLACESIZE)) + MINNECKLACESIZE; //Generate a random number between the minimum necklace size and half the total intervals in a sequence
+            int n = (rand() % (intervalsPerSequence * 2 / necklacesPerSequence - MINNECKLACESIZE)) + MINNECKLACESIZE; //Generate a random number between the minimum necklace size and half the total intervals in a sequence
             
         
             if  (remainderIntervals - n < 0) { //If the remainding intervals are less than zero add the difference back on to n

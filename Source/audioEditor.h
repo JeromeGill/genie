@@ -65,10 +65,10 @@ private:
     
     //Display
     AudioThumbnail          audioThumbNail;
-    AudioThumbnail          audioThumbNailHighDef;
+    //AudioThumbnail          audioThumbNailHighDef;
     AudioThumbnailCache     audioThumbNailCache;
     ScopedPointer<drow::AudioThumbnailImage>    audioThumbnailImage;
-    ScopedPointer<drow::AudioThumbnailImage>    audioThumbnailImageHighDef;
+    //ScopedPointer<drow::AudioThumbnailImage>    audioThumbnailImageHighDef;
     ScopedPointer<SplittableWaveDisplay>  waveDisplay;
     
     

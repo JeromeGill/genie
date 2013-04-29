@@ -19,7 +19,7 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
     LoadBar(audioFilePlayer_),
     backgroundThread("Waveform Thread"),
     audioThumbNail (renderSampleRatio, *audioFilePlayer_.getAudioFormatManager(), audioThumbNailCache),
-    audioThumbNailHighDef (renderSampleRatio / 2, *audioFilePlayer_.getAudioFormatManager(), audioThumbNailCache),
+//    audioThumbNailHighDef (renderSampleRatio/2, *audioFilePlayer_.getAudioFormatManager(), audioThumbNailCache),
     audioThumbNailCache (2),
     editor(subsectionEditor)
     
@@ -38,15 +38,16 @@ AudioEditor::AudioEditor (AudioSubsectionManager &audioSubsectionManager_,
     audioThumbnailImage->setBackgroundColour(Colours::transparentBlack);
     audioThumbnailImage->setWaveformColour  (Colours::white);
     audioThumbnailImage->setResolution(thumbResolution);
-    
 
-//    audioThumbnailImageHighDef = new AudioThumbnailImage(audioFilePlayer_,
+    //Either really slow or you just can't see it! 
+
+//    audioThumbnailImageHighDef = new drow::AudioThumbnailImage(audioFilePlayer_,
 //                                                         audioThumbNailCache.getTimeSliceThread(),
 //                                                         audioThumbNailHighDef,
-//                                                         renderSampleRatio/4);
+//                                                         renderSampleRatio/2);
 //    audioThumbnailImageHighDef->setBackgroundColour(Colours::transparentBlack);
 //    audioThumbnailImageHighDef->setWaveformColour  (Colours::white);
-//    audioThumbnailImageHighDef->setResolution(thumbResolution * 100);
+//    audioThumbnailImageHighDef->setResolution(thumbResolution*2);
     editor.setImageSource(*audioThumbnailImage);
     
     

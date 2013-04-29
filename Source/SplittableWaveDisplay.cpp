@@ -70,7 +70,7 @@ void SplittableWaveDisplay::paintOverChildren(Graphics &g){
             Graphics g1(SubsectionImage);
             g1.setColour(Colours::green);
             g1.fillRect(Bw,Bw, width - twoBw, getHeight() - twoBw);
-            g.drawImageAt(SubsectionImage, pixel + Bw, 0);
+            g.drawImageAt(SubsectionImage, pixel, 0);
         }
         else g.drawImageAt(highlightImage, pixel, 0);
     }
@@ -126,7 +126,7 @@ int  SplittableWaveDisplay::SampleToPixel(int64 sampleClickedOn){ // needs to in
  */
 int64 SplittableWaveDisplay::PixelToSample(double PixelClickedOn){
     if(PixelClickedOn)
-        return (int64) roundToInt((float)currentXScale * PixelClickedOn);
+        return (int64) (double)currentXScale * PixelClickedOn;
     else{
         std::cout<<" Invalid Pixel -> Sample convertion \n";
         return 0;

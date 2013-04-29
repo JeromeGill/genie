@@ -23,11 +23,11 @@ genieImage(ImageCache::getFromMemory (genieLogo::genielogo2_png,
     addAndMakeVisible(&totalDisplay);
     
     savePattern1.addListener(this);
-    savePattern1.setButtonText("Save Pattern 1");
+    savePattern1.setButtonText("Save Polyphonic Sequence");
     addAndMakeVisible(&savePattern1);
     
     savePattern2.addListener(this);
-    savePattern2.setButtonText("Save Pattern 2");
+    savePattern2.setButtonText("Save Slice Selection Sequence");
     addAndMakeVisible(&savePattern2);
     
      sequenceDisplay.setAlpha(0.7);
