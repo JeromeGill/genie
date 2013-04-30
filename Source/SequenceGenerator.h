@@ -98,21 +98,20 @@ private:
  
  A pattern is generated from a PatternPreset structure.
  
- Features;
- Generate a vector of bools using euclid method
- Concate a number of these vectors to form a sequence
- Generate a pattern by layering sequences
- Return the number of true values at each position of a sequence vector
- PatternPreset Struct
- Randomly generate a pattern preset
- Export a pattern as a midifile
- Print a pattern preset
+ Features\n;
+ Generate a vector of bools using euclid method\n
+ Concate a number of these vectors to form a sequence\n
+ Generate a pattern by layering sequences\n
+ Return the number of true values at each position of a sequence vector\n
+ PatternPreset Struct\n
+ Randomly generate a pattern preset\n
+ Export a pattern as a midifile\n
+ Print a pattern preset\n
  
  ToDo;
  
- Store structs used to generate sequence vector on hard disk
- Resolve bug with higher complexitys of patterns crashing
- Protection against stupid numbers in PatternPreset struct
+ Store structs used to generate sequence vector on hard disk\n
+ Protection against stupid numbers in PatternPreset struct\n
  *///==============================================================================
 class SequenceGenerator {
     

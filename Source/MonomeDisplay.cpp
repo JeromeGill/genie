@@ -31,12 +31,6 @@ MonomeDisplay::~MonomeDisplay()
 {
 }
 
-void MonomeDisplay::paint (Graphics& g)
-{
-
-
-   // draw some placeholder text
-}
 
 void MonomeDisplay::resized()
 {
@@ -47,7 +41,7 @@ void MonomeDisplay::resized()
    
         for (int i = 0; i < rows; i++){
             for (int ii = 0 ; ii < columns; ii++) {
-                btn[i*columns+ ii]->setBounds(w/columns * ii,
+                btn[getElement(ii, i)]->setBounds(w/columns * ii,
                                               h/rows * i,
                                               w/columns,
                                               h/rows);
@@ -61,9 +55,8 @@ void MonomeDisplay::resized()
 
 
 void MonomeDisplay::setActive(size_t column, size_t row, bool setActive, Colour colour){
-    btn[row * columns + column]->onColour(colour);
-    btn[row * columns + column]->isOn(setActive);
-    repaint();
+    btn[getElement(columns, row)]->onColour(colour);
+    btn[getElement(columns, row)]->isOn(setActive);
 }
 
 void MonomeDisplay::addRow(){
@@ -106,7 +99,7 @@ void MonomeDisplay::removeRow(){
 void MonomeDisplay::removeColumn(){
    
     for (int i = 0; i < rows; i++) {
-        btn.remove((i*columns + i));
+        btn.remove((getElement(i, i)));
     }
     columns--;
     refresh();
@@ -169,4 +162,8 @@ void MonomeDisplay::resetGrid(){
         btn[i]->isOn(false);
     }
     
+}
+
+int MonomeDisplay::getElement(size_t column, size_t row){
+    return row * columns + column;
 }

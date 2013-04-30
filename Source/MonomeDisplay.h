@@ -15,13 +15,7 @@
 #define BORDERPERCENTAGE 1
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
-/**MonomeDisplay
- \brief MonomeDisplay is a grid of SequenceElement arranged like a [Monome]
- 
- [Monome]:http://monome.org/ (Monome)
-*/
-//==============================================================================
+
 class SequenceElement : public Component {
     bool active;
     Colour activeColour;
@@ -79,35 +73,53 @@ public:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequenceElement)
 };
 
+//==============================================================================
+/**MonomeDisplay
+ \brief MonomeDisplay is a grid of SequenceElement arranged like a [Monome]
+ 
+ Monome display is a class for displaying a grid of coloured rectangles or squares allowing dynamic modification of rows or columns at run time.
+ [Monome]: http://monome.org/ (Monome)
+ */
+//==============================================================================
 class MonomeDisplay    : public Component
 {
 public:
     MonomeDisplay(int columns, int rows);
     ~MonomeDisplay();
 
+    /**Set a an element active and define it's colour.
+     True = on
+     False = off
+     */
     void setActive(size_t column, size_t row, bool isActive, Colour colour = Colours::green);
-    void addRow();
-    void addColumn();
     
-    void removeRow();
-    void removeColumn();
-    
+    /** Set number of columns
+     */
     void setColumns(int numberOfColumns);
+    /** Set number of rows
+     */
     void setRows(int numberOfRows);
     
+    /**Delete all elements
+     */
     void emptyGrid();
+    /**Set all elements inactive
+     */
     void resetGrid();
-    
 
     
-    void paint (Graphics&);
-    void resized();
-    
 private:
+    int getElement(size_t column, size_t row);
+    void addRow();
+    void addColumn();
+    void removeRow();
+    void removeColumn();
     
     void clear();
     void refresh();
     
+    void resized();
+
     OwnedArray<SequenceElement> btn;
     int columns,rows;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MonomeDisplay)

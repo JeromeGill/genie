@@ -21,6 +21,10 @@
 
  It displays two MonomeDisplay objects
  One for a generative sequence and the second for the cumulative value of each position of that sequence.
+ 
+ Genie Logo design - [RyanHegarty]
+ 
+ [RyanHegarty]: http://ryanhegarty.co.uk/ (RyanHegarty)
 */
 //==============================================================================
 class SequenceEditor :  public Component,
